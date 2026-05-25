@@ -32,3 +32,12 @@
   - In `test_tc_f4_bcc_03_malformed_json()`, verified that the mock server successfully received the malformed JSON frame, and that the socket connection was successfully removed from `state.ws_connections` after closing.
 - **WebSocket Helpers Import**: Explicitly imported `encode_websocket_frame` and `decode_websocket_frame` from `conftest` at the top of the test file.
 
+## R2. Auth Routing Migration & CORS Integration
+**Date**: 2026-05-25
+
+- **C# API CORS Policy**: Integrated `AllowedCorsOrigins` in `PhantomConfig.cs` and updated `Program.cs` to dynamically configure CORS policy allowing credentials.
+- **Next.js AuthContext & Redirection**: Created `AuthContext.tsx` to handle health check querying, JWT local storage persistence, login/logout logic, and simulated fallback session creation for offline mode. Added `ProtectedRoute.tsx` routing guard to intercept unauthenticated sessions.
+- **Dashboard Application Router Pages**: Migrated and implemented subpages for `/dashboard` (Real-Time Threat Console with polling and simulated fallback), `/dashboard/events` (Collapsible diagnostics details), and `/dashboard/sensors` (Sensor fleet card grid).
+- **B2B Landing Page Redesign**: Redesigned `src/app/page.tsx` as a polished B2B company landing page for "Synz Labs" using Outfit font, featuring overview, use cases, research blog, compliance badges (SOC2/NERC CIP/IEC 62443), and ensuring E2E assertions backwards compatibility.
+- **E2E Routing & Auth Validation**: Added `e2e_tests/test_routing_auth.py` verifying landing, login, and dashboard pages, local storage lifecycles, and API health checks.
+

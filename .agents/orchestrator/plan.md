@@ -1,71 +1,40 @@
-# Implementation Plan: Synz Phantom Active Defense Upgrades
+# Implementation Plan: Blazor Analyst Portal Next.js Migration
 
-## Overview
-This plan coordinates the development of the Next.js launch landing page/simulator and C++ Edge Interceptor firmware improvements across two workspaces.
+This plan details the steps required to migrate the Blazor Analyst Portal into the Next.js app router, update the home page to a polished B2B company page, add CORS support to the C# API, and verify the builds and tests.
 
-## Milestones & Work Items
+## Milestones
 
-### Milestone 1: E2E Test Suite Development (Testing Track)
-- **Objective**: Build automated verification tests for both Next.js and C++ requirements.
-- **Tasks**:
-  1. Define test runner, test format, and structure in `TEST_INFRA.md`.
-  2. Implement unit/integration tests for:
-     - Next.js lead capture email validation and simulation mode transitions.
-     - C++ circular queue sequence correctness.
-     - C++ UDP telemetry packet decoding and integration.
-     - C++ AES key loading and model decryption.
-  3. Publish `TEST_READY.md` once the suite is fully operational and passes against mock/empty implementations.
+### Milestone 1: C# API CORS Integration & Compilation
+- **Files to Modify**: `phantom_console/SynzPhantom.API/Program.cs`
+- **Objective**: Configure CORS default policy to accept headers, methods, and credentials originating specifically from `http://localhost:3000`.
+- **Verification**: Run `dotnet build` on `phantom_console/SynzPhantom.sln` to ensure zero compilation errors.
 
-### Milestone 2: Next.js Landing Page & Simulator (R1)
-- **Objective**: Create the marketing landing page and interactive active defense simulator.
-- **Tasks**:
-  1. Add a WebSocket connection toggle to allow connecting to a C# API (`SynzPhantom.API`) streaming live threat metrics.
-  2. When WebSocket is toggled on, open a connection to `ws://localhost:5000/ws` (or configurable URL) and update simulator state dynamically from received messages.
-  3. Refactor Lead Intake Form:
-     - Implement strict corporate email validation (disallow public domains like gmail.com, yahoo.com, outlook.com, hotmail.com, etc.).
-     - Display clear validation error messages.
-     - Save lead payloads in `localStorage`.
-     - Log payload explicitly to `console.log`.
-  4. Ensure `npm run build` compiles with zero warnings or errors.
+### Milestone 2: Next.js Login & App Router Dashboard Migration
+- **New Directory Layout**:
+  - `src/app/login/page.tsx`: Login page with corporate design, JWT submission to API, and offline fallback (using credentials `admin@synzlabs.io` / `phantom2026!`).
+  - `src/app/dashboard/layout.tsx`: Layout with sidebar navigation (links to `/dashboard`, `/dashboard/events`, `/dashboard/sensors`), current user profile header, and log out action.
+  - `src/app/dashboard/page.tsx`: Dashboard home containing metrics widgets (Total Events, Threats Detected, Kill-Switch Blocks), Live Threat Feed, and Top Attack Categories (animated custom SVG charts).
+  - `src/app/dashboard/events/page.tsx`: Interactive data table of recent events, with expandable rows showing detailed telemetry diagnostics (protocol, active slots, and inference latency).
+  - `src/app/dashboard/sensors/page.tsx`: Card grid for sensor fleet showing name, location, status (online/offline/stale), total events processed, threats detected, IP, and last ping.
+- **Shared Utilities/Components**:
+  - Security hook / context (`AuthContext`) managing JWT tokens (persisted in `localStorage` or `sessionStorage` or cookies), profile state, and routes protection.
+  - API service class that auto-detects if the C# backend API is offline and falls back to mock high-fidelity client-side simulations.
+  - Shared CSS module or styling using Tailwind v4.
 
-### Milestone 3: C++ Circular Temporal Queue (R2)
-- **Objective**: Implement sequence-based input tracking using a circular buffer.
-- **Tasks**:
-  1. Add a sequence tracking buffer in the orchestrator (`edge_interceptor/src`).
-  2. Store the last 16 network and CPU telemetry events.
-  3. Pack the model input vector with these 16 events in chronological order, matching the temporal AC-WGAN architecture expectation.
+### Milestone 3: Synz Labs B2B Homepage Redesign
+- **Files to Modify**: `src/app/page.tsx`
+- **Objective**: Replace the current layout with a polished B2B cyber-security home page. Include:
+  - Professional navigation header (Home, Product, Use Cases, Blog, Pilot Portal).
+  - High-impact hero section for "Synz Labs".
+  - Embedded "Active Defense Simulator" interactive demo widget in the product section.
+  - Structured features & compliance sections (SOC2, NERC CIP, IEC 62443).
+  - Lead capture form (logs to console, validates corporate email, saves locally).
 
-### Milestone 4: C++ Low-Overhead Netfilter Blocking (R3)
-- **Objective**: Implement in-memory IP blocking using `libiptc` on Linux.
-- **Tasks**:
-  1. Modify `software_kill_switch.cpp` to use the `libiptc` APIs.
-  2. Append/delete rules in-memory directly on the Netlink socket rather than invoking expensive system shell commands.
-  3. Ensure compilation and graceful fallbacks work on platforms where `libiptc` is not present (e.g. Windows).
+### Milestone 4: Automated Validation Tests & Build Verification
+- **Objective**: Verify Next.js routes, JWT token storage, and offline API state detection.
+- **Files to Add/Modify**: Next.js unit/integration tests (using Jest or Playwright/Cypress as existing in workspace). Let's explore if there are existing tests.
+- **Verification**: Run `npm run build` on `SYNLabWebsite` to ensure no build warnings/errors.
 
-### Milestone 5: C++ UDP Telemetry Agent Receiver (R4)
-- **Objective**: Ingest performance counters via UDP to populate features `[256..383]`.
-- **Tasks**:
-  1. Spawn a background UDP listening thread in the Edge Interceptor.
-  2. Listen on a designated port (e.g. 9999).
-  3. Receive binary performance counter telemetry packets.
-  4. Decode and thread-safely update elements `[256..383]` of the active feature vector.
-
-### Milestone 6: C++ Dynamic Key Loading (R5)
-- **Objective**: Load AES decryption keys dynamically.
-- **Tasks**:
-  1. Remove hardcoded key and IV from `inference_engine.cpp`.
-  2. Load the key and IV at runtime from environment variables or config handshake.
-  3. Return clear error/gracefully exit if the key is missing or invalid.
-
-### Milestone 7: Verification and Adversarial Hardening
-- **Objective**: Achieve 100% test coverage and perform white-box security audits.
-- **Tasks**:
-  1. Run the entire automated test suite to ensure all unit and integration tests pass.
-  2. Perform adversarial validation via challenger subagents.
-  3. Verify via Forensic Auditor.
-
----
-
-## Code Layout & Targets
-- **Next.js Website**: `C:/Users/Adminb/.gemini/antigravity/worktrees/SYNLabWebsite/improve-synz-phantom-reads/src/app/page.tsx`
-- **C++ Code**: `C:/Users/Adminb/.gemini/antigravity/worktrees/Synz_Phantom/improve-synz-phantom-reads/edge_interceptor`
+### Milestone 5: Forensic Audit Gating
+- **Objective**: Perform a forensic audit to verify code integrity and check for any violations.
+- **Verification**: Spawn a Forensic Auditor subagent.

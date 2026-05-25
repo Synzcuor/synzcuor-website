@@ -69,3 +69,48 @@ Please ensure that your implementation team follows these critical execution pol
 
 These updates are required so the user can sync workspaces and continue working seamlessly from another device.
 
+## Follow-up — 2026-05-25T07:20:52Z
+
+Migrate the existing C# Blazor Analyst Portal into our Next.js codebase, and redesign the Synz Labs homepage into a highly polished, professional B2B enterprise cybersecurity company website.
+
+Working directory (Next.js): C:/Users/Adminb/.gemini/antigravity/worktrees/SYNLabWebsite/improve-synz-phantom-reads
+Working directory (C++ / C#): C:/Users/Adminb/.gemini/antigravity/worktrees/Synz_Phantom/improve-synz-phantom-reads
+Integrity mode: development
+
+## Requirements
+
+### R1. Professional B2B Company Homepage Redesign
+Redesign the root landing page (`SYNLabWebsite/src/app/page.tsx`) to look like a highly professional, corporate B2B cybersecurity company website for "Synz Labs".
+- **Design & Layout**: Authoritative, clean enterprise dark mode. Use elegant sans-serif typography, structured navigation, and high-quality sections (Product Overview, SCADA/OT Use Cases, Threat Research Blog previews, and Compliance/Standards compliance badges like SOC2, NERC CIP, IEC 62443).
+- **Active Defense Simulator**: Retain the interactive threat simulator but style it as a clean, embedded "Interactive Demo" widget inside the product section, rather than a flashy focal point.
+- **Lead Capture Form**: A polished contact card for plant managers and CISOs to request on-site pilot audits.
+
+### R2. Next.js Enterprise Dashboard (App Router Migration)
+Re-architect the Blazor Analyst Portal pages into Next.js.
+- **Route Structure**:
+  - `/login`: Secure JWT-based login screen. Authenticates against the C# API `AuthController`. If the backend API is offline, it must auto-detect this and fall back to local simulated credentials (`admin@synzlabs.io` / `phantom2026!`).
+  - `/dashboard`: Shared layout sidebar navigation containing metrics widgets (Total Events, Threats, Blocks), live threat feed updates, and top attack categories shown as animated custom SVG graphs.
+  - `/dashboard/events`: Log list table mirroring `Events.razor`, with expandable rows showing detailed telemetry diagnostics (protocol, attack slots, and hardware latency).
+  - `/dashboard/sensors`: Sensor fleet overview card grid displaying sensor names, locations, statuses (online/offline), total events, and IPs.
+
+### R3. C# API CORS Integration
+- Update `Program.cs` in `SynzPhantom.API` to add CORS policies permitting headers, methods, and credentials originating from `http://localhost:3000`.
+
+---
+
+## Acceptance Criteria
+
+### A1. Next.js Build & Code Quality
+- [ ] `npm run build` succeeds on `SYNLabWebsite` with zero errors or compiler warnings.
+- [ ] Next.js routing works correctly for `/login`, `/dashboard`, `/dashboard/events`, and `/dashboard/sensors` with active authentication checks.
+- [ ] Dynamic API detection: The dashboard successfully fetches and updates data via REST/WebSockets when the C# API is running, and transitions to high-fidelity client-side simulations if it is down.
+
+### A2. C# Backend Compilation
+- [ ] `dotnet build` succeeds on `SynzPhantom.sln` with zero errors.
+- [ ] CORS policies are active and permit cross-origin telemetry requests from the Next.js frontend port (3000).
+
+### A3. Independent Validation
+- [ ] Implement automated unit/integration tests to assert:
+  - Correct routing behavior.
+  - JWT token storage and fallback simulated session creation.
+  - API connection state detection logic.
