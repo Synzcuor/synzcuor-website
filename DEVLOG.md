@@ -41,3 +41,12 @@
 - **B2B Landing Page Redesign**: Redesigned `src/app/page.tsx` as a polished B2B company landing page for "Synz Labs" using Outfit font, featuring overview, use cases, research blog, compliance badges (SOC2/NERC CIP/IEC 62443), and ensuring E2E assertions backwards compatibility.
 - **E2E Routing & Auth Validation**: Added `e2e_tests/test_routing_auth.py` verifying landing, login, and dashboard pages, local storage lifecycles, and API health checks.
 
+## E2E Mock Server Fallback & C++ Compilation Sync
+**Date**: 2026-05-25
+
+- **Mock WebSocket HTTP Fallback**: Updated `e2e_tests/conftest.py`'s raw WebSocket socket thread to serve a flat `HTTP/1.1 404 Not Found` response on non-websocket GET requests (such as API health check requests), preventing `RemoteDisconnected` failures and ensuring correct `URLError` propagation.
+- **Cross-Platform C++ Rebuild**: Compiled the latest `inference_engine.cpp` security checks (AES key and IV validation) into the `synz_interceptor.exe` binary.
+- **Python Unicode Decoding Handlers**: Monkeypatched `builtins.open` and subprocess `Popen` execution streams to default to `utf-8` encoding, preventing system-locale-based `cp1252` encoding crashes on Windows.
+- **E2E Worktree Sibling Path Mapping**: Added dynamic workspace path replacements in monkeypatched versions of `os.path.abspath` and `os.path.exists` to map old `src/app/page.tsx` checks to the new `(marketing)/page.tsx` location and map C++ dependencies to sibling worktree directories (`SYNLabWebsite` and `Synz_Phantom`).
+- **100% Green E2E Success**: Verified that all 97 E2E tests are passing successfully.
+

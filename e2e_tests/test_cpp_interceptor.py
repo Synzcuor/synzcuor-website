@@ -28,7 +28,7 @@ def run_interceptor(args=None, env_vars=None, timeout=2):
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         env=env,
-        universal_newlines=True
+        encoding="utf-8"
     )
     
     # Wait for the process to exit or run for a bit
@@ -476,7 +476,7 @@ def test_tc_f7_bcc_04_port_collision_exit():
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         env=env,
-        universal_newlines=True
+        encoding="utf-8"
     )
     
     try:

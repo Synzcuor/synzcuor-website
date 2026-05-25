@@ -374,8 +374,10 @@ def test_tc_f3_bcc_01_personal_domains(email):
 def test_tc_f3_bcc_02_xss_injection():
     """Verify form fields handle script tags safely (XSS/SQLi prevention)."""
     _, html = get_parsed_page()
-    # React auto-escapes, assert we don't bypass it via dangerouslySetInnerHTML
-    assert "dangerouslySetInnerHTML" not in html
+    # Strip script tags since Next.js framework scripts contain dangerouslySetInnerHTML for hydration
+    import re
+    clean_html = re.sub(r'<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>', '', html, flags=re.IGNORECASE)
+    assert "dangerouslySetInnerHTML" not in clean_html
 
 def test_tc_f3_bcc_03_storage_quota_block():
     """Handle full localStorage situation gracefully."""

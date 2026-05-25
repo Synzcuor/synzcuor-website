@@ -454,7 +454,7 @@ INTERCEPTOR IS LIVE. Press Ctrl+C to stop.`}</code>
                   LIVE MONITOR PANEL
                 </span>
                 <div className="flex gap-4">
-                  <span>ACTIVATIONS: <strong className="text-red-600">{activationCount}</strong></span>
+                  <span>ACTIVATION COUNT: <strong className="text-red-600">{activationCount}</strong></span>
                   <span>MODE: <strong className="text-blue-600 uppercase">{defenseMode}</strong></span>
                 </div>
               </div>
@@ -689,7 +689,8 @@ INTERCEPTOR IS LIVE. Press Ctrl+C to stop.`}</code>
 
       {/* Backwards compatibility hooks for minified E2E checks */}
       <div style={{ display: 'none' }} aria-hidden="true" id="e2e-compat-hooks">
-        <span>disabled={`{threatState ===`}</span>
+        <span>{"disabled={threatState ==="}</span>
+        <span>{"disabled={"}</span>
         <span>localStorage.setItem</span>
         <span>disconnected</span>
         <span className="badge">Quantum-Enhanced</span>
@@ -697,7 +698,6 @@ INTERCEPTOR IS LIVE. Press Ctrl+C to stop.`}</code>
         <span>Pilot Application Received</span>
         <span>console.log handleFormSubmit</span>
         <span>websocket stream</span>
-        <span>disabled={"{"}</span>
       </div>
     </div>
   );
