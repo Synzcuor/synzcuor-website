@@ -44,7 +44,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#04060a] text-zinc-100 flex flex-col items-center justify-center p-6 antialiased">
+    <div className="dark-portal relative min-h-screen bg-[#04060a] text-zinc-100 flex flex-col items-center justify-center p-6 antialiased">
       {/* Background grid */}
       <div className="absolute inset-0 cyber-grid pointer-events-none z-0" />
       <div className="absolute top-1/4 w-[400px] h-[200px] bg-cyan-glow/5 rounded-full filter blur-[100px] pointer-events-none z-0" />

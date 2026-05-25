@@ -18,7 +18,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   return (
     <ProtectedRoute>
-      <div className="flex h-screen bg-[#04060a] text-zinc-100 font-sans overflow-hidden">
+      <div className="dark-portal flex h-screen bg-[#04060a] text-zinc-100 font-sans overflow-hidden">
         {/* Sidebar */}
         <aside className="w-64 bg-zinc-950/80 border-r border-white/5 flex flex-col justify-between backdrop-blur-sm">
           {/* Logo and Navigation */}
