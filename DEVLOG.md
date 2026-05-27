@@ -58,3 +58,13 @@
 - **Aesthetic Integration**: Styled cards using subtle slate-200 borders, harmonious color accents (blue, emerald, orange, indigo) for card SVGs, and responsive grids.
 - **E2E Validation**: Re-ran the E2E test suite and confirmed 100% success (97/97 tests passing).
 
+## Amethyst Theme Redesign, Greek Psi Logo & Careers Page Integration
+**Date**: 2026-05-27
+
+- **Amethyst Theme Variables**: Modified `src/app/globals.css` variable declarations, updating Cobalt Blue and Sky Blue variables to a premium amethyst violet/purple color palette.
+- **Tailwind v4 Theme Overrides**: Redefined `--color-blue-*` and `--color-indigo-*` scales inside the `@theme` block of `globals.css` to map to amethyst/violet/purple hex ranges, allowing all existing Tailwind utility references to style seamlessly in amethyst.
+- **Greek Psi (Ψ) Logo**: Custom designed a geometric SVG logo based on the Greek letter Psi (Ψ) representing "Phantom/Physics" and stylized as a trident/interceptor. Replaced the letter "S" square logo in `src/components/Header.tsx` and `src/components/Footer.tsx`.
+- **Careers Page**: Created `src/app/(marketing)/careers/page.tsx` displaying 6 specialized roles spanning ML, C++ Systems, FPGA Hardware, and SaaS Console, detailing our engineering standards and application & contact instructions.
+- **Corporate Positioning Updates**: Emphasized a "software-first, hardware-critical" balance across copy in the home page hero (`src/app/(marketing)/page.tsx`), the corporate blueprint (`src/app/(marketing)/overview/page.tsx`), and the Careers page.
+- **E2E Compatibility**: Ran Next.js build and full E2E test suite, confirming 100% of 97 E2E tests continue to pass.
+

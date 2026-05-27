@@ -129,7 +129,7 @@ export default function OverviewPage() {
               <h3 className="text-lg font-bold text-slate-900">Vision <span className="text-slate-400 font-normal text-sm font-sans">(The Future)</span></h3>
             </div>
             <p className="text-slate-600 text-sm leading-relaxed">
-              A world where hackers have zero power over physical infrastructure. We will replace hackable firewalls with an untouchable defense system that perfectly combines intelligent software and physical hardware.
+              A world where software intelligence controls physical defense. We will replace traditional hackable firewalls with an intelligent, software-first threat detection system backed by an untouchable physical hardware failsafe.
             </p>
           </div>
 
@@ -144,7 +144,7 @@ export default function OverviewPage() {
               <h3 className="text-lg font-bold text-slate-900">Mission <span className="text-slate-400 font-normal text-sm font-sans">(Our Daily Job)</span></h3>
             </div>
             <p className="text-slate-600 text-sm leading-relaxed">
-              We build the ultimate failsafe for the machines that keep society running. We write high-speed AI software to detect advanced threats instantly, and we build the physical hardware that cuts the wire the millisecond an attack happens.
+              We write sub-50µs in-memory ML inference models to detect advanced threats at the network edge. We are software-first, but the hardware is just as important—we design the physical hardware that cuts the network line the millisecond an attack is detected.
             </p>
           </div>
 
@@ -174,7 +174,7 @@ export default function OverviewPage() {
               <h3 className="text-lg font-bold text-slate-900">Culture <span className="text-slate-400 font-normal text-sm font-sans">(Our Standard)</span></h3>
             </div>
             <p className="text-slate-600 text-sm leading-relaxed">
-              No vibe coders. We demand deep mathematical intuition, an obsession with raw speed, and the ego to master both code and metal. We build security that relies on hard physics, not just fragile software.
+              No vibe coders. We demand mathematical rigour for real-time model inference and an obsession with low-latency software. We build software-first security that is backed by the absolute laws of physical hardware.
             </p>
           </div>
         </div>

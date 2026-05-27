@@ -252,7 +252,7 @@ export default function MarketingHomePage() {
           </h1>
           
           <p className="text-slate-600 text-base md:text-lg max-w-xl leading-relaxed mx-auto lg:mx-0">
-            Synz Phantom is a hardware-enforced bump-in-the-wire appliance that parses packets, performs sub-50µs hybrid QGAN inference in-memory, provides Ring -1 threat prevention, and physically severs network access if a zero-day payload strikes.
+            We are a software-first cyber security company, writing sub-50µs in-memory ML inference models to detect advanced threats instantly. But our hardware is just as important—our physical failsafe appliance physically severs network access the millisecond an attack strikes.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">

@@ -7,19 +7,24 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-8 h-8 rounded bg-blue-600 flex items-center justify-center font-bold text-white text-base font-sans select-none transition-transform group-hover:scale-105">
-            S
+          <div className="w-8 h-8 rounded bg-blue-600 flex items-center justify-center text-white select-none transition-transform group-hover:scale-105">
+            <svg className="w-5 h-5" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 5v22" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+              <path d="M10 10v4c0 4 2 5.5 6 5.5s6-1.5 6-5.5v-4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M12 27h8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+            </svg>
           </div>
           <span className="font-semibold tracking-wide text-base text-slate-900 font-sans">Synz Labs</span>
         </Link>
 
         {/* Navigation Links */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+        <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
           <Link href="/" className="hover:text-blue-600 transition-colors">Home</Link>
           <Link href="/overview" className="hover:text-blue-600 transition-colors">Overview</Link>
           <Link href="/use-cases" className="hover:text-blue-600 transition-colors">Use Cases</Link>
           <Link href="/compliance" className="hover:text-blue-600 transition-colors">Compliance</Link>
           <Link href="/blog" className="hover:text-blue-600 transition-colors">Research</Link>
+          <Link href="/careers" className="hover:text-blue-600 transition-colors">Careers</Link>
           <Link href="/contact" className="hover:text-blue-600 transition-colors">Contact</Link>
         </nav>
 
