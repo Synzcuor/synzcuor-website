@@ -103,6 +103,82 @@ export default function OverviewPage() {
           </table>
         </div>
       </div>
+
+      {/* Company Values & Culture Section */}
+      <div id="about" className="space-y-10 pt-20 border-t border-slate-200 mt-24">
+        <div className="max-w-3xl mx-auto text-center space-y-4">
+          <span className="text-xs font-mono font-bold tracking-widest text-blue-600 uppercase">Corporate Blueprint</span>
+          <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight sm:text-4xl">
+            Our Mission &amp; Culture
+          </h2>
+          <p className="text-base text-slate-500 max-w-xl mx-auto">
+            We are engineering the physical failsafe for modern industry. This is the foundation of our technology and our team.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+          {/* Vision */}
+          <div className="p-8 rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow duration-300 space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-slate-900">Vision <span className="text-slate-400 font-normal text-sm font-sans">(The Future)</span></h3>
+            </div>
+            <p className="text-slate-600 text-sm leading-relaxed">
+              A world where hackers have zero power over physical infrastructure. We will replace hackable firewalls with an untouchable defense system that perfectly combines intelligent software and physical hardware.
+            </p>
+          </div>
+
+          {/* Mission */}
+          <div className="p-8 rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow duration-300 space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-slate-900">Mission <span className="text-slate-400 font-normal text-sm font-sans">(Our Daily Job)</span></h3>
+            </div>
+            <p className="text-slate-600 text-sm leading-relaxed">
+              We build the ultimate failsafe for the machines that keep society running. We write high-speed AI software to detect advanced threats instantly, and we build the physical hardware that cuts the wire the millisecond an attack happens.
+            </p>
+          </div>
+
+          {/* Goal */}
+          <div className="p-8 rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow duration-300 space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center text-orange-600">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-slate-900">Goal <span className="text-slate-400 font-normal text-sm font-sans">(The Immediate Target)</span></h3>
+            </div>
+            <p className="text-slate-600 text-sm leading-relaxed">
+              To deploy our first live factory pilot, prove that our unified software and hardware architecture is the fastest defense on the market, and secure the venture funding to aggressively scale.
+            </p>
+          </div>
+
+          {/* Culture */}
+          <div className="p-8 rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow duration-300 space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold text-slate-900">Culture <span className="text-slate-400 font-normal text-sm font-sans">(Our Standard)</span></h3>
+            </div>
+            <p className="text-slate-600 text-sm leading-relaxed">
+              No vibe coders. We demand deep mathematical intuition, an obsession with raw speed, and the ego to master both code and metal. We build security that relies on hard physics, not just fragile software.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
