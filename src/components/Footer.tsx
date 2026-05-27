@@ -15,10 +15,10 @@ export default function Footer() {
                 <path d="M12 27h8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
               </svg>
             </div>
-            <span className="font-semibold text-lg text-white font-sans tracking-wide">Synz Labs</span>
+            <span className="font-semibold text-lg text-white font-sans tracking-wide">Synzcuor</span>
           </div>
           <p className="text-xs leading-relaxed font-sans text-slate-400 max-w-xs">
-            Hardware-enforced active cyber defense and in-memory anomaly inference for critical industrial infrastructure.
+            Bridging the gap between low-level kernel software and physical active-defense hardware for industrial and consumer infrastructure.
           </p>
         </div>
 
@@ -27,13 +27,16 @@ export default function Footer() {
           <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-200">Products</h4>
           <ul className="space-y-2.5 text-xs font-sans">
             <li>
-              <Link href="/products#appliance" className="hover:text-white transition-colors">Synz Phantom Appliance</Link>
+              <Link href="/products#intercept" className="hover:text-white transition-colors">Synz Intercept</Link>
             </li>
             <li>
-              <Link href="/products#som" className="hover:text-white transition-colors">Edge Interceptor SoM</Link>
+              <Link href="/products#prism" className="hover:text-white transition-colors">Synz Prism</Link>
             </li>
             <li>
-              <Link href="/products#control-plane" className="hover:text-white transition-colors">Threat Console Portal</Link>
+              <Link href="/products#phantom" className="hover:text-white transition-colors">Synz Phantom</Link>
+            </li>
+            <li>
+              <Link href="/products#core" className="hover:text-white transition-colors">Synz Core</Link>
             </li>
           </ul>
         </div>

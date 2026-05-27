@@ -10,7 +10,7 @@ export default function OverviewPage() {
           Active Defense Security Architecture
         </h1>
         <p className="text-lg text-slate-500">
-          A physical bump-in-the-wire appliance built to inspect, verify, and sever network access under critical threats in SCADA environments.
+          Bridging the gap between low-level kernel software and physical active-defense hardware for B2B industrial systems and B2C endpoints.
         </p>
       </div>
 
@@ -20,10 +20,10 @@ export default function OverviewPage() {
           <div className="w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center font-bold text-blue-600 text-lg">
             1
           </div>
-          <h2 className="text-2xl font-bold text-slate-900">Normally-Closed Hardware Switch</h2>
+          <h2 className="text-2xl font-bold text-slate-900">Solid-State Hardware Failsafe (Synz Intercept)</h2>
           <p className="text-slate-600 text-sm leading-relaxed">
-            The core interceptor uses a solid-state relay mapped to an isolated hardware GPIO pin. Under normal operation, the relay remains closed, passing binary traffic across dual gigabit PHY layers. 
-            Once a zero-day payload is classified, the hardware pin is driven HIGH to de-energize the relay and sever physical copper connection under 50µs.
+            The core industrial hardware interceptor uses a solid-state relay mapped to an isolated hardware GPIO pin. Under normal operation, the relay remains closed, passing binary traffic across dual gigabit PHY layers. 
+            Once a threat is classified, the hardware pin is driven HIGH to de-energize the relay and physically sever the copper connection in under 50µs to air-gap critical SCADA systems.
           </p>
         </div>
 
@@ -31,10 +31,9 @@ export default function OverviewPage() {
           <div className="w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center font-bold text-blue-600 text-lg">
             2
           </div>
-          <h2 className="text-2xl font-bold text-slate-900">Ring -1 Network Detonation Block</h2>
+          <h2 className="text-2xl font-bold text-slate-900">Local Content Disarm & Reconstruction (Synz Prism)</h2>
           <p className="text-slate-600 text-sm leading-relaxed">
-            Operating below the target OS kernel layer (Ring -1/hypervisor/network adapter boundary), malicious traffic is processed and dropped at the network card level. 
-            This prevents attack instructions from ever reaching target PLCs or assembly line CPUs.
+            Operating locally at the consumer endpoint layer, Synz Prism intercepts file downloads to process and strip macro execution scripts (such as vbaProject.bin in Office docs) or JavaScript blocks in PDFs. Reconstructs a clean, threat-free copy in-place with zero cloud latency.
           </p>
         </div>
 
@@ -42,10 +41,9 @@ export default function OverviewPage() {
           <div className="w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center font-bold text-blue-600 text-lg">
             3
           </div>
-          <h2 className="text-2xl font-bold text-slate-900">Causal sequence QGAN Factory</h2>
+          <h2 className="text-2xl font-bold text-slate-900">Bare-Metal eBPF Orchestrator (Synz Phantom)</h2>
           <p className="text-slate-600 text-sm leading-relaxed">
-            Our models are trained utilizing a dual-head Quantum Generative Adversarial Network architecture to model temporal hardware behaviors. 
-            By feeding both network payloads and monitored CPU performance telemetry, it builds robust representations of normal network states.
+            Acting as the background orchestrator daemon, Synz Phantom manages raw packet parsing via high-performance eBPF XDP zero-copy filters. It loads the encrypted ONNX model securely in memory under a 50MB runtime footprint, routing telemetry flows to the central control plane.
           </p>
         </div>
 
@@ -53,10 +51,9 @@ export default function OverviewPage() {
           <div className="w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center font-bold text-blue-600 text-lg">
             4
           </div>
-          <h2 className="text-2xl font-bold text-slate-900">Tensor Train Parameters Factorization</h2>
+          <h2 className="text-2xl font-bold text-slate-900">Split-Head QGAN Threat Engine</h2>
           <p className="text-slate-600 text-sm leading-relaxed">
-            For resource-constrained embedded environments, the Critic networks are compressed by ~91% via block-tensor-train (TT-SVD) factorization. 
-            This allows high-dimensional ONNX models to run entirely within the SRAM of Edge System-on-Modules (SoM).
+            Our proprietary Split-Head QGAN is trained on 22.8 million real cybersecurity samples. The Network Head parses packet anomaly flows, while the CPU Head monitors performance counter registers (PMUs) to detect ransomware cache-miss anomalies. Compressed by 91% down to a 0.02 MB footprint via TT-SVD.
           </p>
         </div>
       </div>
@@ -70,7 +67,7 @@ export default function OverviewPage() {
               <tr>
                 <th className="py-4 px-6 font-bold">Specification</th>
                 <th className="py-4 px-6 font-bold text-blue-600">Synz Intercept (Enterprise)</th>
-                <th className="py-4 px-6 font-bold text-slate-700">Synz Micro (Compact)</th>
+                <th className="py-4 px-6 font-bold text-slate-700">Synz Intercept (Compact)</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 font-sans">
@@ -112,7 +109,7 @@ export default function OverviewPage() {
             Our Mission &amp; Culture
           </h2>
           <p className="text-base text-slate-500 max-w-xl mx-auto">
-            We are engineering the physical failsafe for modern industry. This is the foundation of our technology and our team.
+            Bridging the gap between low-level kernel software and physical active-defense hardware. This is the foundation of our technology and our team.
           </p>
         </div>
 
@@ -129,7 +126,7 @@ export default function OverviewPage() {
               <h3 className="text-lg font-bold text-slate-900">Vision <span className="text-slate-400 font-normal text-sm font-sans">(The Future)</span></h3>
             </div>
             <p className="text-slate-600 text-sm leading-relaxed">
-              A world where software intelligence controls physical defense. We will replace traditional hackable firewalls with an intelligent, software-first threat detection system backed by an untouchable physical hardware failsafe.
+              A world where software intelligence controls physical defense. We will replace traditional hackable firewalls with an intelligent active kinetic defense model, bridging low-level kernel software and physical active-defense hardware across B2B and B2C ecosystems.
             </p>
           </div>
 
@@ -144,7 +141,7 @@ export default function OverviewPage() {
               <h3 className="text-lg font-bold text-slate-900">Mission <span className="text-slate-400 font-normal text-sm font-sans">(Our Daily Job)</span></h3>
             </div>
             <p className="text-slate-600 text-sm leading-relaxed">
-              We write sub-50µs in-memory ML inference models to detect advanced threats at the network edge. We are software-first, but the hardware is just as important—we design the physical hardware that cuts the network line the millisecond an attack is detected.
+              We design and deploy active kinetic defense solutions. We write sub-50µs in-memory ML models trained on 22.8M samples and compressed to 0.02 MB, executing packet filtering and hardware PMU cache-miss telemetry checks.
             </p>
           </div>
 
@@ -159,7 +156,7 @@ export default function OverviewPage() {
               <h3 className="text-lg font-bold text-slate-900">Goal <span className="text-slate-400 font-normal text-sm font-sans">(The Immediate Target)</span></h3>
             </div>
             <p className="text-slate-600 text-sm leading-relaxed">
-              To deploy our first live factory pilot, prove that our unified software and hardware architecture is the fastest defense on the market, and secure the venture funding to aggressively scale.
+              To deploy our active kinetic defense solutions to both industrial B2B operations and consumer B2C endpoints, proving that our unified QGAN model and hardware/software architectures deliver robust protection.
             </p>
           </div>
 
@@ -174,7 +171,7 @@ export default function OverviewPage() {
               <h3 className="text-lg font-bold text-slate-900">Culture <span className="text-slate-400 font-normal text-sm font-sans">(Our Standard)</span></h3>
             </div>
             <p className="text-slate-600 text-sm leading-relaxed">
-              No vibe coders. We demand mathematical rigour for real-time model inference and an obsession with low-latency software. We build software-first security that is backed by the absolute laws of physical hardware.
+              No vibe coders. We demand mathematical rigour for real-time model inference and an obsession with low-latency software. We build security that bridges the kernel and physical hardware failsafes.
             </p>
           </div>
         </div>

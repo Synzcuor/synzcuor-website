@@ -14,7 +14,7 @@ export default function Header() {
               <path d="M12 27h8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
             </svg>
           </div>
-          <span className="font-semibold tracking-wide text-base text-slate-900 font-sans">Synz Labs</span>
+          <span className="font-semibold tracking-wide text-base text-slate-900 font-sans">Synzcuor</span>
         </Link>
 
         {/* Navigation Links */}

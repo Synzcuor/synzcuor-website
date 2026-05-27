@@ -240,7 +240,7 @@ export default function MarketingHomePage() {
         <div className="flex-1 space-y-6 text-center lg:text-left">
           <div className="badge inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-mono font-semibold">
             <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
-            Quantum-Enhanced Active Cyber Defense
+            Active Kinetic Cyber Defense
           </div>
           
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight">
@@ -252,7 +252,7 @@ export default function MarketingHomePage() {
           </h1>
           
           <p className="text-slate-600 text-base md:text-lg max-w-xl leading-relaxed mx-auto lg:mx-0">
-            We are a software-first cyber security company, writing sub-50µs in-memory ML inference models to detect advanced threats instantly. But our hardware is just as important—our physical failsafe appliance physically severs network access the millisecond an attack strikes.
+            Synzcuor bridges the gap between low-level kernel software and physical active-defense hardware. We write sub-50µs in-memory ML threat engines with physical line-cut failsafes, protecting B2B industrial infrastructure and B2C endpoints.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
@@ -306,21 +306,21 @@ INTERCEPTOR IS LIVE. Press Ctrl+C to stop.`}</code>
       <section className="bg-white border-y border-slate-200 py-16">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="p-6 rounded-xl border border-slate-100 hover:border-slate-200 transition-all">
-            <h3 className="text-lg font-bold text-slate-900 font-sans mb-3">Hardware-Enforced Air Gap</h3>
+            <h3 className="text-lg font-bold text-slate-900 font-sans mb-3">Synz Intercept (B2B Hardware)</h3>
             <p className="text-sm text-slate-600 leading-relaxed">
-              Unlike traditional firewalls that rely purely on software rules, our interceptor utilizes physical Solid State Relays (SSR) to sever physical ethernet links dynamically within microseconds of a critical threat event.
+              An inline B2B hardware appliance utilizing physical Solid-State Relays to physically cut copper Ethernet links under 50µs when threat events are triggered, air-gapping the target machinery.
             </p>
           </div>
           <div className="p-6 rounded-xl border border-slate-100 hover:border-slate-200 transition-all">
-            <h3 className="text-lg font-bold text-slate-900 font-sans mb-3">Ring -1 Exploit Prevention</h3>
+            <h3 className="text-lg font-bold text-slate-900 font-sans mb-3">Synz Prism (B2C CDR Software)</h3>
             <p className="text-sm text-slate-600 leading-relaxed">
-              Operating at the lowest system level (Ring -1 / hypervisor / network card interface), the Synz Phantom interceptor acts before malicious packets ever get processed by target PLCs or host CPUs.
+              Lightweight B2C endpoint software running Content Disarm & Reconstruction (CDR) locally on user devices, stripping macros and scripts from file downloads in-place without cloud latency.
             </p>
           </div>
           <div className="p-6 rounded-xl border border-slate-100 hover:border-slate-200 transition-all">
-            <h3 className="text-lg font-bold text-slate-900 font-sans mb-3">Causal QGAN Analytics</h3>
+            <h3 className="text-lg font-bold text-slate-900 font-sans mb-3">Synz Phantom (Core Daemon)</h3>
             <p className="text-sm text-slate-600 leading-relaxed">
-              Leveraging in-memory Quantum Generative Adversarial Networks (QGANs), the platform detects zero-day pattern mutations and highly sophisticated stealth reconnaissance that bypass static signatures.
+              The background orchestrator daemon that loads encrypted ONNX models in memory, parses telemetry streams, and routes operational controls across Intercept and Prism endpoints.
             </p>
           </div>
         </div>
@@ -548,7 +548,7 @@ INTERCEPTOR IS LIVE. Press Ctrl+C to stop.`}</code>
                     threatState === "blocked" ? "bg-blue-50 border-blue-300 text-blue-700" :
                     "bg-white border-slate-200 text-slate-700 shadow-sm"
                   }`}>
-                    <span className="text-[9px] font-bold tracking-widest">PHANTOM</span>
+                    <span className="text-[9px] font-bold tracking-widest">INTERCEPT</span>
                     <span className="text-[8px] uppercase text-slate-400 font-bold">
                       {threatState === "wire-cut" ? "SSR OPENED" : "SSR CLOSED"}
                     </span>
@@ -600,9 +600,9 @@ INTERCEPTOR IS LIVE. Press Ctrl+C to stop.`}</code>
             ) : (
               <form onSubmit={handleFormSubmit} className="space-y-6">
                 <div className="space-y-2 text-center md:text-left">
-                  <h2 className="text-2xl font-bold text-slate-900">Request a Passive Monitor Audit</h2>
+                  <h2 className="text-2xl font-bold text-slate-900">Request a Product Evaluation</h2>
                   <p className="text-sm text-slate-500">
-                    Deploy Synz Phantom inline without operational risk. Map SCADA device communication and verify detection accuracy.
+                    Deploy Synz Intercept inline or evaluate Synz Prism on endpoints. Discover zero-day anomalies and test active kinetic defense options.
                   </p>
                 </div>
 
@@ -698,6 +698,7 @@ INTERCEPTOR IS LIVE. Press Ctrl+C to stop.`}</code>
         <span>Pilot Application Received</span>
         <span>console.log handleFormSubmit</span>
         <span>websocket stream</span>
+        <span>Ring -1</span>
       </div>
     </div>
   );
