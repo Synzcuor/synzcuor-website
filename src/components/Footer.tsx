@@ -27,13 +27,13 @@ export default function Footer() {
           <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-200">Products</h4>
           <ul className="space-y-2.5 text-xs font-sans">
             <li>
-              <Link href="/overview" className="hover:text-white transition-colors">Synz Phantom Appliance</Link>
+              <Link href="/products#appliance" className="hover:text-white transition-colors">Synz Phantom Appliance</Link>
             </li>
             <li>
-              <Link href="/overview#features" className="hover:text-white transition-colors">Edge Interceptor SoM</Link>
+              <Link href="/products#som" className="hover:text-white transition-colors">Edge Interceptor SoM</Link>
             </li>
             <li>
-              <Link href="/login" className="hover:text-white transition-colors">Threat Console Portal</Link>
+              <Link href="/products#control-plane" className="hover:text-white transition-colors">Threat Console Portal</Link>
             </li>
           </ul>
         </div>
