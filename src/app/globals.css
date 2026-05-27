@@ -151,3 +151,19 @@ body {
 .dark-portal ::-webkit-scrollbar-thumb:hover {
   background: #334155;
 }
+
+/* Premium Page Transition Animation */
+@keyframes pageTransitionEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-page-enter {
+  animation: pageTransitionEnter 0.45s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+}
