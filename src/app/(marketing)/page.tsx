@@ -22,6 +22,7 @@ export default function MarketingHomePage() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [emailLiveError, setEmailLiveError] = useState<string | null>(null);
   const [formError, setFormError] = useState<string | null>(null);
+  const [heroEmail, setHeroEmail] = useState("");
   
   const [useWebSocket, setUseWebSocket] = useState<boolean>(false);
   const [wsStatus, setWsStatus] = useState<"disconnected" | "connecting" | "connected">("disconnected");
@@ -232,6 +233,11 @@ export default function MarketingHomePage() {
 
   return (
     <div className="relative min-h-screen bg-slate-50 text-slate-900 flex flex-col antialiased">
+      {/* Launch Phase Banner */}
+      <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-2.5 px-4 text-center text-xs font-mono font-bold tracking-wider z-20 relative shadow-md">
+        🚀 SYNZCUOR PRE-LAUNCH ACTIVE: Phase 1 Beta applications are now open for enterprise pilot systems.
+      </div>
+
       {/* Background grid */}
       <div className="absolute inset-0 cyber-grid pointer-events-none z-0 opacity-40" />
 
@@ -254,20 +260,47 @@ export default function MarketingHomePage() {
           <p className="text-slate-600 text-base md:text-lg max-w-xl leading-relaxed mx-auto lg:mx-0">
             Synzcuor bridges the gap between low-level kernel software and physical active-defense hardware. We write sub-50µs in-memory ML threat engines with physical line-cut failsafes, protecting B2B industrial infrastructure and B2C endpoints.
           </p>
-          
-          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-            <a 
-              href="#simulator" 
-              className="w-full sm:w-auto text-center px-6 h-12 flex items-center justify-center rounded bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-sm transition-all"
-            >
-              Launch Active Demo
-            </a>
-            <Link 
-              href="/overview" 
-              className="w-full sm:w-auto text-center px-6 h-12 flex items-center justify-center rounded border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 font-semibold transition-all"
-            >
-              View Pipeline Specs
-            </Link>
+
+          <div className="space-y-4">
+            <div className="max-w-md mx-auto lg:mx-0">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <input
+                  type="email"
+                  required
+                  placeholder="Enter corporate email..."
+                  value={heroEmail}
+                  onChange={e => {
+                    setHeroEmail(e.target.value);
+                    handleEmailChange(e.target.value);
+                  }}
+                  className="flex-grow h-12 px-4 rounded border border-slate-300 bg-white text-slate-800 text-sm focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none transition-all shadow-sm font-sans"
+                />
+                <a
+                  href="#contact"
+                  className="px-6 h-12 flex items-center justify-center rounded bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm shadow-sm transition-all whitespace-nowrap uppercase tracking-wider font-mono text-xs"
+                >
+                  Join Waitlist
+                </a>
+              </div>
+              <p className="text-left text-[10px] text-slate-400 mt-1.5 font-mono">
+                ⚡ Join 1,248+ security experts | Phase 1 beta slots are limited
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+              <a 
+                href="#simulator" 
+                className="w-full sm:w-auto text-center px-6 h-10 flex items-center justify-center rounded border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs font-bold transition-all uppercase tracking-wider shadow-sm"
+              >
+                Launch Active Demo
+              </a>
+              <Link 
+                href="/overview" 
+                className="w-full sm:w-auto text-center px-6 h-10 flex-shrink-0 flex items-center justify-center rounded border border-transparent text-blue-600 hover:text-blue-700 text-xs font-bold transition-all uppercase tracking-wider"
+              >
+                View Pipeline Specs →
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -600,9 +633,9 @@ INTERCEPTOR IS LIVE. Press Ctrl+C to stop.`}</code>
             ) : (
               <form onSubmit={handleFormSubmit} className="space-y-6">
                 <div className="space-y-2 text-center md:text-left">
-                  <h2 className="text-2xl font-bold text-slate-900">Request a Product Evaluation</h2>
+                  <h2 className="text-2xl font-bold text-slate-900">Join the Private Beta Waitlist</h2>
                   <p className="text-sm text-slate-500">
-                    Deploy Synz Intercept inline or evaluate Synz Prism on endpoints. Discover zero-day anomalies and test active kinetic defense options.
+                    Reserve your slot for early pilot deployments of Synz Intercept (B2B Hardware) or Synz Prism (B2C Endpoint Software). Spaces are allocated on a rolling basis.
                   </p>
                 </div>
 
