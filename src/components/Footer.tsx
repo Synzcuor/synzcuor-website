@@ -7,15 +7,15 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
         {/* Brand Block */}
         <div className="space-y-4">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded bg-blue-600 flex items-center justify-center text-white select-none">
-              <svg className="w-5 h-5" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16 5v22" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-                <path d="M10 10v4c0 4 2 5.5 6 5.5s6-1.5 6-5.5v-4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M12 27h8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-              </svg>
-            </div>
-            <span className="font-semibold text-lg text-white font-sans tracking-wide">Synzcuor</span>
+          <div className="flex items-center gap-2">
+            <svg className="w-6 h-6 text-white select-none" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="14" y="4" width="4" height="24" fill="currentColor" />
+              <path d="M6 8H10V22H14V26H6V8Z" fill="currentColor" />
+              <path d="M26 8H22V22H18V26H26V8Z" fill="currentColor" />
+            </svg>
+            <span className="font-black tracking-tighter text-xl text-white font-sans lowercase">
+              synzcuor
+            </span>
           </div>
           <p className="text-xs leading-relaxed font-sans text-slate-400 max-w-xs">
             Bridging the gap between low-level kernel software and physical active-defense hardware for industrial and consumer infrastructure.
@@ -78,7 +78,7 @@ export default function Footer() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-sans text-slate-500">
-        <span>&copy; {new Date().getFullYear()} Synz Labs Inc. All rights reserved.</span>
+        <span>&copy; {new Date().getFullYear()} synzcuor. All rights reserved.</span>
         <div className="flex gap-6">
           <Link href="/overview" className="hover:text-slate-400">Security Specs</Link>
           <Link href="/compliance" className="hover:text-slate-400">Compliance Badges</Link>

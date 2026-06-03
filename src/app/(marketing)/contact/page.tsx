@@ -68,7 +68,7 @@ export default function ContactPage() {
             </div>
             <h3 className="text-2xl font-bold text-slate-900">Pilot Application Received</h3>
             <p className="text-slate-500 text-sm leading-relaxed max-w-md mx-auto">
-              Thank you. We have recorded your submission. An integration engineer from Synz Labs will contact your operations team within 24 hours.
+              Thank you. We have recorded your submission. An integration engineer from synzcuor will contact your operations team within 24 hours.
             </p>
           </div>
         ) : (

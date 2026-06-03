@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import StickyScrollReveal from "@/components/StickyScrollReveal";
 
 type DefenseMode = "monitor" | "software" | "hardware";
 type ThreatState = "benign" | "scanning" | "attack" | "blocked" | "wire-cut";
@@ -444,29 +445,8 @@ export default function MarketingHomePage() {
         </div>
       </section>
 
-      {/* CORE VALUE PROP */}
-      <section className="bg-white border-y border-slate-200 py-16">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="p-6 rounded-xl border border-slate-100 hover:border-slate-200 transition-all">
-            <h3 className="text-lg font-bold text-slate-900 font-sans mb-3">Synz Prism (B2C Endpoint agent)</h3>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Lightweight B2C endpoint software running Content Disarm & Reconstruction (CDR) locally on user devices, stripping macros and scripts from file downloads in-place without cloud latency.
-            </p>
-          </div>
-          <div className="p-6 rounded-xl border border-slate-100 hover:border-slate-200 transition-all">
-            <h3 className="text-lg font-bold text-slate-900 font-sans mb-3">100% Offline Integrity</h3>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Prism does not upload any files, logs, or metadata. All threat evaluations and sanitizations are performed 100% on your machine, protecting your private data from external servers.
-            </p>
-          </div>
-          <div className="p-6 rounded-xl border border-slate-100 hover:border-slate-200 transition-all">
-            <h3 className="text-lg font-bold text-slate-900 font-sans mb-3">Sub-50 Microsecond Latency</h3>
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Using a compressed, in-memory neural model, Prism evaluates downloads and documents with near-zero overhead, keeping your web browsing and computer speeds lightning-fast.
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* INTERACTIVE STICKY SCROLL REVEAL (SCALE AI STYLE) */}
+      <StickyScrollReveal />
 
       {/* ACTIVE SIMULATOR DEMO */}
       <section id="simulator" className="py-20 relative bg-slate-50 border-b border-slate-200">
