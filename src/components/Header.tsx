@@ -6,12 +6,13 @@ export default function Header() {
     <header className="sticky top-0 w-full bg-white/80 backdrop-blur-md border-b border-slate-100 z-50">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         
-        {/* Scale AI Style Typography Logo */}
-        <Link href="/" className="flex items-center gap-1 group">
-          {/* Subtle geometric symbol representing the Y interceptor */}
-          <div className="w-5 h-5 bg-black flex items-center justify-center text-white select-none rounded-[4px] font-mono text-xs font-black">
-            ψ
-          </div>
+        {/* Flat Geometric Monolithic Brand Logo */}
+        <Link href="/" className="flex items-center gap-2 group">
+          <svg className="w-6 h-6 text-black select-none transition-transform group-hover:scale-105" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="14" y="4" width="4" height="24" fill="currentColor" />
+            <path d="M6 8H10V22H14V26H6V8Z" fill="currentColor" />
+            <path d="M26 8H22V22H18V26H26V8Z" fill="currentColor" />
+          </svg>
           <span className="font-black tracking-tighter text-xl text-black font-sans lowercase">
             synzcuor
           </span>
