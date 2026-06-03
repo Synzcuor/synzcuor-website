@@ -6,12 +6,23 @@ export default function Header() {
     <header className="sticky top-0 w-full bg-white/80 backdrop-blur-md border-b border-slate-100 z-50">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         
-        {/* Flat Geometric Monolithic Brand Logo */}
+        {/* Flat Geometric Shield-Encased Psi Logo */}
         <Link href="/" className="flex items-center gap-2 group">
           <svg className="w-6 h-6 text-black select-none transition-transform group-hover:scale-105" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="14" y="4" width="4" height="24" fill="currentColor" />
-            <path d="M6 8H10V22H14V26H6V8Z" fill="currentColor" />
-            <path d="M26 8H22V22H18V26H26V8Z" fill="currentColor" />
+            <path 
+              d="M8 4h16v13.5L16 27 8 17.5V4z" 
+              stroke="currentColor" 
+              strokeWidth="2.5" 
+              strokeLinejoin="round" 
+              strokeLinecap="round"
+            />
+            <path 
+              d="M16 8v12M11 12v2c0 2.76 2.24 5 5 5s5-2.24 5-5v-2" 
+              stroke="currentColor" 
+              strokeWidth="2" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            />
           </svg>
           <span className="font-black tracking-tighter text-xl text-black font-sans lowercase">
             synzcuor

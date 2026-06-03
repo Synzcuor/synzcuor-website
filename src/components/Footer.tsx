@@ -9,9 +9,20 @@ export default function Footer() {
         <div className="space-y-4">
           <div className="flex items-center gap-2">
             <svg className="w-6 h-6 text-white select-none" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="14" y="4" width="4" height="24" fill="currentColor" />
-              <path d="M6 8H10V22H14V26H6V8Z" fill="currentColor" />
-              <path d="M26 8H22V22H18V26H26V8Z" fill="currentColor" />
+              <path 
+                d="M8 4h16v13.5L16 27 8 17.5V4z" 
+                stroke="currentColor" 
+                strokeWidth="2.5" 
+                strokeLinejoin="round" 
+                strokeLinecap="round"
+              />
+              <path 
+                d="M16 8v12M11 12v2c0 2.76 2.24 5 5 5s5-2.24 5-5v-2" 
+                stroke="currentColor" 
+                strokeWidth="2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              />
             </svg>
             <span className="font-black tracking-tighter text-xl text-white font-sans lowercase">
               synzcuor
