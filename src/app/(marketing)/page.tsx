@@ -246,10 +246,17 @@ export default function MarketingHomePage() {
       localStorage.setItem("leadCapture", JSON.stringify(leadForm));
       console.log("Lead payload captured successfully:", leadForm);
 
+      let insertSuccess = true;
+      let errorMessage = "";
+
       // Push to Supabase waitlist table
       try {
         const { supabase } = await import("@/lib/supabaseClient");
-        if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+        if (
+          process.env.NEXT_PUBLIC_SUPABASE_URL && 
+          process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY &&
+          !process.env.NEXT_PUBLIC_SUPABASE_URL.includes("placeholder")
+        ) {
           const { error } = await supabase
             .from("waitlist")
             .insert([
@@ -261,15 +268,23 @@ export default function MarketingHomePage() {
               },
             ]);
           if (error) {
+            insertSuccess = false;
+            errorMessage = error.message;
             console.error("Supabase insert error:", error.message);
           }
         }
-      } catch (err) {
+      } catch (err: any) {
+        insertSuccess = false;
+        errorMessage = err.message || String(err);
         console.error("Failed to execute Supabase insert:", err);
       }
 
-      setFormSubmitted(true);
-      pushAlert(`Launch Demo Request received from ${leadForm.name} (${leadForm.company})`, "warn");
+      if (insertSuccess) {
+        setFormSubmitted(true);
+        pushAlert(`Launch Demo Request received from ${leadForm.name} (${leadForm.company})`, "warn");
+      } else {
+        setFormError(`Registration failed: ${errorMessage}`);
+      }
     }
   };
 
