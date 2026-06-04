@@ -231,8 +231,8 @@ export default function MarketingHomePage() {
     return () => clearTimeout(timer);
   }, [threatState, defenseMode]);
 
-  // Form submit handler (E2E compatible)
-  const handleFormSubmit = (e: React.FormEvent) => {
+  // Form submit handler
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormError(null);
 
@@ -245,8 +245,31 @@ export default function MarketingHomePage() {
     if (leadForm.name && leadForm.email && leadForm.company) {
       localStorage.setItem("leadCapture", JSON.stringify(leadForm));
       console.log("Lead payload captured successfully:", leadForm);
+
+      // Push to Supabase waitlist table
+      try {
+        const { supabase } = await import("@/lib/supabaseClient");
+        if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+          const { error } = await supabase
+            .from("waitlist")
+            .insert([
+              {
+                name: leadForm.name,
+                email: leadForm.email,
+                company: leadForm.company,
+                role: leadForm.role,
+              },
+            ]);
+          if (error) {
+            console.error("Supabase insert error:", error.message);
+          }
+        }
+      } catch (err) {
+        console.error("Failed to execute Supabase insert:", err);
+      }
+
       setFormSubmitted(true);
-      pushAlert(`Consumer Beta Waitlist entry received from ${leadForm.name} (${leadForm.company})`, "warn");
+      pushAlert(`Launch Demo Request received from ${leadForm.name} (${leadForm.company})`, "warn");
     }
   };
 
