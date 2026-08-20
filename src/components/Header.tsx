@@ -1,104 +1,81 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
+import Mark from "./Mark";
+
+const nav = [
+  { href: "/approach", label: "Approach" },
+  { href: "/participate", label: "Participate" },
+  { href: "/research", label: "Research" },
+  { href: "/careers", label: "Careers" },
+];
 
 export default function Header() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <header className="sticky top-0 w-full bg-white/80 backdrop-blur-md border-b border-slate-100 z-50">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        
-        {/* Flat Geometric Shield-Encased Psi Logo */}
-        <Link href="/" className="flex items-center gap-2 group">
-          <svg className="w-6 h-6 text-black select-none transition-transform group-hover:scale-105" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path 
-              d="M8 4h16v13.5L16 27 8 17.5V4z" 
-              stroke="currentColor" 
-              strokeWidth="2.5" 
-              strokeLinejoin="round" 
-              strokeLinecap="round"
-            />
-            <path 
-              d="M16 8v12M11 12v2c0 2.76 2.24 5 5 5s5-2.24 5-5v-2" 
-              stroke="currentColor" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
-            />
-          </svg>
-          <span className="font-black tracking-tighter text-xl text-black font-sans lowercase">
-            synzcuor
-          </span>
+    <header className="sticky top-0 z-50 w-full bg-paper/85 backdrop-blur-md border-b border-rule">
+      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-2.5 group">
+          <Mark className="w-6 h-6 text-accent transition-transform group-hover:rotate-30 duration-500" />
+          <span className="font-display text-xl tracking-tight text-ink lowercase">synzcuor</span>
         </Link>
 
-        {/* Navigation Links with Products Dropdown */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-500">
-          
-          {/* Products Dropdown (Scale AI style) */}
-          <div className="relative group">
-            <button className="hover:text-black transition-colors py-8 flex items-center gap-1 cursor-pointer">
-              Products
-              <svg className="w-3 h-3 text-slate-400 group-hover:text-black transition-transform group-hover:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-            
-            {/* Dropdown Box */}
-            <div className="absolute left-1/2 -translate-x-1/2 top-full w-[560px] bg-white border border-slate-200/80 rounded-2xl shadow-xl p-6 grid grid-cols-2 gap-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-              {/* Column 1: Synz Prism */}
-              <div className="space-y-4">
-                <span className="text-[9px] font-mono font-bold tracking-widest text-slate-400 uppercase block">Synz Prism (B2C)</span>
-                <div className="space-y-2">
-                  <Link href="/products#prism" className="block hover:bg-slate-50 p-2 rounded-lg transition-colors">
-                    <div className="font-semibold text-slate-900 text-xs">Local File Shield</div>
-                    <p className="text-[10px] text-slate-500 mt-0.5">Content Disarm & Reconstruction runs 100% locally on your machine.</p>
-                  </Link>
-                  <Link href="/products#prism" className="block hover:bg-slate-50 p-2 rounded-lg transition-colors">
-                    <div className="font-semibold text-slate-900 text-xs">Zero-Day Interceptor</div>
-                    <p className="text-[10px] text-slate-500 mt-0.5">In-memory neural engine blocks hidden ransomware triggers before execution.</p>
-                  </Link>
-                </div>
-              </div>
-              
-              {/* Column 2: Tech Foundation */}
-              <div className="space-y-4">
-                <span className="text-[9px] font-mono font-bold tracking-widest text-slate-400 uppercase block">Core Technology</span>
-                <div className="space-y-2">
-                  <Link href="/products#phantom" className="block hover:bg-slate-50 p-2 rounded-lg transition-colors">
-                    <div className="font-semibold text-slate-900 text-xs">Split-Head QGAN</div>
-                    <p className="text-[10px] text-slate-500 mt-0.5">Proprietary ML model analyzing file entropy and OS performance counters.</p>
-                  </Link>
-                  <Link href="/products#phantom" className="block hover:bg-slate-50 p-2 rounded-lg transition-colors">
-                    <div className="font-semibold text-slate-900 text-xs">TT-SVD Compression</div>
-                    <p className="text-[10px] text-slate-500 mt-0.5">Our 0.02 MB model footprint guarantees sub-50µs offline execution.</p>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <Link href="/products" className="hover:text-black transition-colors">Solutions</Link>
-          <Link href="/compliance" className="hover:text-black transition-colors">Compliance</Link>
-          <Link href="/blog" className="hover:text-black transition-colors">Research</Link>
-          <Link href="/careers" className="hover:text-black transition-colors">Careers</Link>
+        <nav className="hidden md:flex items-center gap-8 text-sm text-muted">
+          {nav.map((n) => (
+            <Link key={n.href} href={n.href} className="hover:text-ink transition-colors">
+              {n.label}
+            </Link>
+          ))}
         </nav>
 
-        {/* Action Buttons (Scale AI style) */}
-        <div className="flex items-center gap-3">
-          {/* Console (Login) - Outline style */}
-          <Link 
-            href="/login" 
-            className="px-4 py-2 text-xs font-semibold text-slate-950 bg-white border border-slate-200 hover:bg-slate-50 hover:border-slate-300 transition-colors rounded-lg font-sans"
+        <div className="hidden md:block">
+          <Link
+            href="/contact"
+            className="px-4 py-2 text-xs font-medium text-paper bg-ink hover:bg-accent transition-colors rounded-md"
           >
-            Console
-          </Link>
-          {/* Waitlist - Solid black style */}
-          <Link 
-            href="#contact" 
-            className="px-4 py-2 text-xs font-semibold text-white bg-black hover:bg-neutral-800 transition-colors rounded-lg shadow-sm font-sans"
-          >
-            Join Waitlist
+            Get in touch
           </Link>
         </div>
+
+        <button
+          onClick={() => setOpen(!open)}
+          aria-label="Toggle navigation"
+          aria-expanded={open}
+          className="md:hidden p-2 -mr-2 text-ink"
+        >
+          <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
+            {open ? (
+              <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
+            ) : (
+              <path d="M4 7h16M4 12h16M4 17h16" strokeLinecap="round" />
+            )}
+          </svg>
+        </button>
       </div>
+
+      {open && (
+        <div className="md:hidden border-t border-rule bg-paper px-6 py-4 space-y-3">
+          {nav.map((n) => (
+            <Link
+              key={n.href}
+              href={n.href}
+              onClick={() => setOpen(false)}
+              className="block text-sm text-ink-2"
+            >
+              {n.label}
+            </Link>
+          ))}
+          <Link
+            href="/contact"
+            onClick={() => setOpen(false)}
+            className="block text-sm font-medium text-accent"
+          >
+            Get in touch
+          </Link>
+        </div>
+      )}
     </header>
   );
 }

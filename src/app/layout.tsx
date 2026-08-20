@@ -1,21 +1,26 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Newsreader, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { AuthProvider } from "@/context/AuthContext";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
+
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrains = JetBrains_Mono({
+  variable: "--font-mono-jb",
   subsets: ["latin"],
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
-  title: "Synzcuor | Active Kinetic Cyber Defense",
-  description: "Stop Zero-Day ransomware detonations before they reach the CPU. Advanced B2B hardware and B2C endpoint security solutions.",
+  title: "synzcuor — the pooled model for materials R&D",
+  description:
+    "Materials data is locked inside organisations that compete. We train a shared model across those silos without the data ever leaving its owner.",
 };
 
 export default function RootLayout({
@@ -26,11 +31,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${newsreader.variable} ${jetbrains.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col">
-        <AuthProvider>{children}</AuthProvider>
-      </body>
+      <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
 }

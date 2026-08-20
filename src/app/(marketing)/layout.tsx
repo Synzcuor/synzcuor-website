@@ -9,9 +9,9 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
   const pathname = usePathname();
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50 text-slate-900">
+    <div className="flex flex-col min-h-screen bg-paper text-ink">
       <Header />
-      <main key={pathname} className="flex-1 w-full bg-slate-50 animate-page-enter">
+      <main key={pathname} className="flex-1 w-full animate-page-enter">
         {children}
       </main>
       <Footer />

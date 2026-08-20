@@ -1,100 +1,45 @@
 import React from "react";
 import Link from "next/link";
+import Mark from "./Mark";
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-slate-900 text-slate-400 py-16 border-t border-slate-800">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
-        {/* Brand Block */}
-        <div className="space-y-4">
-          <div className="flex items-center gap-2">
-            <svg className="w-6 h-6 text-white select-none" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path 
-                d="M8 4h16v13.5L16 27 8 17.5V4z" 
-                stroke="currentColor" 
-                strokeWidth="2.5" 
-                strokeLinejoin="round" 
-                strokeLinecap="round"
-              />
-              <path 
-                d="M16 8v12M11 12v2c0 2.76 2.24 5 5 5s5-2.24 5-5v-2" 
-                stroke="currentColor" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              />
-            </svg>
-            <span className="font-black tracking-tighter text-xl text-white font-sans lowercase">
-              synzcuor
-            </span>
+    <footer className="w-full border-t border-rule bg-paper-2 mt-24">
+      <div className="max-w-6xl mx-auto px-6 py-14 grid grid-cols-2 md:grid-cols-4 gap-10">
+        <div className="col-span-2 md:col-span-2 space-y-3">
+          <div className="flex items-center gap-2.5">
+            <Mark className="w-6 h-6 text-accent" />
+            <span className="font-display text-xl tracking-tight text-ink lowercase">synzcuor</span>
           </div>
-          <p className="text-xs leading-relaxed font-sans text-slate-400 max-w-xs">
-            Bridging the gap between low-level kernel software and physical active-defense hardware for industrial and consumer infrastructure.
+          <p className="text-sm leading-relaxed text-muted max-w-sm">
+            A shared model for materials research, trained across data that never moves.
+          </p>
+          <p className="text-xs text-muted/80 max-w-sm">
+            Pre-seed and pre-product. Nothing on this site is a commercial offer.
           </p>
         </div>
 
-        {/* Column 1: Products */}
-        <div className="space-y-4">
-          <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-200">Products</h4>
-          <ul className="space-y-2.5 text-xs font-sans">
-            <li>
-              <Link href="/products#intercept" className="hover:text-white transition-colors">Synz Intercept</Link>
-            </li>
-            <li>
-              <Link href="/products#prism" className="hover:text-white transition-colors">Synz Prism</Link>
-            </li>
-            <li>
-              <Link href="/products#phantom" className="hover:text-white transition-colors">Synz Phantom</Link>
-            </li>
-            <li>
-              <Link href="/products#core" className="hover:text-white transition-colors">Synz Core</Link>
-            </li>
+        <div className="space-y-3">
+          <h4 className="eyebrow">The work</h4>
+          <ul className="space-y-2 text-sm text-muted">
+            <li><Link href="/approach" className="hover:text-ink transition-colors">Approach</Link></li>
+            <li><Link href="/participate" className="hover:text-ink transition-colors">Participate</Link></li>
+            <li><Link href="/research" className="hover:text-ink transition-colors">Research</Link></li>
           </ul>
         </div>
 
-        {/* Column 2: Resources */}
-        <div className="space-y-4">
-          <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-200">Resources</h4>
-          <ul className="space-y-2.5 text-xs font-sans">
-            <li>
-              <Link href="/blog" className="hover:text-white transition-colors">Threat Research Blog</Link>
-            </li>
-            <li>
-              <Link href="/overview#specs" className="hover:text-white transition-colors">Technical Specifications</Link>
-            </li>
-            <li>
-              <Link href="/compliance" className="hover:text-white transition-colors">Compliance Certifications</Link>
-            </li>
-          </ul>
-        </div>
-
-        {/* Column 3: Company */}
-        <div className="space-y-4">
-          <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-200">Company</h4>
-          <ul className="space-y-2.5 text-xs font-sans">
-            <li>
-              <Link href="/overview#about" className="hover:text-white transition-colors">Corporate Overview</Link>
-            </li>
-            <li>
-              <Link href="/careers" className="hover:text-white transition-colors">Careers</Link>
-            </li>
-            <li>
-              <Link href="/contact" className="hover:text-white transition-colors">Contact operations</Link>
-            </li>
-            <li>
-              <a href="mailto:info@synzlabs.io" className="hover:text-white transition-colors">info@synzlabs.io</a>
-            </li>
+        <div className="space-y-3">
+          <h4 className="eyebrow">Company</h4>
+          <ul className="space-y-2 text-sm text-muted">
+            <li><Link href="/careers" className="hover:text-ink transition-colors">Careers</Link></li>
+            <li><Link href="/contact" className="hover:text-ink transition-colors">Contact</Link></li>
           </ul>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-sans text-slate-500">
-        <span>&copy; {new Date().getFullYear()} synzcuor. All rights reserved.</span>
-        <div className="flex gap-6">
-          <Link href="/overview" className="hover:text-slate-400">Security Specs</Link>
-          <Link href="/compliance" className="hover:text-slate-400">Compliance Badges</Link>
-          <a href="#" className="hover:text-slate-400">Terms of Service</a>
-        </div>
+      <div className="max-w-6xl mx-auto px-6 py-6 border-t border-rule flex flex-col sm:flex-row justify-between gap-3 text-xs text-muted">
+        <span>&copy; {new Date().getFullYear()} synzcuor</span>
+        <span className="font-mono">Not incorporated. No funding. No customers yet.</span>
       </div>
     </footer>
   );
