@@ -15,7 +15,8 @@ const holders = [
 
 export default function FederationDiagram() {
   return (
-    <figure className="overflow-x-auto">
+    <figure>
+      <div className="overflow-x-auto">
       <svg
         viewBox="0 0 880 322"
         className="w-full min-w-[720px] h-auto"
@@ -65,7 +66,7 @@ export default function FederationDiagram() {
           </g>
         ))}
 
-        <text x="333" y="16" fontSize="11" fill={MUTED} fontFamily="var(--font-mono)">
+        <text x="327" y="44" fontSize="11" fill={MUTED} textAnchor="middle" fontFamily="var(--font-mono)">
           MASKED UPDATE
         </text>
 
@@ -102,6 +103,7 @@ export default function FederationDiagram() {
           RETURNED, PLUS A PRIVATE HEAD FINE-TUNED ON YOUR DATA
         </text>
       </svg>
+      </div>
       <figcaption className="mt-4 text-xs text-muted">
         Federated training with secure aggregation. The masks are generated pairwise and
         cancel exactly in the sum, so the aggregator can compute the total without ever

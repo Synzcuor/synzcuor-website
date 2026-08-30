@@ -18,6 +18,14 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  // ponytail: Vercel supplies the production host; NEXT_PUBLIC_SITE_URL overrides it
+  // once there is a custom domain. No hardcoded URL to go stale.
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ??
+      (process.env.VERCEL_PROJECT_PRODUCTION_URL
+        ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+        : "http://localhost:3000"),
+  ),
   title: "synzcuor — the pooled model for materials R&D",
   description:
     "Materials data is locked inside organisations that compete. We train a shared model across those silos without the data ever leaving its owner.",

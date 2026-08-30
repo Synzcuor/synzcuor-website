@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-6 py-14 grid grid-cols-2 md:grid-cols-4 gap-10">
         <div className="col-span-2 md:col-span-2 space-y-3">
           <div className="flex items-center gap-2.5">
-            <Mark className="w-6 h-6 text-accent" />
+            <Mark className="w-10 h-10 -ml-1" />
             <span className="font-display text-xl tracking-tight text-ink lowercase">synzcuor</span>
           </div>
           <p className="text-sm leading-relaxed text-muted max-w-sm">

@@ -18,7 +18,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full bg-paper/85 backdrop-blur-md border-b border-rule">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5 group">
-          <Mark className="w-6 h-6 text-accent transition-transform group-hover:rotate-30 duration-500" />
+          <Mark className="w-10 h-10 -ml-1 transition-transform group-hover:rotate-30 duration-500" />
           <span className="font-display text-xl tracking-tight text-ink lowercase">synzcuor</span>
         </Link>
 
