@@ -41,8 +41,8 @@ export default function FederationDiagram() {
           YOUR INFRASTRUCTURE — RAW DATA NEVER CROSSES THIS LINE
         </text>
 
-        {holders.map((h) => (
-          <g key={h.label}>
+        {holders.map((h, i) => (
+          <g key={h.label} style={{ ["--d" as string]: `${i * 0.45}s` }}>
             <rect x="26" y={h.y} width="230" height="52" rx="7" fill={CARD} stroke={RULE} />
             <text x="42" y={h.y + 22} fontSize="13" fill={INK} fontWeight="500">
               {h.label}
@@ -52,14 +52,18 @@ export default function FederationDiagram() {
             </text>
             {/* update leaves, masked */}
             <line
+              className="flow" style={{ animationDelay: "var(--d)" }}
               x1="256" y1={h.y + 26} x2="330" y2={h.y + 26}
               stroke={MUTED} strokeWidth="1.25" markerEnd="url(#arw)"
             />
-            <rect x="286" y={h.y + 15} width="22" height="22" rx="5" fill={SOFT} stroke={ACCENT} strokeWidth="1" />
-            <text x="297" y={h.y + 30} fontSize="11" fill={ACCENT} textAnchor="middle" fontFamily="var(--font-mono)">
-              +r
-            </text>
+            <g className="pulse" style={{ animationDelay: "var(--d)" }}>
+              <rect x="286" y={h.y + 15} width="22" height="22" rx="5" fill={SOFT} stroke={ACCENT} strokeWidth="1" />
+              <text x="297" y={h.y + 30} fontSize="11" fill={ACCENT} textAnchor="middle" fontFamily="var(--font-mono)">
+                +r
+              </text>
+            </g>
             <line
+              className="flow" style={{ animationDelay: "var(--d)" }}
               x1="340" y1={h.y + 26} x2="398" y2={h.y + 26}
               stroke={MUTED} strokeWidth="1.25" markerEnd="url(#arw)"
             />
@@ -83,7 +87,7 @@ export default function FederationDiagram() {
         </text>
 
         {/* to pooled model */}
-        <line x1="568" y1="152" x2="638" y2="152" stroke={ACCENT} strokeWidth="1.5" markerEnd="url(#arwA)" />
+        <line className="flow" x1="568" y1="152" x2="638" y2="152" stroke={ACCENT} strokeWidth="1.5" markerEnd="url(#arwA)" />
 
         {/* Pooled model */}
         <rect x="646" y="112" width="216" height="80" rx="8" fill={SOFT} stroke={ACCENT} strokeWidth="1.25" />
@@ -96,6 +100,7 @@ export default function FederationDiagram() {
 
         {/* Return path */}
         <path
+          className="flow flow-return"
           d="M754 192 L754 296 L141 296 L141 278"
           fill="none" stroke={ACCENT} strokeWidth="1.5" strokeDasharray="4 4" markerEnd="url(#arwA)"
         />

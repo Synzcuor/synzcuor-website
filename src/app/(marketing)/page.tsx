@@ -9,21 +9,21 @@ export default function HomePage() {
       <section className="relative border-b border-rule">
         <div className="absolute inset-0 grid-paper pointer-events-none" aria-hidden="true" />
         <div className="relative max-w-6xl mx-auto px-6 pt-20 pb-24">
-          <p className="eyebrow mb-6">Private federated learning for materials R&D</p>
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.08] tracking-tight text-ink max-w-4xl">
+          <p data-enter className="eyebrow mb-6">Private federated learning for materials R&D</p>
+          <h1 data-enter className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.08] tracking-tight text-ink max-w-4xl">
             The training data for materials AI does not exist.
             <span className="block text-muted italic mt-2">
               It is locked inside companies that compete.
             </span>
           </h1>
-          <p className="mt-8 text-lg leading-relaxed text-ink-2 max-w-2xl">
+          <p data-enter className="mt-8 text-lg leading-relaxed text-ink-2 max-w-2xl">
             Every group working on batteries, catalysts and semiconductors holds
             experimental data that would make everyone&rsquo;s models better if it were
             combined — and none of them will hand it over, because that data is the
             company. So each one trains alone on a dataset too small to matter, and the
             field moves at the speed of the smallest silo.
           </p>
-          <p className="mt-5 text-lg leading-relaxed text-ink-2 max-w-2xl">
+          <p data-enter className="mt-5 text-lg leading-relaxed text-ink-2 max-w-2xl">
             We train a shared model across those silos{" "}
             <strong className="font-semibold text-ink">
               without the data ever leaving its owner
@@ -31,7 +31,7 @@ export default function HomePage() {
             .
           </p>
 
-          <div className="mt-10 flex flex-wrap gap-3">
+          <div data-enter className="mt-10 flex flex-wrap gap-3">
             <Link
               href="/participate"
               className="px-5 py-2.5 rounded-md bg-ink text-paper text-sm font-medium hover:bg-accent transition-colors"
@@ -46,7 +46,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <p className="mt-10 font-mono text-xs text-muted">
+          <p data-enter className="mt-10 font-mono text-xs text-muted">
             Pre-seed · pre-product · one person · nothing shipped yet
           </p>
         </div>
@@ -54,21 +54,21 @@ export default function HomePage() {
 
       {/* The mechanism */}
       <section className="max-w-6xl mx-auto px-6 py-20">
-        <p className="eyebrow mb-4">The mechanism</p>
-        <h2 className="font-display text-3xl sm:text-4xl tracking-tight text-ink max-w-2xl">
+        <p data-reveal className="eyebrow mb-4">The mechanism</p>
+        <h2 data-reveal className="font-display text-3xl sm:text-4xl tracking-tight text-ink max-w-2xl">
           Nothing crosses the boundary except a masked sum
         </h2>
-        <p className="mt-5 text-base leading-relaxed text-ink-2 max-w-2xl">
+        <p data-reveal className="mt-5 text-base leading-relaxed text-ink-2 max-w-2xl">
           Each participant trains on its own hardware, behind its own firewall. Only
           model updates leave, and they leave under a mask that cancels in the sum — so
           the aggregator sees the total and never an individual contribution.
         </p>
 
-        <div className="mt-12">
+        <div data-reveal className="mt-12">
           <FederationDiagram />
         </div>
 
-        <div className="mt-12 grid md:grid-cols-3 gap-8">
+        <div data-stagger className="mt-12 grid md:grid-cols-3 gap-8">
           {[
             {
               n: "01",
@@ -98,18 +98,18 @@ export default function HomePage() {
       {/* The seam */}
       <section className="border-y border-rule bg-paper-2">
         <div className="max-w-6xl mx-auto px-6 py-20">
-          <p className="eyebrow mb-4">What you keep</p>
-          <h2 className="font-display text-3xl sm:text-4xl tracking-tight text-ink max-w-2xl">
+          <p data-reveal className="eyebrow mb-4">What you keep</p>
+          <h2 data-reveal className="font-display text-3xl sm:text-4xl tracking-tight text-ink max-w-2xl">
             You own your model. We maintain the foundation it stands on.
           </h2>
-          <p className="mt-5 text-base leading-relaxed text-ink-2 max-w-2xl">
+          <p data-reveal className="mt-5 text-base leading-relaxed text-ink-2 max-w-2xl">
             The ownership line sits on the technical seam that is already there. The
             general representation is learned from everyone and no single group would
             ever build it — no one lab&rsquo;s task justifies its generality. Everything
             task-specific is different for every participant by nature, and it is yours.
           </p>
 
-          <div className="mt-10 grid md:grid-cols-2 gap-5">
+          <div data-stagger className="mt-10 grid md:grid-cols-2 gap-5">
             <div className="rounded-lg border border-rule bg-card p-7">
               <h3 className="font-display text-xl text-ink">Yours, outright</h3>
               <ul className="mt-4 space-y-2.5 text-sm text-ink-2">
@@ -153,12 +153,12 @@ export default function HomePage() {
 
       {/* Why a company */}
       <section className="max-w-6xl mx-auto px-6 py-20">
-        <p className="eyebrow mb-4">Why this is a company</p>
-        <h2 className="font-display text-3xl sm:text-4xl tracking-tight text-ink max-w-3xl">
+        <p data-reveal className="eyebrow mb-4">Why this is a company</p>
+        <h2 data-reveal className="font-display text-3xl sm:text-4xl tracking-tight text-ink max-w-3xl">
           The last time this worked, it was a research project — and it stopped when the
           funding did.
         </h2>
-        <div className="mt-10 grid md:grid-cols-3 gap-10">
+        <div data-stagger className="mt-10 grid md:grid-cols-3 gap-10">
           {[
             {
               h: "Continuity",
@@ -184,14 +184,14 @@ export default function HomePage() {
       {/* Honest status */}
       <section className="border-t border-rule">
         <div className="max-w-6xl mx-auto px-6 py-20">
-          <div className="rounded-lg border border-flag/25 bg-flag-soft p-8 md:p-10">
+          <div data-reveal className="rounded-lg border border-flag/25 bg-flag-soft p-8 md:p-10">
             <p className="eyebrow mb-4" style={{ color: "var(--color-flag)" }}>
               Where we actually are
             </p>
             <h2 className="font-display text-2xl sm:text-3xl tracking-tight text-ink">
               Most of this does not exist yet, and saying so is the point.
             </h2>
-            <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div data-stagger className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 ["Company", "Not incorporated"],
                 ["Funding", "None"],
@@ -220,7 +220,7 @@ export default function HomePage() {
 
       {/* CTA */}
       <section className="max-w-6xl mx-auto px-6 pb-8">
-        <div className="rounded-lg border border-rule bg-card p-8 md:p-12 flex flex-col md:flex-row md:items-center justify-between gap-8">
+        <div data-reveal className="rounded-lg border border-rule bg-card p-8 md:p-12 flex flex-col md:flex-row md:items-center justify-between gap-8">
           <div className="max-w-xl">
             <h2 className="font-display text-2xl sm:text-3xl tracking-tight text-ink">
               The first participants are academic groups

@@ -99,3 +99,58 @@ body {
     animation: none;
   }
 }
+
+/* ---------------------------------------------------------------
+   Motion. anime.js drives the reveals (see components/Motion.tsx);
+   CSS only holds the pre-animation state and the two looping SVG
+   effects, which never need a JS tick.
+   --------------------------------------------------------------- */
+
+/* Pre-animation state. Motion.tsx animates these to visible. */
+[data-reveal],
+[data-stagger] > *,
+[data-enter] {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  [data-stagger] > *,
+  [data-enter] {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Masked updates travelling along the federation diagram */
+  .flow {
+    stroke-dasharray: 6 6;
+    animation: dashflow 1.4s linear infinite;
+  }
+  .flow-return {
+    animation: dashflow 2.4s linear infinite;
+  }
+  .pulse {
+    animation: pulse 2.6s ease-in-out infinite;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+}
+
+@keyframes dashflow {
+  to {
+    stroke-dashoffset: -12;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.62;
+    transform: scale(0.92);
+  }
+}
