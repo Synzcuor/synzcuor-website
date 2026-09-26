@@ -13,7 +13,7 @@ const roles = [
     title: "Co-founder / CTO",
     status: "Open conversation",
     lede: "The person who owns whether this actually works.",
-    body: "Take the private training benchmark from a research script to something a research group runs on its own hardware, behind its own firewall, without us present. Own the honest answer to how much pooling really buys. Own the security posture — the whole claim is that the data does not leave, and that claim will be tested by people paid to test it.",
+    body: "Take the private training benchmark from research code to something a research group runs on its own hardware, behind its own firewall, without us present. Own the answer to how much pooling really helps. Own security: the core claim is that the data does not leave, and people paid to break that claim will test it.",
     want: [
       "Built and shipped distributed ML systems that ran somewhere other than your laptop",
       "Depth in federated learning, secure aggregation, applied cryptography or privacy-preserving ML",
@@ -79,11 +79,11 @@ export default function CareersPage() {
         <ul className="space-y-2.5 text-sm leading-relaxed text-ink-2">
           {[
             "Not incorporated. No funding. No revenue. No customers. No other employees.",
-            "One publication behind the technical thesis, by the founder.",
+            "One paper behind the technical thesis, by the founder: a preprint, being revised after peer review.",
             "Cash: none until a round closes. Below market after that until first revenue.",
-            "Equity: real, documented, and meaningful — with a ten-year exercise window rather than the usual ninety days, so if this works you keep what you earned regardless of what happens between us.",
+            "Equity, once the company is incorporated: documented and meaningful, with a planned ten-year exercise window instead of the usual ninety days, so you keep what you earned if we part ways.",
             "The base case for any company at this stage is that it fails and the equity is worth zero.",
-            "The upside case is a category that does not exist yet, and a decade of work.",
+            "The upside case is a lasting company in a field that is still forming, and a decade of work.",
           ].map((t) => (
             <li key={t} className="flex gap-3">
               <span className="text-flag mt-0.5">—</span>

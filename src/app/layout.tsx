@@ -26,9 +26,9 @@ export const metadata: Metadata = {
         ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
         : "http://localhost:3000"),
   ),
-  title: "synzcuor — the pooled model for materials R&D",
+  title: "synzcuor — private machine learning for materials R&D",
   description:
-    "Materials data is locked inside organisations that compete. We train a shared model across those silos without the data ever leaving its owner.",
+    "Models trained on materials measurement data without the data leaving its owner: first inside one company, then shared across companies. Early stage; results on public data only.",
 };
 
 export default function RootLayout({

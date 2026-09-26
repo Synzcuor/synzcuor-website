@@ -7,6 +7,8 @@ import Mark from "./Mark";
 const nav = [
   { href: "/approach", label: "Approach" },
   { href: "/participate", label: "Participate" },
+  { href: "/results", label: "Results" },
+  { href: "/validator", label: "Synthesizability" },
   { href: "/research", label: "Research" },
   { href: "/careers", label: "Careers" },
 ];
@@ -22,7 +24,7 @@ export default function Header() {
           <span className="font-display text-xl tracking-tight text-ink lowercase">synzcuor</span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8 text-sm text-muted">
+        <nav className="hidden lg:flex items-center gap-7 text-sm text-muted">
           {nav.map((n) => (
             <Link key={n.href} href={n.href} className="hover:text-ink transition-colors">
               {n.label}
@@ -30,7 +32,7 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <Link
             href="/contact"
             className="px-4 py-2 text-xs font-medium text-paper bg-ink hover:bg-accent transition-colors rounded-md"
@@ -43,7 +45,7 @@ export default function Header() {
           onClick={() => setOpen(!open)}
           aria-label="Toggle navigation"
           aria-expanded={open}
-          className="md:hidden p-2 -mr-2 text-ink"
+          className="lg:hidden p-2 -mr-2 text-ink"
         >
           <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
             {open ? (
@@ -56,7 +58,7 @@ export default function Header() {
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-rule bg-paper px-6 py-4 space-y-3">
+        <div className="lg:hidden border-t border-rule bg-paper px-6 py-4 space-y-3">
           {nav.map((n) => (
             <Link
               key={n.href}

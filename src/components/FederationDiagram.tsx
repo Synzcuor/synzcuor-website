@@ -21,7 +21,7 @@ export default function FederationDiagram() {
         viewBox="0 0 880 322"
         className="w-full min-w-[720px] h-auto"
         role="img"
-        aria-label="Three data holders train locally. Only masked model updates leave their infrastructure. An aggregator sums the masks, which cancel, producing a pooled model that is sent back to each holder."
+        aria-label="Three data holders train locally. Only masked model updates leave their infrastructure. The server adds the updates; the masks cancel, giving a pooled model that is sent back to each holder."
       >
         <defs>
           <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
@@ -77,10 +77,10 @@ export default function FederationDiagram() {
         {/* Aggregator */}
         <rect x="400" y="104" width="168" height="96" rx="8" fill={CARD} stroke={RULE} />
         <text x="484" y="136" fontSize="13" fill={INK} textAnchor="middle" fontWeight="500">
-          Aggregator
+          Server
         </text>
         <text x="484" y="156" fontSize="11" fill={MUTED} textAnchor="middle">
-          masks sum to zero
+          masks cancel in the sum
         </text>
         <text x="484" y="174" fontSize="11" fill={ACCENT} textAnchor="middle" fontFamily="var(--font-mono)">
           sees the total only
@@ -95,7 +95,7 @@ export default function FederationDiagram() {
           Pooled model
         </text>
         <text x="754" y="164" fontSize="11" fill={ACCENT} textAnchor="middle">
-          better than any silo alone
+          aim: beat any one holder alone
         </text>
 
         {/* Return path */}
@@ -105,14 +105,15 @@ export default function FederationDiagram() {
           fill="none" stroke={ACCENT} strokeWidth="1.5" strokeDasharray="4 4" markerEnd="url(#arwA)"
         />
         <text x="448" y="290" fontSize="11" fill={ACCENT} textAnchor="middle" fontFamily="var(--font-mono)">
-          RETURNED, PLUS A PRIVATE HEAD FINE-TUNED ON YOUR DATA
+          SENT BACK, PLUS A FINAL LAYER FITTED PRIVATELY ON YOUR DATA
         </text>
       </svg>
       </div>
       <figcaption className="mt-4 text-xs text-muted">
-        Federated training with secure aggregation. The masks are generated pairwise and
-        cancel exactly in the sum, so the aggregator can compute the total without ever
-        seeing a single participant&rsquo;s update.
+        Federated training with secure aggregation. Each pair of participants shares a
+        secret mask; one adds it and the other subtracts it, so all masks cancel in the
+        total. The server can compute the total without seeing any one participant&rsquo;s
+        update. Needs at least three participants.
       </figcaption>
     </figure>
   );

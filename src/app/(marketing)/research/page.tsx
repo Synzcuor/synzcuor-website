@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const PUBLICATIONS = [
   {
     title: "SH-QGAN: a split-head quantum generative model for crystal structures",
-    note: "Peer-reviewed. The publication behind the technical thesis — it is domain access and demonstrated capability, not a claimed advantage over classical generative models.",
+    note: "Preprint, being revised after peer review. A hybrid quantum-classical model for generating crystal structures, tested at small scale. It shows experience in the field. It does not claim an advantage over classical generative models.",
     url: "",
   },
 ];
@@ -20,23 +20,38 @@ const PUBLICATIONS = [
 const openQuestions = [
   {
     q: "How much does pooling actually improve the model?",
-    s: "In progress",
-    d: "Split a public materials dataset across simulated holders, train each alone, train the pool, measure the gap. The threshold is set in advance: under roughly 10% gain over the best single holder on a realistic chemical-system split, there is no product, and we publish that and stop.",
+    s: "Measured on public data",
+    d: "On a public band-gap dataset split by chemical system across 16 simulated holders, the pooled model cut test error by 34–40% against the best single holder; on a small steels dataset with three holders, 22–28%. The threshold was 10%, set in advance. These are simulated holders from one public dataset, not real labs.",
+  },
+  {
+    q: "Does pooling help each member, or only the pool?",
+    s: "Measured: not always",
+    d: "Scored on each member's own chemistry, the strongest specialist was worse off with the pooled model. A member-specific head on the shared encoder nearly closes that gap, and does not close it.",
   },
   {
     q: "Does the gain survive realistic inter-lab measurement bias?",
-    s: "Planned",
-    d: "Real labs disagree with each other by more than the signal being learned. If pooling collapses under systematic per-lab offsets, that has to surface now rather than at participant three.",
+    s: "Partly measured",
+    d: "A constant per-lab offset of 0.1 standard deviations reduces the gain but does not erase it. Real inter-lab disagreement is more complicated than a constant offset, and larger offsets are untested.",
   },
   {
-    q: "How fast does a frozen checkpoint decay against a continuously retrained model?",
-    s: "Planned",
-    d: "It decides whether access to a live model is worth more than a copy — which is the whole commercial argument, currently an assertion rather than a curve.",
+    q: "How fast does a frozen checkpoint lose value against a continuously retrained model?",
+    s: "Lower bound measured",
+    d: "A copy frozen at the start carries 42–57% more error than a model retrained as five more chemistries join. That is measured by adding data, not by real-world drift, so it is a lower bound.",
   },
   {
-    q: "Does running local training through the blind delegation loop preserve both guarantees?",
+    q: "Can one member damage the pool without being detected?",
+    s: "Open problem",
+    d: "Yes. One member doubling its update raised the shared model's error by 81% in a four-member pool. The standard defences need the server to see individual updates, and secure aggregation is designed so it cannot. No defence that works on masked updates is built.",
+  },
+  {
+    q: "Can pooled lab records, including failures, predict what can be made?",
+    s: "Proxy only",
+    d: "Public data has no failed syntheses. On public successes, pooling helps, and far from known materials the model scores above a similarity-only baseline; it passes our stricter test in one of four settings. Needs a partner lab's failure records to test the real claim.",
+  },
+  {
+    q: "Could training run on a remote quantum computer that sees neither the data nor the model?",
     s: "Open",
-    d: "Genuinely unresolved, and possibly the research contribution. Stated as open until proven.",
+    d: "Quantum protocols for this kind of hidden (blind) computation exist on paper. Whether they can keep both the pooling privacy and the computation privacy at once, for training like ours, is unresolved. It needs hardware that does not exist yet.",
   },
 ];
 
@@ -45,13 +60,13 @@ export default function ResearchPage() {
     <div className="max-w-3xl mx-auto px-6 py-20">
       <p className="eyebrow mb-5">Research</p>
       <h1 className="font-display text-4xl sm:text-5xl leading-tight tracking-tight text-ink">
-        We publish everything, including the results that go against us
+        We intend to publish our results, including the ones that go against us
       </h1>
       <p className="mt-6 text-lg leading-relaxed text-ink-2">
-        Open publication is the strategy, not a concession. The mechanism being public
-        strengthens the custodian position rather than weakening it — participants can
-        verify that we cannot peek — and it means the credibility of this company rests on
-        work anyone can check.
+        So far that is one paper and the numbers on this site. The code is not public yet.
+        Publishing it is part of the plan, because a privacy claim is only worth something
+        if participants can check it for themselves, and because a company like this should
+        rest on work other people can reproduce.
       </p>
 
       <hr className="my-14 border-rule" />
@@ -72,13 +87,14 @@ export default function ResearchPage() {
         ))}
       </ul>
       <p className="mt-6 text-sm text-muted">
-        One publication, by one person. That is the honest size of the track record behind
+        One paper, still a preprint, by one person. That is the honest size of the track record behind
         this, and it is the constraint the company is most aware of.
       </p>
 
       <h2 className="font-display text-2xl text-ink mt-14">Open questions we are working on</h2>
       <p className="mt-4 text-base leading-relaxed text-ink-2">
-        These are the live ones, in the order they block the work.
+        Where each one stands. The numbers, with their setups and limits, are on the{" "}
+        <Link href="/results" className="link">results page</Link>.
       </p>
       <div className="mt-8 space-y-6">
         {openQuestions.map((o) => (
@@ -96,14 +112,15 @@ export default function ResearchPage() {
 
       <h2 className="font-display text-2xl text-ink mt-14">Open source</h2>
       <p className="mt-4 text-base leading-relaxed text-ink-2">
-        The training and aggregation client will be open source. The precedent is
-        unambiguous: the platform that ran the largest federated pharma consortium was
-        open-sourced and donated to the Linux Foundation by the company that built it,
-        which remained a unicorn. The code is not the asset. The pooled model, the
-        harmonisation across labs and the custodian position are.
+        We plan to open-source the training and aggregation client. There is precedent:
+        Owkin open-sourced Substra, the software behind the MELLODDY pharma consortium, and
+        moved it to the Linux Foundation. We think the lasting value is in the trained
+        model, the work of making different labs&rsquo; data comparable, and the neutral
+        position, not in the code.
       </p>
       <p className="mt-4 text-base leading-relaxed text-ink-2">
-        There is nothing to release yet. When there is, a reader should be able to
+        The benchmark code exists but is not public yet. Until it is, the numbers on this
+        site cannot be checked independently. When it is released, a reader should be able to
         reproduce a headline number in under thirty minutes, and the threat model and its
         limits ship in the repository rather than in a sales deck.
       </p>
@@ -117,8 +134,9 @@ export default function ResearchPage() {
           market until one named buyer has a budget line.
         </p>
         <p className="mt-4 text-sm leading-relaxed text-ink-2">
-          Every number this company publishes will carry a confidence interval, and the
-          privacy overhead gets published even when it is unflattering.
+          Every number we publish comes with its setup and its limits, and with a confidence
+          interval wherever the experiment was repeated enough to compute one. The cost of
+          privacy gets published even when it is unflattering.
         </p>
       </div>
 

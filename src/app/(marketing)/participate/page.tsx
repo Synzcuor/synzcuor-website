@@ -10,13 +10,13 @@ export const metadata: Metadata = {
 
 const give = [
   ["Data", "Made available to a training process that runs inside your own environment. It is not transferred, copied or stored by us."],
-  ["Compute", "Enough to run local training rounds. Modest — this is not a foundation-model-scale workload."],
+  ["Compute", "Enough to run local training rounds. The models tested so far train on a normal workstation."],
   ["A technical contact", "One person who can install the client and answer questions about the data."],
 ];
 
 const get = [
-  ["Your own model", "The shared encoder plus a head fine-tuned privately on your data, retrained on a regular cadence."],
-  ["The measurement that matters", "A benchmark of your pooled model against a model trained on your data alone. If that number is unimpressive, you should know it and so should we."],
+  ["Your own model", "The shared encoder plus a final layer fitted privately on your data, retrained regularly."],
+  ["An honest measurement", "Your pooled model compared with a model trained on your data alone, scored on your own data. In our simulations the strongest specialist came out worse, so this can go either way, and you should see it."],
   ["Everything downstream", "Every prediction, candidate and discovery you make with it. We claim no interest in your results."],
   ["Publication rights", "Nothing here restricts you publishing your own research. For academic groups, co-authorship on the methods work is on the table."],
   ["A seat on the roadmap", "Which properties, which architectures, which datasets, which release cadence."],
@@ -30,17 +30,18 @@ export default function ParticipatePage() {
         What it actually involves
       </h1>
       <p className="mt-6 text-lg leading-relaxed text-ink-2">
-        The first participants are academic materials groups — they have data, they want
-        co-authorship, and they have no IP counsel to satisfy. Industrial R&amp;D groups
-        come after that, and the terms below are written with their lawyers in mind.
+        We expect the first participants to be academic materials groups: they have
+        measured data, an interest in co-authorship, and usually a simpler path to a
+        research agreement than a company. Industrial R&amp;D groups would follow, and the
+        terms below are written with their lawyers in mind. All of them are proposals.
       </p>
 
       <div className="mt-8 rounded-lg border border-flag/25 bg-flag-soft px-6 py-4">
         <p className="text-sm leading-relaxed text-ink-2">
           <strong className="font-semibold text-ink">Nobody has signed anything yet.</strong>{" "}
-          There is no pool to join today. What is available right now is a conversation
-          about whether this would work for your data, and an early look at the benchmark
-          when it lands.
+          There is no pool to join today. What is available now is a conversation about
+          whether this would work for your data, and a look at the benchmark results on
+          public data.
         </p>
       </div>
 
@@ -56,7 +57,7 @@ export default function ParticipatePage() {
         ))}
       </dl>
 
-      <h2 className="font-display text-2xl text-ink mt-14">What you get</h2>
+      <h2 className="font-display text-2xl text-ink mt-14">What you would get</h2>
       <dl className="mt-6 space-y-5">
         {get.map(([k, v]) => (
           <div key={k} className="grid sm:grid-cols-[160px_1fr] gap-2 sm:gap-6">
@@ -71,7 +72,7 @@ export default function ParticipatePage() {
         {[
           {
             q: "Can our data be reconstructed from what leaves the building?",
-            a: "Updates are masked before they leave and the masks cancel in the sum, so the aggregator sees only the total. This is a computational guarantee with stated assumptions, not magic — the assumptions are written down in the agreement, in plain language, including what they do not cover.",
+            a: "Your data never leaves. Model updates do, masked so that the server sees only the total across participants. That protection needs at least three participants, assumes a majority of them do not collude, and does not cover what the finished model itself might reveal about unusual data points. We have not added differential privacy, the standard remedy for that last point. These assumptions would be written into the agreement in plain language.",
           },
           {
             q: "Who owns the model?",
@@ -79,15 +80,15 @@ export default function ParticipatePage() {
           },
           {
             q: "What if you go out of business, or get acquired by our competitor?",
-            a: "The encoder sits in escrow. It releases to you on our insolvency, on an acquisition by a competitor of yours, or if we fail to deliver a retrained model. We offer this in the first draft rather than waiting to be asked.",
+            a: "The proposal is that the shared encoder is held in escrow and released to you if we become insolvent, are acquired by a competitor of yours, or fail to deliver a retrained model. It would be in the first draft of the agreement.",
           },
           {
             q: "What happens to our contribution if we leave?",
-            a: "It stays in the model. Model unlearning is not offered and we do not represent it as feasible. You keep a perpetual licence to the last model delivered to you, and you stop contributing. We would rather say this in the first meeting than have you find it in redlines.",
+            a: "What the model has already learned from your data stays in it. Reliably removing one participant's influence from a trained model (\"unlearning\") is not something we can offer. You would keep a permanent licence to the last model delivered to you, and stop contributing.",
           },
           {
             q: "We compete with the other participants. Is this even legal?",
-            a: "Pre-competitive research collaboration is lawful and common, and this structure is unusually defensible: participants learn nothing about each other's inputs, so there is no information exchange to scrutinise. The arrangement stays upstream of products — property prediction, never formulation — and never touches pricing, capacity, output or launch timing. Specialist counsel reviews it before any multi-party agreement.",
+            a: "Pre-competitive research collaborations between competitors are common, but whether one is lawful depends on how it is structured and where. This design limits what participants can learn about each other's data, stays upstream of products (property prediction, not formulations) and does not touch pricing, capacity, output or launch timing. Competition counsel would review it before any multi-party agreement. This is not legal advice.",
           },
         ].map((f) => (
           <div key={f.q} className="border-l-2 border-accent pl-5">
@@ -99,10 +100,9 @@ export default function ParticipatePage() {
 
       <h2 className="font-display text-2xl text-ink mt-14">What it costs</h2>
       <p className="mt-4 text-base leading-relaxed text-ink-2">
-        For the first participants: nothing. Early groups are paid in priority, influence
-        and co-authorship rather than charged, because they are the ones taking a risk on
-        something unproven. Pricing for later members is a question we will answer when we
-        have earned the right to.
+        For the first participants: nothing. Early groups take a risk on something
+        unproven, so they would get priority, a say in the roadmap and co-authorship
+        instead of a bill. Pricing for later members is not decided.
       </p>
 
       <div className="mt-14 rounded-lg border border-rule bg-card p-8">

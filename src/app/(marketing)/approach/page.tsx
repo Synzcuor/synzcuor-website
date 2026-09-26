@@ -17,19 +17,19 @@ export default function ApproachPage() {
         How it works, including the parts that don&rsquo;t work yet
       </h1>
       <p className="mt-6 text-lg leading-relaxed text-ink-2">
-        This page is written for someone technical. If a claim here is load-bearing and
-        unproven, it says so — you would find out in ten minutes anyway, and it is better
-        that it comes from us.
+        This page explains how the system works in plain terms, with enough detail for a
+        specialist to check it. Where something important is unproven, it says so.
       </p>
 
       <hr className="my-14 border-rule" />
 
       <h2 className="font-display text-2xl text-ink">The loop</h2>
       <p className="mt-4 text-base leading-relaxed text-ink-2">
-        The server broadcasts model weights. Each participant runs local training on its
-        own examples and returns an update. The server averages the updates, weighted by
-        data volume, and broadcasts again. Raw data never moves. That much is standard
-        federated learning, and on its own it is <em>not private</em>.
+        The server sends out the current model. Each participant trains it further on its
+        own data and sends back an update: the change to the model, not the data. The
+        server averages the updates, weighting each by how much data is behind it, and
+        sends out the new model. This is standard federated learning. Raw data never
+        moves, but on its own it is <em>not private</em>.
       </p>
 
       <div className="my-10 -mx-6 sm:mx-0">
@@ -42,41 +42,60 @@ export default function ApproachPage() {
         Why plain federated learning is not enough
       </h2>
       <p className="mt-4 text-base leading-relaxed text-ink-2">
-        Model updates leak. Gradient inversion attacks can reconstruct training examples
-        from shared gradients — which for a materials group means reconstructing the
-        experiments themselves. Anyone selling federated learning as private without
-        addressing this is either not aware of it or hoping you are not.
+        Model updates carry information about the data they were computed from. Published
+        attacks have reconstructed individual training examples from shared updates in
+        some settings, mostly images and text so far. How much could be recovered from a
+        materials model&rsquo;s updates has not been measured. It is enough of a risk to
+        design against.
       </p>
       <p className="mt-4 text-base leading-relaxed text-ink-2">
-        So the aggregation step uses <strong className="font-semibold text-ink">secure
-        aggregation</strong>: every pair of participants agrees a shared seed, and each
-        adds a pseudorandom mask derived from it. The masks cancel exactly in the sum. The
-        aggregator can compute the total and learns nothing about any individual update.
+        So the combining step uses <strong className="font-semibold text-ink">secure
+        aggregation</strong>. Every pair of participants agrees on a shared secret, and each
+        adds a random-looking mask derived from it to its update. The masks cancel exactly
+        when all updates are added. The server can compute the total, but not any single
+        participant&rsquo;s update.
       </p>
 
       <div className="mt-8 rounded-lg border border-rule bg-card p-6">
-        <p className="eyebrow mb-3">The honest engineering</p>
+        <p className="eyebrow mb-3">The hard parts</p>
         <p className="text-sm leading-relaxed text-muted">
-          The hard problems here are not the cryptography — that is well-studied and
-          published. They are non-IID data (participants&rsquo; distributions differ
-          sharply, so local optima diverge and the average drifts), inter-lab systematic
-          bias (real labs disagree with each other by more than the signal), and shipping
-          a client that a corporate IT department will install, audit and operate without
-          giving us access.
+          The cryptography is well studied. The harder problems are elsewhere. Each
+          participant&rsquo;s data covers different chemistry, so their updates pull the
+          model in different directions and the average can suffer (known as non-IID data).
+          Different labs measure the same property with systematic differences, sometimes
+          larger than the effect being learned. And the software has to be something a
+          company&rsquo;s IT department will install, audit and run without giving us
+          access.
         </p>
       </div>
 
+      <h2 className="font-display text-2xl text-ink mt-14">What secure aggregation does not do</h2>
+      <ul className="mt-4 space-y-3 text-base leading-relaxed text-ink-2">
+        {[
+          "With only two participants, each can subtract its own update from the total and recover the other's. A pool needs at least three.",
+          "Masks can be reconstructed if enough participants collude: the setting we use is a simple majority, which trades some protection for surviving dropouts.",
+          "It protects updates in transit, not the finished model. A trained model can reveal things about unusual training examples. The standard remedy, differential privacy, adds noise and costs accuracy, and we have not implemented it.",
+          "It stops the server from inspecting updates, which also stops the standard defences against a participant submitting a corrupted update.",
+        ].map((t) => (
+          <li key={t} className="flex gap-3">
+            <span className="text-flag mt-0.5">—</span>
+            <span>{t}</span>
+          </li>
+        ))}
+      </ul>
+
       <h2 className="font-display text-2xl text-ink mt-14">Where the ownership line sits</h2>
       <p className="mt-4 text-base leading-relaxed text-ink-2">
-        Nearly all materials ML factorises the same way: a general encoder that turns
-        structure and composition into a representation, and a task-specific head that
-        turns that representation into a prediction about a particular property.
+        Many neural models for materials split into two parts: an encoder, which turns a
+        material&rsquo;s composition or structure into a set of numbers describing it, and a
+        head, a small final part that turns those numbers into a prediction of one
+        property.
       </p>
       <p className="mt-4 text-base leading-relaxed text-ink-2">
-        The encoder is learned from everyone and no single group would ever build it — no
-        one lab&rsquo;s task justifies its generality. The head is different for every
-        participant by nature. So the ownership line goes on that seam: the shared encoder
-        is held by a neutral custodian, and everything above the embedding is yours.
+        The encoder benefits most from data across many groups. The head is specific to
+        each participant&rsquo;s property and instruments. So we propose drawing the
+        ownership line there: the shared encoder held by a neutral custodian, and the head,
+        with everything it produces, belonging to the participant.
       </p>
 
       <div className="mt-8 rounded-lg border border-rule bg-paper-2 p-6 font-mono text-xs leading-relaxed text-ink-2 overflow-x-auto">
@@ -95,26 +114,27 @@ export default function ApproachPage() {
         We deliberately hold no architecture position
       </h2>
       <p className="mt-4 text-base leading-relaxed text-ink-2">
-        The pipeline takes the model family as a parameter. If your group has an
-        architecture it believes in, we will train that one. This is not diplomacy:
-        architectures turn over every couple of years, and any company whose asset is one
-        specific architecture gets obsoleted by a paper. The durable asset is the pipeline,
-        the harmonised representation across labs, and the evaluation.
+        The pipeline takes the model type as a setting. If your group has an architecture
+        it prefers, we can train that one. Model architectures change every few years, so
+        we would rather the value sit in the pipeline, the cross-lab data work and the
+        evaluation than in one particular model design.
       </p>
 
-      <h2 className="font-display text-2xl text-ink mt-14">The layer that arrives later</h2>
+      <h2 className="font-display text-2xl text-ink mt-14">Quantum computers, and what they change</h2>
       <p className="mt-4 text-base leading-relaxed text-ink-2">
-        Secure aggregation is <em>computationally</em> secure: it holds against an
-        adversary with bounded compute. There is a quantum construction that is{" "}
-        <em>information-theoretically</em> secure — it holds against unlimited compute,
-        permanently. For experimental data with a thirty-year commercial life, that
-        difference eventually matters, and it is where this ends up.
+        The key exchange behind secure aggregation is <em>computationally</em> secure: it
+        holds as long as certain maths problems stay hard to solve. Traffic recorded today
+        could in principle be decrypted later by a large enough quantum computer. We have
+        tested swapping in a NIST-standard post-quantum key exchange, and it works with the
+        masking. Separately, there are quantum protocols for delegated computation whose
+        privacy does not depend on any maths problem being hard. For data that stays
+        valuable for decades, that could eventually matter.
       </p>
       <p className="mt-4 text-base leading-relaxed text-ink-2">
-        It needs hardware that does not exist yet, on published roadmaps that put it around
-        2029. <strong className="font-semibold text-ink">Nothing we offer today depends
-        on it</strong>, and we would rather say that plainly than let it decorate a
-        pitch.
+        Those protocols need quantum hardware that does not exist at the required scale.
+        Some published roadmaps suggest the end of the decade, and roadmaps slip.{" "}
+        <strong className="font-semibold text-ink">Nothing we offer today depends on
+        it.</strong>
       </p>
 
       <div className="mt-14 rounded-lg border border-flag/25 bg-flag-soft p-7">
@@ -123,12 +143,14 @@ export default function ApproachPage() {
         </p>
         <ul className="space-y-3 text-sm leading-relaxed text-ink-2">
           {[
-            "The size of the pooling gain is unmeasured for this domain and split structure. Everything depends on it, and it is the first thing we are measuring.",
-            "There is no demonstrated real-world quantum machine learning advantage as of 2026. We do not claim the quantum model is better — we claim it is privately trainable with an unconditional guarantee.",
+            "The pooling gain has been measured only on public benchmarks with simulated holders. No real lab's data has been through it, and for a strong specialist the pooled model was worse on its own chemistry.",
+            "Secure aggregation stops the server from seeing individual updates, which also stops the standard defences against a member submitting a corrupted one. That tension is measured and not solved.",
+            "The coordinator does not yet authenticate members, and nothing has run across two physical machines.",
+            "There is no demonstrated real-world advantage for quantum machine learning as of 2026. We do not claim a quantum model would be more accurate. The possible benefit is a privacy guarantee that does not depend on computational assumptions.",
             "Quantum generative models do not beat classical diffusion and flow models at crystal generation. Classical leads.",
-            "Delegation-grade quantum hardware around 2029 is a roadmap extrapolation, not a commitment.",
-            "Post-quantum cryptography materially weakens the argument that you eventually need the quantum version. We are not going to pretend otherwise.",
-            "Circuit size and depth still leak in the blind delegation construction, even when the computation itself does not.",
+            "Quantum hardware able to run those protocols is a roadmap projection, not a commitment.",
+            "Post-quantum cryptography, which already works in our tests, weakens the case that the quantum version will ever be needed.",
+            "Even in the quantum protocols, the size of the computation is visible to the server, though its content is not.",
           ].map((t) => (
             <li key={t} className="flex gap-3">
               <span className="text-flag mt-0.5">—</span>
@@ -137,6 +159,11 @@ export default function ApproachPage() {
           ))}
         </ul>
       </div>
+
+      <p className="mt-6 text-sm text-muted">
+        The measurements behind these statements are on the{" "}
+        <Link href="/results" className="link">results page</Link>.
+      </p>
 
       <div className="mt-14 flex flex-wrap gap-3">
         <Link

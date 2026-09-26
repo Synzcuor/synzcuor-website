@@ -12,7 +12,7 @@ export default function Footer() {
             <span className="font-display text-xl tracking-tight text-ink lowercase">synzcuor</span>
           </div>
           <p className="text-sm leading-relaxed text-muted max-w-sm">
-            A shared model for materials research, trained across data that never moves.
+            Machine learning for materials R&amp;D on data that stays with its owner.
           </p>
           <p className="text-xs text-muted/80 max-w-sm">
             Pre-seed and pre-product. Nothing on this site is a commercial offer.
@@ -24,6 +24,8 @@ export default function Footer() {
           <ul className="space-y-2 text-sm text-muted">
             <li><Link href="/approach" className="hover:text-ink transition-colors">Approach</Link></li>
             <li><Link href="/participate" className="hover:text-ink transition-colors">Participate</Link></li>
+            <li><Link href="/results" className="hover:text-ink transition-colors">Results</Link></li>
+            <li><Link href="/validator" className="hover:text-ink transition-colors">Synthesizability</Link></li>
             <li><Link href="/research" className="hover:text-ink transition-colors">Research</Link></li>
           </ul>
         </div>
