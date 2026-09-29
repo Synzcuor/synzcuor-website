@@ -298,7 +298,7 @@ export default function HomePage() {
                 ["Company", "Not incorporated"],
                 ["Funding", "None"],
                 ["Customers", "None; no agreements signed"],
-                ["Team", "Founder; two roles in discussion"],
+                ["Team", "Founder and founding engineer; hiring"],
               ].map(([k, v]) => (
                 <div key={k} className="space-y-1.5">
                   <span className="eyebrow block">{k}</span>

@@ -10,16 +10,40 @@ export const metadata: Metadata = {
 
 const roles = [
   {
-    title: "Founding Engineer & Head of Engineering",
+    title: "Machine Learning Engineer, Private Training",
     status: "Open conversation",
-    lede: "Responsible for building and shipping pooling and security.",
-    body: "Package private fine-tuning to run on a single workstation inside a customer's firewall, with no outbound network calls. Run the customer-facing benchmark on real ionic-conductivity data. Then build the multi-company training system, including secure aggregation, member authentication and defences against corrupted updates, and lead the first engineering hires.",
+    lede: "Pooling and security: training across companies without seeing their data.",
+    body: "Extend the federated training system: secure aggregation over real networks, member authentication, defences against corrupted updates that work under masking, and differential privacy where participants require it. Work with the founding engineer to take the system from single-machine tests to a multi-company pilot.",
     want: [
-      "Experience building and shipping machine-learning systems beyond a single laptop",
-      "Depth in federated learning, secure aggregation, applied cryptography or privacy-preserving ML",
-      "Comfort working as the senior engineer without a larger team to rely on",
+      "Production experience with PyTorch or a comparable framework",
+      "Familiarity with federated learning, secure aggregation or privacy-preserving machine learning",
+      "Rigour in measuring what a privacy mechanism does and does not protect",
     ],
-    not: "A quantum-computing background is not required.",
+    not: "Experience with Flower or a similar federated-learning framework is an advantage.",
+  },
+  {
+    title: "Software Engineer, Deployment & Infrastructure",
+    status: "Open conversation",
+    lede: "Making the software something a company's IT department will approve.",
+    body: "Package the client to run inside a customer's firewall: containers, GPU support, audit logging, network-isolation checks and a clean installation process. Build the continuous-integration and reproducibility tooling behind every published result.",
+    want: [
+      "Experience shipping software into environments you do not control",
+      "Strong Linux, containers and networking fundamentals",
+      "C or C++ for performance-critical or system-level components is an advantage",
+    ],
+    not: "Security-review or compliance experience (for example SOC 2) is an advantage.",
+  },
+  {
+    title: "Computational Materials Engineer, Validation",
+    status: "Open conversation",
+    lede: "Predicting which candidate materials can be synthesised.",
+    body: "Build the validation pipeline: structure matching for the novelty check, machine-learned interatomic potentials and DFT workflows for stability, and the synthesizability model trained on laboratory outcomes. Design the benchmarks that decide what the company can claim.",
+    want: [
+      "Research or industry experience in computational materials science or chemistry",
+      "Working knowledge of pymatgen, ASE or similar tools, and of DFT",
+      "Interest in solid-state synthesis and why syntheses fail",
+    ],
+    not: "A research degree is welcome but not required; published or open-source work counts.",
   },
   {
     title: "Co-founder: Go-to-Market, Operations & Marketing",
