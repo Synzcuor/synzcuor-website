@@ -110,10 +110,7 @@ export default function FederationDiagram() {
       </svg>
       </div>
       <figcaption className="mt-4 text-xs text-muted">
-        Federated training with secure aggregation. Each pair of participants shares a
-        secret mask; one adds it and the other subtracts it, so all masks cancel in the
-        total. The server can compute the total without seeing any one participant&rsquo;s
-        update. Needs at least three participants.
+        Federated training with secure aggregation. Each pair of participants shares a secret mask, which one adds and the other subtracts, so all masks cancel in the total. The server computes the total without seeing any individual update. At least three participants are required.
       </figcaption>
     </figure>
   );

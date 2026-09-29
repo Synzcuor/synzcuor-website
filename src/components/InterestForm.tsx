@@ -12,11 +12,11 @@ type Role =
 
 const roles: { value: Role; label: string }[] = [
   { value: "academic_group", label: "Academic research group with data" },
-  { value: "industrial_rnd", label: "Industrial R&D — materials, chemistry, batteries, semis" },
+  { value: "industrial_rnd", label: "Industrial R&D (materials, chemicals, batteries, semiconductors)" },
   { value: "engineer", label: "Engineer or scientist interested in joining" },
   { value: "cofounder", label: "Potential co-founder" },
   { value: "investor", label: "Investor" },
-  { value: "other", label: "Something else" },
+  { value: "other", label: "Other" },
 ];
 
 export default function InterestForm() {
@@ -85,8 +85,7 @@ export default function InterestForm() {
         </div>
         <h3 className="font-display text-2xl text-ink">Received</h3>
         <p className="text-sm text-muted max-w-sm mx-auto leading-relaxed">
-          One person reads these, and that person will reply. If it has been a week, the
-          email went somewhere strange — write again.
+          Thank you. You will receive a reply within a week. If you do not, please write again, as the message may not have arrived.
         </p>
       </div>
     );
@@ -136,7 +135,7 @@ export default function InterestForm() {
       </label>
 
       <label className="space-y-1.5 block">
-        <span className="eyebrow block">Which of these is closest</span>
+        <span className="eyebrow block">Which best describes you</span>
         <select
           id="form-role"
           value={form.role}
@@ -161,7 +160,7 @@ export default function InterestForm() {
           value={form.note}
           onChange={(e) => set("note")(e.target.value)}
           className="w-full px-3 py-2.5 rounded-md bg-card border border-rule text-ink text-sm placeholder:text-muted/60 focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-colors resize-y"
-          placeholder="Optional, and the most useful part."
+          placeholder="Optional"
         />
       </label>
 
@@ -179,7 +178,7 @@ export default function InterestForm() {
         {pending ? "Sending…" : "Send"}
       </button>
       <p className="text-xs text-muted">
-        No newsletter, no drip sequence. This goes to one inbox.
+        Your message goes directly to the founder. No newsletter or automated follow-up.
       </p>
     </form>
   );

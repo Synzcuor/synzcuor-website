@@ -5,57 +5,45 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Careers — synzcuor",
   description:
-    "Open conversations, not open roles. What we would want, what is honestly on offer, and the risks stated up front.",
+    "Open conversations rather than posted roles: what each role involves, what is on offer, and the risks.",
 };
 
 const roles = [
   {
-    title: "Co-founder / CTO",
+    title: "Founding Engineer & Head of Engineering",
     status: "Open conversation",
-    lede: "The person who owns whether this actually works.",
-    body: "Take the private training benchmark from research code to something a research group runs on its own hardware, behind its own firewall, without us present. Own the answer to how much pooling really helps. Own security: the core claim is that the data does not leave, and people paid to break that claim will test it.",
+    lede: "Responsible for building and shipping pooling and security.",
+    body: "Package private fine-tuning to run on a single workstation inside a customer's firewall, with no outbound network calls. Run the customer-facing benchmark on real ionic-conductivity data. Then build the multi-company training system, including secure aggregation, member authentication and defences against corrupted updates, and lead the first engineering hires.",
     want: [
-      "Built and shipped distributed ML systems that ran somewhere other than your laptop",
+      "Experience building and shipping machine-learning systems beyond a single laptop",
       "Depth in federated learning, secure aggregation, applied cryptography or privacy-preserving ML",
-      "Comfortable as the most senior engineer in the room with nobody to escalate to",
+      "Comfort working as the senior engineer without a larger team to rely on",
     ],
-    not: "Quantum background is not required. The quantum layer is years out.",
+    not: "A quantum-computing background is not required.",
   },
   {
-    title: "Chief Scientist",
+    title: "Co-founder: Go-to-Market, Operations & Marketing",
     status: "Open conversation",
-    lede: "The person who owns the scientific question the company rests on.",
-    body: "Define the benchmark — what task, what datasets, what baseline, what result would falsify the thesis — and write it down before running it. Establish the honest delta between a federated model and a single-silo model on real materials data. If that number is small, the company needs to know in month three, not year three.",
+    lede: "Responsible for everything between the product and the customer.",
+    body: "Run outreach to battery-materials companies and research laboratories, conduct customer conversations, and convert interest into pilots and pilots into customers. Handle incorporation and contracts with counsel, the hiring process, budgets and grants. Own the website, the company's public presence and conference work, keeping every claim within the evidence.",
     want: [
-      "Track record in computational materials science, chemistry or scientific ML, with publications we can read",
-      "Still writes code and runs experiments",
-      "Rigour about negative results — the most valuable thing you could do in year one is establish that the effect is real, or that it is not",
+      "A technical background in chemistry, chemical engineering or materials science, or the ability to discuss R&D credibly",
+      "Consistent follow-through on outreach and operations",
+      "Experience or contacts in battery, materials or chemicals R&D is a strong advantage",
     ],
-    not: "If a full-time move is not possible, an advisor arrangement is a real alternative and we would take it gladly.",
+    not: "Overstating a guarantee to secure a deal would misrepresent the product in a signed contract, and is not acceptable here.",
   },
   {
-    title: "Chief Commercial Officer",
-    status: "Later — after the benchmark",
-    lede: "The hardest problem here is the first three participants, and it is commercial, not technical.",
-    body: "The technology can be demonstrated on public data. What cannot be demonstrated in advance is that a research director will put proprietary experimental data into a training run operated by a startup. Build the buyer map, run the conversations that validate or kill the thesis, land the first two participants.",
+    title: "Scientific advisors",
+    status: "Open conversation",
+    lede: "Guidance on materials synthesis and solid-state electrolytes.",
+    body: "A few hours a month: reviewing the validation method and benchmarks, advising on what laboratories record and share, and making introductions where appropriate. Academic advisors are offered co-authorship on the methods work.",
     want: [
-      "Sold complex, high-consideration deals into R&D or technical buyers",
-      "Opened a market that did not have a category yet, and can describe how",
-      "An existing network in materials, chemicals, batteries, semiconductors or pharma R&D — close to decisive, because the founder's is honestly zero",
+      "Research experience in solid-state synthesis, battery electrolytes or synthesizability prediction",
+      "Familiarity with how laboratories record successful and failed syntheses",
+      "Willingness to identify where the approach is weak",
     ],
-    not: "Overstating a guarantee to close a deal would end this company. That is not aggression here, it is a misrepresentation in a signed contract.",
-  },
-  {
-    title: "Chief Operating Officer",
-    status: "Not yet — roughly ten people out",
-    lede: "Listed for honesty, not because we are hiring it.",
-    body: "A pre-revenue research company with one person does not need a COO, and hiring one early is a recognisable failure mode. When it exists, the job is consortium operations: onboarding a participant is a six-to-twelve-month process across their legal, security, IT and research teams, and making that repeatable is the difference between a company that scales and three heroic deals.",
-    want: [
-      "Ran operations at a company selling into large, careful, regulated organisations",
-      "Personally negotiated complex commercial contracts, not just approved them",
-      "Consortium or joint-venture experience — rare, and close to decisive",
-    ],
-    not: "If you join and there is no operational load yet, you will be underemployed and you will leave. Better to have that conversation now.",
+    not: "Advisory arrangements are documented, with a small equity grant.",
   },
 ];
 
@@ -64,26 +52,26 @@ export default function CareersPage() {
     <div className="max-w-3xl mx-auto px-6 py-20">
       <p className="eyebrow mb-5">Careers</p>
       <h1 className="font-display text-4xl sm:text-5xl leading-tight tracking-tight text-ink">
-        Open conversations, not open roles
+        Roles under discussion
       </h1>
       <p className="mt-6 text-lg leading-relaxed text-ink-2">
-        There is no money to pay anyone yet, so nothing below is a job posting. What is
-        real is that the right person changes what this company can attempt, and those
-        conversations are worth having before there is a budget rather than after.
+        The company is not yet funded, so these are not job postings. We are nonetheless
+        holding conversations now, because the right people will shape what the company can
+        attempt.
       </p>
 
       <div className="mt-10 rounded-lg border border-flag/25 bg-flag-soft p-7">
         <p className="eyebrow mb-4" style={{ color: "var(--color-flag)" }}>
-          What is honestly on offer
+          Terms and current status
         </p>
         <ul className="space-y-2.5 text-sm leading-relaxed text-ink-2">
           {[
-            "Not incorporated. No funding. No revenue. No customers. No other employees.",
-            "One paper behind the technical thesis, by the founder: a preprint, being revised after peer review.",
-            "Cash: none until a round closes. Below market after that until first revenue.",
-            "Equity, once the company is incorporated: documented and meaningful, with a planned ten-year exercise window instead of the usual ninety days, so you keep what you earned if we part ways.",
-            "The base case for any company at this stage is that it fails and the equity is worth zero.",
-            "The upside case is a lasting company in a field that is still forming, and a decade of work.",
+            "Not yet incorporated. No funding, revenue or customers yet.",
+            "One co-authored paper behind the technical thesis: a preprint, in revision after peer review.",
+            "Cash: none until a funding round closes; below market until first revenue.",
+            "Equity, once the company is incorporated: documented, with four-year vesting and a planned ten-year exercise window instead of the usual ninety days.",
+            "Most companies at this stage fail, in which case the equity is worth nothing.",
+            "If it succeeds, the result is a lasting company in an emerging field, built over a decade.",
           ].map((t) => (
             <li key={t} className="flex gap-3">
               <span className="text-flag mt-0.5">—</span>
@@ -126,10 +114,10 @@ export default function CareersPage() {
       <ol className="mt-6 space-y-3 text-sm leading-relaxed text-ink-2">
         {[
           "A written brief for the role, sent before the first call.",
-          "A 45-minute call, half of it your questions. If you have no hard questions about the risk, you have not understood the risk.",
-          "A paid work sample — four to six hours, on a real problem from the roadmap. Paid at a real rate even pre-funding. Never unpaid, never a puzzle.",
-          "A 90-minute deep dive on the work sample and your strongest past project.",
-          "Three references, before the offer rather than after.",
+          "A 45-minute call, half of which is reserved for your questions, including about the risks.",
+          "A paid work sample of four to six hours on a real problem from the roadmap.",
+          "A 90-minute technical discussion of the work sample and your strongest previous project.",
+          "Three references, taken before any offer.",
         ].map((s, i) => (
           <li key={s} className="flex gap-4">
             <span className="font-mono text-xs text-accent pt-0.5">{String(i + 1).padStart(2, "0")}</span>
@@ -138,8 +126,7 @@ export default function CareersPage() {
         ))}
       </ol>
       <p className="mt-5 text-sm text-muted">
-        A no arrives by the end of the week. A slow no is the most expensive thing a small
-        company does to its reputation.
+        Every candidate receives a decision within a week.
       </p>
 
       <div className="mt-14 rounded-lg border border-rule bg-card p-8">
@@ -147,9 +134,9 @@ export default function CareersPage() {
         <ul className="mt-4 space-y-2 text-sm text-ink-2">
           {[
             "What happens to the pooled model when a participant leaves?",
-            "What is the actual privacy guarantee, stated precisely, with its assumptions?",
-            "Why does participant number four join, once one to three are in?",
-            "What is the kill line, and are you actually prepared to act on it?",
+            "What is the privacy guarantee, stated precisely, with its assumptions?",
+            "Why would a fourth participant join once three are in?",
+            "What result would end the company, and would you act on it?",
             "Who has said no so far, and why?",
             "What did you get wrong in the last twelve months?",
           ].map((q) => (
@@ -160,7 +147,7 @@ export default function CareersPage() {
           ))}
         </ul>
         <p className="mt-5 text-sm text-muted">
-          There are written answers to all of these, including the uncomfortable ones.
+          Written answers to each of these are available on request.
         </p>
         <Link
           href="/contact"

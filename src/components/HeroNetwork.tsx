@@ -74,7 +74,7 @@ export default function HeroNetwork() {
         </text>
       </svg>
       <figcaption className="mt-2 text-center text-xs text-muted">
-        Each lab keeps its data. Only masked updates travel to the shared model.
+        Each laboratory keeps its data; only masked updates reach the shared model.
       </figcaption>
     </figure>
   );

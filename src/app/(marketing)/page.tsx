@@ -20,10 +20,10 @@ export default function HomePage() {
               </span>
             </h1>
             <p data-enter className="mt-8 text-lg leading-relaxed text-ink-2 max-w-xl">
-              We train models on that measured data{" "}
-              <strong className="font-semibold text-ink">without it ever leaving its owner</strong>
-              , first inside one company, then across many. And we use it to predict which new
-              materials can actually be made.
+              Synzcuor trains machine-learning models on this data{" "}
+              <strong className="font-semibold text-ink">without it leaving its owner</strong>
+              , first within one company and then across many, and uses it to predict which new
+              materials can be synthesised.
             </p>
 
             <div data-enter className="mt-9 flex flex-wrap gap-3">
@@ -37,7 +37,7 @@ export default function HomePage() {
                 href="/results"
                 className="px-5 py-3 rounded-md border border-rule bg-card text-ink text-sm font-medium hover:border-accent hover:text-accent transition-colors"
               >
-                See what&rsquo;s measured
+                View results
               </Link>
             </div>
 
@@ -56,9 +56,9 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-6 py-16">
           <div data-stagger className="grid md:grid-cols-3 gap-10 md:gap-8">
             {[
-              ["34–40%", "less prediction error when simulated labs pool their data, compared with the best single lab"],
-              ["3.2×", "the time cost of full privacy over a real network, with no measurable loss in accuracy"],
-              ["6 of 6", "size-matched validation runs where the model beats both simple baselines on newly reported compounds"],
+              ["34–40%", "reduction in prediction error from pooling, relative to the best single laboratory"],
+              ["3.2×", "training-time overhead of secure aggregation over a network, with no measurable loss of accuracy"],
+              ["6 of 6", "size-matched validation runs in which the model outperforms both baselines on newly reported compounds"],
             ].map(([n, l]) => (
               <div key={n} className="space-y-3">
                 <p className="font-display text-5xl lg:text-6xl tracking-tight text-[#8fd0c7]">{n}</p>
@@ -68,11 +68,11 @@ export default function HomePage() {
           </div>
           <div data-reveal className="mt-12 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
             <p className="text-xs text-[#9aa0a6] max-w-2xl">
-              All measured on public benchmark data with simulated labs. No company&rsquo;s data has
-              been through it yet, and every number comes with its setup and limits.
+              All results are from public benchmark data with simulated laboratories. No
+              proprietary data has been used. Each result is reported with its method and limitations.
             </p>
             <Link href="/results" className="text-sm font-medium text-[#8fd0c7] hover:text-white transition-colors">
-              All results and their limits &rarr;
+              Full results and limitations &rarr;
             </Link>
           </div>
         </div>
@@ -82,26 +82,26 @@ export default function HomePage() {
       <section className="max-w-6xl mx-auto px-6 py-20 border-b border-rule">
         <p data-reveal className="eyebrow mb-4">What we build</p>
         <h2 data-reveal className="font-display text-3xl sm:text-4xl tracking-tight text-ink max-w-3xl">
-          Three parts, each needed for the others to be worth anything
+          Three components, each dependent on the others
         </h2>
         <div data-stagger className="mt-10 grid md:grid-cols-3 gap-5">
           {[
             {
               h: "Pooling",
-              p: "One shared model that learns from many companies' measurements, so each gets a model better than it could build alone.",
-              st: "34–40% less error than the best single lab, on public benchmarks",
+              p: "A shared model trained on many companies' measurements, more accurate than any single company could build alone.",
+              st: "34–40% lower error than the best single laboratory, on public benchmarks",
               href: "/results#pooling",
             },
             {
               h: "Security",
-              p: "The data never leaves its owner. Updates are masked, so nobody, including us, sees any one company's contribution.",
-              st: "Working over a real network; its limits stated openly",
+              p: "Data never leaves its owner. Model updates are masked, so no party, Synzcuor included, can see an individual contribution.",
+              st: "Demonstrated over a network; limitations documented",
               href: "/approach",
             },
             {
               h: "Validation",
-              p: "Predicting which new materials can actually be made, learning from lab records that are rarely published, especially failures.",
-              st: "Earliest part: public proxies only, no failure data yet",
+              p: "Predicts which candidate materials can be synthesised, learning from laboratory records that are rarely published, particularly failed experiments.",
+              st: "Earliest stage: tested on public proxies only; no failure data yet",
               href: "/validator",
             },
           ].map((c) => (
@@ -125,11 +125,10 @@ export default function HomePage() {
           Your data stays on your machines
         </h2>
         <p data-reveal className="mt-5 text-base leading-relaxed text-ink-2 max-w-2xl">
-          Each participant trains on its own hardware, behind its own firewall. When
-          several participants pool, only model updates leave, never the data. Each
-          update is scrambled with a random mask before it leaves, and the masks cancel
-          out when all the updates are added together. So the server that combines them
-          sees only the total, not any one participant&rsquo;s update.
+          Each participant trains on its own hardware, behind its own firewall. Only model
+          updates leave, never the data. Each update is masked with random values that cancel
+          when all updates are summed, so the aggregating server sees only the total, never an
+          individual contribution.
         </p>
 
         <div data-reveal className="mt-12">
@@ -141,17 +140,17 @@ export default function HomePage() {
             {
               n: "01",
               h: "The data never moves",
-              p: "Raw measurements are not sent anywhere, encrypted or otherwise. They stay inside the organisation that produced them, on machines it controls.",
+              p: "Raw measurements are never transmitted, in encrypted form or otherwise. They remain on infrastructure controlled by the organisation that produced them.",
             },
             {
               n: "02",
               h: "Updates are masked before they leave",
-              p: "Sending model updates instead of data is not private on its own: updates can leak information about the data behind them. Masking (secure aggregation) hides each individual update from the server. It does not stop the finished model itself from leaking something, and we say where that line is.",
+              p: "Model updates can reveal information about the underlying data, so each is masked through secure aggregation before it leaves. This conceals individual updates from the server. It does not prevent the trained model itself from revealing information; our threat model states where that boundary lies.",
             },
             {
               n: "03",
-              h: "Each participant gets a private model",
-              p: "Fine-tuned on their own data. The goal is a model better than anything they could train alone. In simulation that holds for some members and not yet for the strongest specialist, and that gap is the number we are working on.",
+              h: "Each participant receives a private model",
+              p: "Each model is fine-tuned on the participant's own data, with the aim of outperforming anything it could train alone. In simulation this holds for two of three members; the strongest specialist is not yet better off, and closing that gap is ongoing work.",
             },
           ].map((s) => (
             <div key={s.n} className="space-y-3">
@@ -168,14 +167,13 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-6 py-20">
           <p data-reveal className="eyebrow mb-4">What you keep</p>
           <h2 data-reveal className="font-display text-3xl sm:text-4xl tracking-tight text-ink max-w-2xl">
-            The proposed split: your model is yours, the shared part is held neutrally
+            Proposed ownership: your model is yours; the shared component is held neutrally
           </h2>
           <p data-reveal className="mt-5 text-base leading-relaxed text-ink-2 max-w-2xl">
-            Many materials models split naturally into two parts: a shared part that
-            learns general patterns from everyone&rsquo;s data, and a small final part
-            fitted to one participant&rsquo;s own property and instruments. We propose
-            drawing the ownership line there. These are proposed terms. Nobody has
-            signed them.
+            Most materials models divide into a shared component, which learns general patterns
+            from all participants&rsquo; data, and a final component fitted to each
+            participant&rsquo;s property and instruments. We propose drawing the ownership line
+            at that boundary. These terms are proposals; no party has signed them.
           </p>
 
           <div data-stagger className="mt-10 grid md:grid-cols-2 gap-5">
@@ -183,11 +181,11 @@ export default function HomePage() {
               <h3 className="font-display text-xl text-ink">Yours, outright</h3>
               <ul className="mt-4 space-y-2.5 text-sm text-ink-2">
                 {[
-                  "Your raw data — it never left",
-                  "Your fine-tuned model and every output from it",
-                  "Every discovery you make with it. We claim nothing downstream",
-                  "A permanent copy you can run offline",
-                  "A claim on the shared part, held in escrow, if we fail or are bought by a competitor",
+                  "Your raw data, which never leaves your control",
+                  "Your fine-tuned model and all of its outputs",
+                  "All discoveries made with it; we claim no downstream rights",
+                  "A permanent copy for offline use",
+                  "An escrow claim on the shared component if Synzcuor fails or is acquired by a competitor",
                 ].map((t) => (
                   <li key={t} className="flex gap-2.5">
                     <span className="text-accent mt-0.5">—</span>
@@ -200,9 +198,9 @@ export default function HomePage() {
               <h3 className="font-display text-xl text-ink">Held by us, as custodian</h3>
               <ul className="mt-4 space-y-2.5 text-sm text-ink-2">
                 {[
-                  "The shared part, trained across everyone",
-                  "The training pipeline, and the work of making different labs' data comparable",
-                  "The evaluation of whether pooling helped each member",
+                  "The shared component, trained across all participants",
+                  "The training pipeline and the harmonisation of data across laboratories",
+                  "The evaluation of whether pooling benefited each member",
                 ].map((t) => (
                   <li key={t} className="flex gap-2.5">
                     <span className="text-muted mt-0.5">—</span>
@@ -211,9 +209,9 @@ export default function HomePage() {
                 ))}
               </ul>
               <p className="mt-5 text-xs leading-relaxed text-muted border-t border-rule pt-4">
-                Somebody has to hold the shared part. In a pool of competitors, it is hard
-                for any one of them to do it, because the others would be trusting a rival
-                with an asset built partly from their own data.
+                The shared component must be held by a neutral party. No member of a pool of
+                competitors can hold it, because the others would be entrusting a rival with an
+                asset built partly from their own data.
               </p>
             </div>
           </div>
@@ -224,24 +222,24 @@ export default function HomePage() {
       <section className="max-w-6xl mx-auto px-6 py-20 border-b border-rule">
         <p data-reveal className="eyebrow mb-4">Where it starts</p>
         <h2 data-reveal className="font-display text-3xl sm:text-4xl tracking-tight text-ink max-w-3xl">
-          One company first. The shared model comes second.
+          A single company first, then a shared model
         </h2>
         <div data-stagger className="mt-10 grid md:grid-cols-3 gap-10">
           {[
             {
               n: "Phase 1",
               h: "Private fine-tuning, on-prem",
-              p: "A model fine-tuned on one company's own measurements, on its own machines. First market: solid-state battery electrolytes, where measured ionic conductivity data is scarce and proprietary. So far this is measured only on stand-in public datasets, and with too little data fine-tuning can make a model worse.",
+              p: "A model fine-tuned on one company's measurements, on its own machines. Initial market: solid-state battery electrolytes, where measured ionic-conductivity data is scarce and proprietary. Tested so far only on public stand-in datasets; with too little data, fine-tuning can reduce accuracy.",
             },
             {
               n: "Phase 2",
               h: "Pooling across companies",
-              p: "The same client software, joined to others under secure aggregation. This is where a shared model can learn from data no single company has.",
+              p: "The same client software, connected to other participants through secure aggregation, so that a shared model can learn from data no single company holds.",
             },
             {
               n: "Alongside both",
               h: "Validation",
-              p: "Scoring which candidate materials can actually be made, trained on lab records, failed syntheses included. It starts on public data and improves as partners contribute records.",
+              p: "Scores which candidate materials can be synthesised, trained on laboratory records including failed syntheses. It begins on public data and improves as partners contribute records.",
             },
           ].map((c) => (
             <div key={c.n} className="space-y-3">
@@ -252,7 +250,7 @@ export default function HomePage() {
           ))}
         </div>
         <Link href="/validator" className="link mt-8 inline-block text-sm">
-          How validation works, and what it has shown so far
+          How validation works and what it has shown
         </Link>
       </section>
 
@@ -266,15 +264,15 @@ export default function HomePage() {
           {[
             {
               h: "Continuity",
-              p: "MELLODDY, where ten pharmaceutical companies trained shared models without sharing data, ran as a three-year research consortium. A shared model keeps its value only if it keeps training as new data arrives, which a project with an end date is not set up to do.",
+              p: "MELLODDY, in which ten pharmaceutical companies trained shared models without sharing data, ran as a three-year research consortium. A shared model retains its value only if it continues to train on new data, which a fixed-term project cannot sustain.",
             },
             {
               h: "Neutrality",
-              p: "A group of competitors still needs someone neutral to operate the pool, and setting that up themselves is a governance project most of them would rather not run.",
+              p: "Competitors that pool data still require a neutral operator. Establishing one among themselves is a governance burden few are willing to take on.",
             },
             {
               h: "The mechanism is open",
-              p: "We plan to publish the method and the code, so participants can check for themselves that we cannot see their data. The code is not public yet. The value is in the trained model, which cannot be rebuilt from the code alone.",
+              p: "We intend to publish the method and code so participants can verify that we cannot access their data. The code is not yet public. The value lies in the trained model, which cannot be reconstructed from the code.",
             },
           ].map((c) => (
             <div key={c.h} className="space-y-3">
@@ -290,17 +288,17 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-6 py-20">
           <div data-reveal className="rounded-lg border border-flag/25 bg-flag-soft p-8 md:p-10">
             <p className="eyebrow mb-4" style={{ color: "var(--color-flag)" }}>
-              Where we actually are
+              Current status
             </p>
             <h2 className="font-display text-2xl sm:text-3xl tracking-tight text-ink">
-              Most of this is not built yet
+              Most of this is not yet built
             </h2>
             <div data-stagger className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 ["Company", "Not incorporated"],
                 ["Funding", "None"],
-                ["Customers", "None. Nobody has signed anything"],
-                ["Team", "One person"],
+                ["Customers", "None; no agreements signed"],
+                ["Team", "Founder; two roles in discussion"],
               ].map(([k, v]) => (
                 <div key={k} className="space-y-1.5">
                   <span className="eyebrow block">{k}</span>
@@ -309,20 +307,19 @@ export default function HomePage() {
               ))}
             </div>
             <p className="mt-8 text-sm leading-relaxed text-ink-2 max-w-2xl">
-              What exists is the research, one paper behind the technical thesis (a
-              preprint, being revised after peer review), and benchmark code that is not yet public. On public data,
-              pooling cleared its advance threshold, and private training ran across three
-              processes on one machine with secure aggregation. No real company or lab data
-              has been through any of it. The next milestone is conversations with battery R&amp;D
-              teams and a first design partner. If real data shows pooling or fine-tuning
-              does not help enough to matter, we will publish that and stop.
+              What exists: the research, a co-authored preprint (in revision after peer review),
+              and benchmark code that is not yet public. On public data, pooling cleared its
+              predefined threshold, and private training ran across separate processes with secure
+              aggregation. No proprietary data has been used. The next milestone is a first design
+              partner among battery R&amp;D teams. If real data shows that pooling or fine-tuning
+              does not help materially, we will publish that result and stop.
             </p>
             <div className="mt-5 flex flex-wrap gap-5 text-sm">
               <Link href="/results" className="link">
-                What has been measured
+                Measured results
               </Link>
               <Link href="/research" className="link">
-                What is proven, and what is not
+                What is proven and what is not
               </Link>
             </div>
           </div>
@@ -334,12 +331,12 @@ export default function HomePage() {
         <div data-reveal className="rounded-lg border border-rule bg-card p-8 md:p-12 flex flex-col md:flex-row md:items-center justify-between gap-8">
           <div className="max-w-xl">
             <h2 className="font-display text-2xl sm:text-3xl tracking-tight text-ink">
-              The first participants are academic groups
+              Working with battery R&amp;D teams and research laboratories
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-muted">
-              They have measured data, an interest in co-authorship, and usually a simpler
-              path to a research agreement than a company. If that is you, or if you think
-              the idea is wrong and can say why, we would like to talk.
+              We are seeking a first design partner for a free pilot on its own data, and
+              laboratories with measured or synthesis data. Well-argued criticism of the approach
+              is equally welcome.
             </p>
           </div>
           <Link

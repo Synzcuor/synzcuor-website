@@ -58,14 +58,14 @@ export default function ValidationPipeline() {
           ))}
         </ol>
         <div className="mt-4 rounded-lg border border-dashed border-accent/50 px-4 py-3 text-sm text-ink-2">
-          <span className="font-semibold text-ink">Rank</span> by chance of being made × value − cost of an
-          attempt, plus a bonus for exploring. <span className="font-semibold text-ink">Then a lab attempt</span>,
-          and its outcome, success <em>or</em> failure, goes back into training.
+          Candidates are <span className="font-semibold text-ink">ranked</span> by probability of synthesis ×
+          value − cost of an attempt, with a bonus for exploration. Selected candidates proceed to a{" "}
+          <span className="font-semibold text-ink">laboratory attempt</span>, and the outcome, success{" "}
+          <em>or</em> failure, returns to training.
         </div>
       </div>
       <figcaption className="mt-3 text-xs leading-relaxed text-muted">
-        Only the highlighted stage needs data nobody else has. The other stages use existing tools, and we
-        don&rsquo;t claim them as ours.
+        Only the highlighted stage requires data that no one else holds. The other stages use existing tools, which we do not claim as our own.
       </figcaption>
     </figure>
   );

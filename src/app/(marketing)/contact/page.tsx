@@ -4,7 +4,7 @@ import InterestForm from "../../../components/InterestForm";
 
 export const metadata: Metadata = {
   title: "Contact — synzcuor",
-  description: "One inbox, one person reading it.",
+  description: "Contact Synzcuor: design partners, research laboratories, investors and prospective team members.",
 };
 
 // TODO: set this to the real address before launch.
@@ -15,11 +15,10 @@ export default function ContactPage() {
     <div className="max-w-3xl mx-auto px-6 py-20">
       <p className="eyebrow mb-5">Contact</p>
       <h1 className="font-display text-4xl sm:text-5xl leading-tight tracking-tight text-ink">
-        One inbox, one person reading it
+        Contact
       </h1>
       <p className="mt-6 text-lg leading-relaxed text-ink-2">
-        There is no sales team, no qualification process and no automated follow-up
-        sequence. If you write, you get a reply from the person building this.
+        Every message is read and answered by the founder.
       </p>
 
       <div className="mt-12 grid md:grid-cols-[1fr_240px] gap-12 items-start">
@@ -35,20 +34,13 @@ export default function ContactPage() {
             </a>
           </div>
           <div>
-            <p className="eyebrow mb-2">Most useful to hear</p>
+            <p className="eyebrow mb-2">We would like to hear from you if</p>
             <ul className="space-y-2 text-sm text-muted">
-              <li>You hold materials data and would consider contributing it</li>
-              <li>You think the approach is flawed and can say precisely where</li>
-              <li>You have run a research consortium and know what breaks</li>
-              <li>You want to build this</li>
+              <li>You hold materials data and would consider a pilot</li>
+              <li>You see a specific flaw in the approach</li>
+              <li>You have run a research consortium</li>
+              <li>You would like to join the team or invest</li>
             </ul>
-          </div>
-          <div>
-            <p className="eyebrow mb-2">Least useful</p>
-            <p className="text-sm text-muted">
-              Agency outreach, SEO offers, and anything beginning &ldquo;I came across your
-              website and thought&rdquo;.
-            </p>
           </div>
         </aside>
       </div>

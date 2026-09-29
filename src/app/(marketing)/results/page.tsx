@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Results — synzcuor",
   description:
-    "Every number measured so far, on public data, with its setup and its limits stated next to it.",
+    "All results measured so far, on public data, with their methods and limitations.",
 };
 
 type Row = (string | React.ReactNode)[];
@@ -85,23 +85,22 @@ export default function ResultsPage() {
         What has been measured, and what it does not show
       </h1>
       <p className="mt-6 text-lg leading-relaxed text-ink-2">
-        Every number on this page comes from public data. No company or lab has put data
-        through any of it. &ldquo;Holders&rdquo; and &ldquo;members&rdquo; below are
-        simulated: one public dataset split by chemical system, so each simulated lab
-        works on a different chemistry.
+        All results on this page come from public data; no company or laboratory data has been
+        used. &ldquo;Holders&rdquo; and &ldquo;members&rdquo; are simulated: one public dataset
+        split by chemical system, so that each simulated laboratory works on a different
+        chemistry.
       </p>
       <p className="mt-4 text-base leading-relaxed text-ink-2">
-        Where a measurement has a pass threshold, it was written down before the measurement
-        ran. Where a test was changed after we saw results, the page says so. The code is in
-        a private repository and not yet released. Until it is, these numbers cannot be
-        checked independently, and they should be read with that in mind.
+        Where a measurement has a pass threshold, it was set before the measurement ran; where
+        a test was changed after results were seen, this is stated. The code is in a private
+        repository, so these results cannot yet be independently verified.
       </p>
 
       <div className="mt-10 grid sm:grid-cols-3 gap-4">
         {[
-          ["34–40%", "Pooling: less error than the best single lab", "#pooling"],
-          ["3.2×", "Security: time cost of full privacy, no accuracy lost", "#network"],
-          ["6 of 6", "Validation: size-matched runs beating both baselines", "#validator"],
+          ["34–40%", "Pooling: lower error than the best single laboratory", "#pooling"],
+          ["3.2×", "Security: time overhead of full privacy, with no loss of accuracy", "#network"],
+          ["6 of 6", "Validation: size-matched runs outperforming both baselines", "#validator"],
         ].map(([n, l, href]) => (
           <a key={n} href={href} className="rounded-xl border border-rule bg-card p-5 hover:border-accent transition-colors">
             <p className="font-display text-4xl tracking-tight text-accent">{n}</p>
@@ -134,24 +133,23 @@ export default function ResultsPage() {
       <nav className="mt-6 rounded-lg border border-rule bg-card p-5 text-sm">
         <p className="eyebrow mb-3">On this page</p>
         <ol className="space-y-1.5 list-decimal list-inside text-ink-2">
-          <li><a className="link" href="#pooling">Does pooling data improve a model?</a></li>
-          <li><a className="link" href="#private">Pooling without anyone seeing anyone&rsquo;s data</a></li>
-          <li><a className="link" href="#network">The same thing over a network</a></li>
-          <li><a className="link" href="#members">Does joining help each member?</a></li>
-          <li><a className="link" href="#finetune">Fine-tuning on one customer&rsquo;s own data</a></li>
-          <li><a className="link" href="#security">Security measurements and open gaps</a></li>
-          <li><a className="link" href="#validator">Validation: which materials can be made</a></li>
+          <li><a className="link" href="#pooling">Does pooling improve the model?</a></li>
+          <li><a className="link" href="#private">Private pooling</a></li>
+          <li><a className="link" href="#network">Private pooling over a network</a></li>
+          <li><a className="link" href="#members">Does pooling benefit each member?</a></li>
+          <li><a className="link" href="#finetune">Fine-tuning on a single customer&rsquo;s data</a></li>
+          <li><a className="link" href="#security">Security tests and open problems</a></li>
+          <li><a className="link" href="#validator">Validation: which materials can be synthesised</a></li>
         </ol>
       </nav>
 
-      <Section id="pooling" eyebrow="D1" title="Does pooling data improve a model?">
+      <Section id="pooling" eyebrow="Pooling" title="Does pooling improve the model?">
         <P>
-          Each simulated holder trains a model on its own data. Then one model trains on all
-          of their data together. The number is how much lower the pooled model&rsquo;s error
-          is than the <em>best</em> single holder&rsquo;s, on the same held-out test set (the
-          standard MatBench split). Each holder keeps the same amount of data as more holders
-          are added. Threshold set in advance: a gain under 10% would have meant there is no
-          product.
+          Each simulated holder trains a model on its own data, and one model is trained on all
+          of their data combined. The figure is the reduction in the pooled model&rsquo;s error
+          relative to the <em>best</em> single holder, on the same held-out test set (the standard
+          MatBench split). Each holder&rsquo;s data volume is held constant as holders are added.
+          Predefined threshold: a gain below 10% would have indicated no viable product.
         </P>
         <Table
           head={["Dataset", "Holders", "Random forest", "Gradient boosting"]}
@@ -162,27 +160,27 @@ export default function ResultsPage() {
           caption="Chemical-system split, largest number of holders. “With bias” adds a constant per-holder label offset drawn from N(0, 0.1 × std of the target), a simple model of inter-lab systematic error. *The steels dataset only has three distinct chemical systems."
         />
         <P>
-          When holders are split by property range instead of chemistry, two holders at
-          opposite ends of the range pool to a <em>worse</em> model than the better of them
-          alone (−9.0% random forest, −12.5% gradient boosting). A copy of the model frozen
-          at the start carries 42% (random forest) to 57% (gradient boosting) more error than
-          a model retrained as five more chemistries join.
+          When holders are split by property range instead of chemistry, two holders at opposite
+          ends of the range produce a <em>worse</em> pooled model than the better of the two alone
+          (−9.0% random forest, −12.5% gradient boosting). A model frozen at the start has 42%
+          (random forest) to 57% (gradient boosting) more error than one retrained as five
+          further chemistries join.
         </P>
         <Limits
           items={[
-            "Simulated holders cut from one public dataset, not real labs with different instruments and protocols.",
-            "The bias model is a constant offset per holder. Real inter-lab disagreement is more complicated, and larger offsets have not been tested.",
-            "The pooled model is scored on a test set that spans every chemistry. That is not the same as being better for each member (section 4).",
-            "The decay figure comes from adding data, not from real-world drift, so it is a lower bound on what a frozen copy loses.",
+            "Simulated holders drawn from one public dataset, not real laboratories with different instruments and protocols.",
+            "The bias model is a constant offset per holder; real inter-laboratory disagreement is more complex, and larger offsets are untested.",
+            "The pooled model is scored on a test set spanning all chemistries, which is not the same as being better for each member (section 4).",
+            "The decay figure comes from adding data rather than real-world drift, so it is a lower bound on what a frozen copy loses.",
           ]}
         />
       </Section>
 
-      <Section id="private" eyebrow="D2" title="Pooling without anyone seeing anyone’s data">
+      <Section id="private" eyebrow="Pooling · security" title="Private pooling">
         <P>
-          The same pooling, but done privately: each simulated lab trains on its own data and
-          sends only a masked update, and the server only ever sees the total. Each lab holds
-          different chemistry. All labs ran inside one program on one computer.
+          The same pooling performed privately: each simulated laboratory trains on its own data
+          and sends only a masked update, so the server sees only the total. Each laboratory holds
+          a different chemistry. All ran within one program on one computer.
         </P>
         <Table
           head={["Dataset · model", "Best client alone", "Federated, masked", "Centralised"]}
@@ -196,19 +194,18 @@ export default function ResultsPage() {
         />
         <Limits
           items={[
-            "The federated model sometimes matches or beats the centralised one. That is run-to-run variation in training, not an advantage of federation. Treat them as equal.",
-            "A server-side drift correction was tested on all four and selected on held-out validation rows. Validation picked no correction every time. Reported as a null result.",
-            "Masking cost almost nothing here because it ran in a single process. The network cost is in section 3.",
+            "The federated model sometimes matches or exceeds the centralised one. This reflects run-to-run variation, not an advantage of federation; the two should be treated as equal.",
+            "A server-side drift correction was tested on all four configurations and selected on held-out validation data. Validation selected no correction in every case (a null result).",
+            "Masking cost almost nothing here because it ran within a single process; the network cost is given in section 3.",
           ]}
         />
       </Section>
 
-      <Section id="network" eyebrow="R12" title="The same thing over a network">
+      <Section id="network" eyebrow="Security" title="Private pooling over a network">
         <P>
-          Three simulated labs and a coordinating server, each a separate program talking
-          over a network connection, using an established open-source implementation of
-          secure aggregation (SecAgg+, in the Flower framework). Band gap data, twelve
-          training rounds.
+          Three simulated laboratories and a coordinating server, each a separate program
+          communicating over a network, using an established open-source implementation of secure
+          aggregation (SecAgg+, in the Flower framework). Band-gap data, twelve training rounds.
         </P>
         <Table
           head={["", "Test error", "Wall clock"]}
@@ -221,24 +218,24 @@ export default function ResultsPage() {
           ]}
         />
         <P>
-          Secure aggregation cost no accuracy and 3.2× the wall-clock time, roughly 26 extra
-          seconds per round. After twelve rounds the shared model is level with the best
-          single member, not ahead of it.
+          Secure aggregation cost no accuracy and 3.2× the wall-clock time, approximately 26
+          additional seconds per round. After twelve rounds, the shared model matches the best
+          single member but does not exceed it.
         </P>
         <Limits
           items={[
-            "All processes ran on one machine. Nothing has crossed a real machine boundary yet.",
-            "Twelve rounds is a short run. It shows the mechanism working over a network, not a converged model.",
-            "TLS is built, so members verify the coordinator. The coordinator does not yet authenticate members: anyone who can reach the port can try to join.",
+            "All processes ran on one machine; no run has yet crossed a physical machine boundary.",
+            "Twelve rounds is a short run: it demonstrates the mechanism over a network, not a converged model.",
+            "TLS is implemented, so members verify the coordinator. The coordinator does not yet authenticate members, so anyone who can reach the port can attempt to join.",
           ]}
         />
       </Section>
 
-      <Section id="members" eyebrow="Member report" title="Does joining help each member?">
+      <Section id="members" eyebrow="Pooling" title="Does pooling benefit each member?">
         <P>
-          The benchmarks above score the pooled model on everyone&rsquo;s chemistry. A member
-          asks a different question: is it better on <em>my</em> data? Scored on each simulated
-          member&rsquo;s own held-out rows, from a separate twelve-round run over the network:
+          The benchmarks above score the pooled model across all chemistries. A member asks a
+          narrower question: is it better on <em>its own</em> data? Scored on each simulated
+          member&rsquo;s own held-out data, from a separate twelve-round run over the network:
         </P>
         <Table
           head={["Member", "Own model alone", "Pooled model", "Pooled + own head"]}
@@ -247,23 +244,22 @@ export default function ResultsPage() {
             ["lab1", "0.7022", "0.7019 (0.0%)", "0.6973 (+0.7%)"],
             ["lab2", "0.6246", "0.6467 (−3.5%)", "0.6284 (−0.6%)"],
           ]}
-          caption="Error in eV; percentages against the member's own model. “Own head”: the pooled model with an extra final layer fitted, on the member's own data, to correct what the pooled model gets wrong for them."
+          caption="Error in eV; percentages relative to the member's own model. “Own head”: the pooled model with an additional final layer, fitted on the member's own data to correct the pooled model's errors for that member."
         />
         <P>
-          The strongest specialist is worse off with the pooled model. Adding a final layer
-          fitted to that member&rsquo;s own data nearly closes the gap, but not fully. &ldquo;Pooling improves the model&rdquo;
-          and &ldquo;pooling improves your model&rdquo; are different claims, and only the
-          first has been shown in general.
+          The strongest specialist performs worse with the pooled model. A final layer fitted to
+          that member&rsquo;s own data narrows the gap but does not close it. &ldquo;Pooling
+          improves the model&rdquo; and &ldquo;pooling improves your model&rdquo; are distinct
+          claims; only the first has been shown in general.
         </P>
       </Section>
 
-      <Section id="finetune" eyebrow="Phase 1" title="Fine-tuning on one customer’s own data">
+      <Section id="finetune" eyebrow="Phase 1" title="Fine-tuning on a single customer’s data">
         <P>
-          Before any pool exists, the question is simpler. Take a model already trained on
-          public data and train it further on one customer&rsquo;s own small dataset
-          (&ldquo;fine-tuning&rdquo;). Does that beat both the model left as it was, and a model
-          trained only on the customer&rsquo;s data? Improvement in error, averaged over the
-          simulated customers:
+          Before any pool exists, the question is simpler: does further training of a publicly
+          trained model on one customer&rsquo;s small dataset (&ldquo;fine-tuning&rdquo;)
+          outperform both the unchanged model and a model trained only on the customer&rsquo;s
+          data? Improvement in error, averaged over the simulated customers:
         </P>
         <Table
           head={["Dataset · model", "Customer rows", "vs model as-is", "vs training from scratch"]}
@@ -284,53 +280,52 @@ export default function ResultsPage() {
           caption="Negative means fine-tuning was worse. The steels dataset is too small for larger customer sizes."
         />
         <P>
-          Fine-tuning beat training from scratch in 8 of 12 cases and beat the unchanged model
-          in 8 of 12. With too little customer data it can make things worse. Fine-tuning is
-          not always an improvement, and this table is what decides when it is worth doing.
+          Fine-tuning outperformed training from scratch in 8 of 12 cases and the unchanged model
+          in 8 of 12. With too little customer data, it can reduce accuracy. This table indicates
+          when fine-tuning is worthwhile.
         </P>
         <Limits
           items={[
             "Band gap and steel strength stand in for ionic conductivity, the property Phase 1 is aimed at. No conductivity data has been used yet.",
             "The starting model is trained on public MatBench data, not a real pretrained materials model.",
-            "No pass threshold has been set for this measurement. What counts as good enough for a customer is still an open decision.",
+            "No pass threshold has been set for this measurement; the acceptance criterion for a customer is not yet defined.",
           ]}
         />
       </Section>
 
-      <Section id="security" eyebrow="Security" title="Security measurements and open gaps">
+      <Section id="security" eyebrow="Security" title="Security tests and open problems">
         <h3 className="font-display text-xl text-ink mt-6">Poisoning</h3>
         <P>
-          A &ldquo;poisoning&rdquo; test: one member deliberately doubles its update before
-          submitting it, to push the shared model off course. With four members the
-          shared model&rsquo;s error rises from 0.693 to 1.253 eV (+80.7%); with eight, +19.3%;
-          with two, training diverges. Norm clipping recovers part of it (to 0.807), but only
-          when the server can see individual updates. Under secure aggregation it cannot, so
-          that defence is not available. Robust aggregation that works on masked updates is
-          not built. This is an open problem, not a solved one.
+          In a poisoning test, one member deliberately doubles its update to push the shared model
+          off course. With four members, the shared model&rsquo;s error rises from 0.693 to 1.253 eV
+          (+80.7%); with eight, by 19.3%; with two, training diverges. Norm clipping recovers part
+          of the loss (to 0.807), but only when the server can see individual updates, which
+          secure aggregation prevents. Robust aggregation that operates on masked updates has not
+          been built; this remains an open problem.
         </P>
         <h3 className="font-display text-xl text-ink mt-8">Post-quantum key exchange for the masks</h3>
         <P>
-          The secrets behind the masks are normally agreed with classical key exchange, which
-          a future large quantum computer could break. We replaced it with ML-KEM-768, the
-          NIST-standardised post-quantum method (FIPS 203), and the masks still cancel exactly. Cost: 7–13 ms per pair
-          of members, about 2.2 s in total for 25 members, once per pool. This replaces the key
-          exchange only. The exchange still needs an authenticated channel, like any key
-          exchange.
+          The secrets behind the masks are normally agreed through classical key exchange, which a
+          future large quantum computer could break. We replaced it with ML-KEM-768, the
+          NIST-standardised post-quantum method (FIPS 203), and the masks still cancel exactly.
+          The cost is 7–13 ms per pair of members, approximately 2.2 s in total for 25 members,
+          incurred once per pool. This replaces only the key exchange, which, like any key
+          exchange, still requires an authenticated channel.
         </P>
-        <h3 className="font-display text-xl text-ink mt-8">Checking that nothing leaves the machine</h3>
+        <h3 className="font-display text-xl text-ink mt-8">Verifying that nothing leaves the machine</h3>
         <P>
           A wrapper intercepts and reports every outbound network connection a training run
-          attempts, so &ldquo;nothing leaves the machine&rdquo; can be checked for a given run
-          rather than asserted. It is not a sandbox, it covers Linux with glibc only, and it
-          has not yet been run against a packaged customer deployment, because none exists.
+          attempts, so that &ldquo;nothing leaves the machine&rdquo; can be verified for a given
+          run rather than asserted. It is not a sandbox, it supports Linux with glibc only, and it
+          has not yet been run against a packaged customer deployment, as none exists.
         </P>
       </Section>
 
-      <Section id="validator" eyebrow="Validation" title="Validation: which materials can be made">
+      <Section id="validator" eyebrow="Validation" title="Which materials can be synthesised?">
         <P>
-          The third part of Synzcuor predicts which candidate materials can actually be made.
-          Public data contains no failed syntheses, so every number so far is a proxy: made
-          compounds against plausible compounds with no record of being made.
+          The third part of Synzcuor predicts which candidate materials can be synthesised.
+          Public data contains no failed syntheses, so all results are proxies: synthesised
+          compounds compared with plausible compounds that have no record of synthesis.
         </P>
         <Table
           head={["Test", "Result"]}
@@ -341,21 +336,20 @@ export default function ResultsPage() {
         />
         <Limits
           items={[
-            "No failure data yet. The real claim, that pooled failure records improve the prediction, needs a partner lab.",
-            "Composition features only so far. Physics features from the full Alexandria database are in progress.",
+            "No failure data yet; the central claim, that pooled failure records improve prediction, requires a partner laboratory.",
+            "Composition features only so far; physics features from the full Alexandria database are in progress.",
             "“First reported” means first appearance in a text-mined corpus, not first synthesis.",
           ]}
         />
         <Link href="/validator" className="link mt-4 inline-block text-sm">
-          How validation works, the full results and its limits
+          How validation works: full results and limitations
         </Link>
       </Section>
 
       <div className="mt-16 rounded-lg border border-rule bg-card p-6">
         <p className="text-sm leading-relaxed text-muted">
-          If you think one of these measurements is set up wrong, we want to hear why. The
-          most useful thing an expert can tell us is which of these numbers would not survive
-          their own review.
+          If you believe any of these measurements is flawed, we would like to know which, and
+          why.
         </p>
         <Link href="/contact" className="link mt-3 inline-block text-sm">
           Tell us

@@ -41,7 +41,7 @@ export default function Footer() {
 
       <div className="max-w-6xl mx-auto px-6 py-6 border-t border-rule flex flex-col sm:flex-row justify-between gap-3 text-xs text-muted">
         <span>&copy; {new Date().getFullYear()} synzcuor</span>
-        <span className="font-mono">Not incorporated. No funding. No customers yet.</span>
+        <span className="font-mono">Pre-seed. Not yet incorporated.</span>
       </div>
     </footer>
   );

@@ -6,7 +6,7 @@ import ValidationPipeline from "../../../components/ValidationPipeline";
 export const metadata: Metadata = {
   title: "Validation — synzcuor",
   description:
-    "The third part of Synzcuor: predicting which candidate materials can actually be made, using lab records that are rarely published. Design, results so far, and limits.",
+    "The third part of Synzcuor: predicting which candidate materials can be synthesised, using laboratory records that are rarely published. Design, results and limitations.",
 };
 
 function Table({ head, rows, caption }: { head: string[]; rows: (string | React.ReactNode)[][]; caption?: string }) {
@@ -57,12 +57,10 @@ export default function ValidatorPage() {
     <div className="max-w-3xl mx-auto px-6 py-20">
       <p className="eyebrow mb-5">Validation · one of three core parts · earliest stage</p>
       <h1 className="font-display text-4xl sm:text-5xl leading-tight tracking-tight text-ink">
-        Which candidate materials can actually be made?
+        Which candidate materials can be synthesised?
       </h1>
       <p className="mt-6 text-lg leading-relaxed text-ink-2">
-        Generative models now propose candidate crystals faster than anyone can check them.
-        The expensive part is no longer producing candidates. It is knowing which ones are
-        worth a lab attempt.
+        Generative models now propose candidate crystals faster than they can be tested. The bottleneck is no longer producing candidates but identifying which merit a laboratory attempt.
       </p>
 
       <div className="mt-8 rounded-lg border border-flag/25 bg-flag-soft p-6">
@@ -73,16 +71,15 @@ export default function ValidatorPage() {
           Validation is one of Synzcuor&rsquo;s three core parts, alongside pooling and
           security, and it is the least mature. Everything measured so far uses public data,
           which contains no failed syntheses. Whether R&amp;D teams find failed syntheses costly
-          enough to pay to avoid them, and whether labs will contribute their records, are the
-          two questions our first conversations have to answer.
+          enough to pay to avoid them, and whether laboratories will contribute their records, must be established in our first conversations.
         </p>
       </div>
 
       <div className="mt-10 grid sm:grid-cols-3 gap-4">
         {[
-          ["6 of 6", "size-matched runs where it beats both simple baselines on newly reported compounds"],
-          ["38–42%", "fewer ranking errors when simulated labs pool their records"],
-          ["0", "failed-synthesis records used so far. That's the next step, and it needs a partner lab"],
+          ["6 of 6", "size-matched runs outperforming both baselines on newly reported compounds"],
+          ["38–42%", "fewer ranking errors when simulated laboratories pool their records"],
+          ["0", "failed-synthesis records used so far; the next step requires a partner laboratory"],
         ].map(([n, l]) => (
           <div key={n} className="rounded-xl border border-rule bg-card p-5">
             <p className="font-display text-4xl tracking-tight text-accent">{n}</p>
@@ -96,8 +93,7 @@ export default function ValidatorPage() {
         The standard screen is a computed stability check. Quantum-mechanical simulation
         (density functional theory, DFT) estimates a compound&rsquo;s energy, and compares it
         with every mix of competing compounds it could break down into. The gap is called the
-        energy above the hull; zero means nothing it could decompose into is more stable. It
-        is a useful filter and a weak verdict:
+        energy above the hull; zero means nothing it could decompose into is more stable. It is a useful filter but an unreliable verdict:
       </P>
       <ul className="mt-4 space-y-2.5 text-base leading-relaxed text-ink-2">
         {[
@@ -112,13 +108,7 @@ export default function ValidatorPage() {
         ))}
       </ul>
       <P>
-        The real label is experimental: was it made, by which route, and did the intended phase
-        form. Public data has a survivorship problem here. Successful syntheses get published
-        and failed attempts rarely are, so a model trained on public data sees almost only
-        successes. Many labs keep records of failed attempts that they have little reason or
-        freedom to publish. That is why validation belongs with the other two parts: the
-        data it needs is private by nature, so it can only be gathered through pooling, and
-        only if the security holds.
+        The true label is experimental: whether the compound was made, by which route, and whether the intended phase formed. Public data suffers from survivorship bias: successful syntheses are published and failed attempts rarely are, so a model trained on public data sees almost only successes. Many laboratories keep records of failed attempts that they have little reason or freedom to publish. Validation therefore depends on the other two components: the data it needs is private by nature, so it can be gathered only through pooling, and only if the security holds.
       </P>
 
       <H2>The design</H2>
@@ -133,23 +123,19 @@ export default function ValidatorPage() {
       </h3>
       <P>
         A model trained only on reported successes can score well by learning &ldquo;looks
-        like something already made&rdquo;. A generator optimised against that score drifts back
-        toward known crystals. So the design keeps four separate scores and combines them only
-        at ranking:
+        like something already made&rdquo;. A generator optimised against that score drifts back towards known crystals. The design therefore keeps four separate scores and combines them only at ranking:
       </P>
       <Table
         head={["Score", "What it is"]}
         rows={[
-          ["Novel", "A lookup, not a learned score: structure matching after relaxation against known databases, including checks for ordered versions of known disordered compounds. Nothing a generator can game."],
+          ["Novel", "A lookup, not a learned score: structure matching after relaxation against known databases, including checks for ordered versions of known disordered compounds. It cannot be gamed by a generator."],
           ["Stable", "Energy above hull. Used as a feature and a coarse filter, not the verdict."],
           ["Synthesizable", "The learned model: probability that the target phase forms by a given route, with an uncertainty."],
           ["Useful", "Predicted improvement over the best known material for the application. A copy of a known material scores zero here, however feasible it is."],
         ]}
       />
       <P>
-        We would report results as a funnel per thousand candidates (valid, novel, stable,
-        synthesizable, useful, confirmed, made), not as a single &ldquo;percent
-        feasible&rdquo;. A single percentage can be inflated by generating near-copies.
+        Results would be reported as a funnel per thousand candidates (valid, novel, stable, synthesisable, useful, confirmed, made) rather than as a single &ldquo;percent feasible&rdquo;, which can be inflated by generating near-copies.
       </P>
 
       <h3 className="font-display text-xl text-ink mt-10">The model, as designed</h3>
@@ -158,14 +144,11 @@ export default function ValidatorPage() {
         only on lab attempts, where both successes and failures come with their route. The
         correction is the only part trained across labs, under secure aggregation. Each lab
         also keeps a private offset for its own equipment and technique. Routes enter only the
-        correction, because in public data only successes have routes, so a route feature
-        there would simply leak the label. The intended output is a distribution over which
-        phases form, not a yes or no, because a failure that records which competing phase
+        correction, because in public data only successes have routes, so a route feature there would leak the label. The intended output is a distribution over which phases form, rather than a binary outcome, because a failure that records which competing phase
         won carries more information than a zero.
       </P>
       <P>
-        None of the neural components are built. Each one has to beat a gradient-boosting
-        baseline on the same splits, or it is not built.
+        None of the neural components has been built. Each must outperform a gradient-boosting baseline on the same splits before it is.
       </P>
 
       <H2>What has been measured</H2>
@@ -187,7 +170,7 @@ export default function ValidatorPage() {
         chemistry, and the model is scored on families of compounds none of them trained
         on.
         Scores are AUC: the chance that the model ranks a randomly chosen made compound above
-        a randomly chosen unlabeled one. 0.5 is a coin flip and 1.0 is perfect. Threshold set
+        a randomly chosen unlabeled one. 0.5 is chance level and 1.0 is perfect. Threshold set
         in advance: at eight labs, the pooled model must make at least 10% fewer ranking
         errors than the best single lab, with the lower end of the 95% confidence interval
         above zero.
@@ -203,9 +186,7 @@ export default function ValidatorPage() {
         caption="Averaged over five random repeats per setting. The control model sees only the number of elements and the formula size. A control at 0.80 means those two facts alone separate the groups fairly well, so part of the raw task is trivial. That is why the size-matched and oxide-only versions exist."
       />
       <P>
-        It passes in every setting. But this pools <em>successes</em>. It says nothing yet about
-        whether pooling <em>failures</em> helps, which is the actual claim and needs a partner
-        lab. Part of the gain is simply more data: each single lab at eight holds only a few
+        It passes in every setting. However, this pools <em>successes</em> only; it does not yet test whether pooling <em>failures</em> helps, which is the central claim and requires a partner laboratory. Part of the gain reflects more data: each single lab at eight holds only a few
         hundred rows.
       </P>
 
@@ -213,17 +194,15 @@ export default function ValidatorPage() {
         2 · Is the model more than a similarity detector?
       </h3>
       <P>
-        We checked this directly for the concern above. Compounds get a first-reported year
+        This test addresses that concern directly. Compounds get a first-reported year
         from the publication date of the papers they appear in. The model is trained on
         compounds reported up to a cutoff (2015 or 2016, set by rule at the 80th percentile)
         and tested on compounds first reported after it. The hardest version puts those later
-        compounds into training as <em>unlabeled</em>, because that is what a model built at
-        the cutoff would really have seen. Test candidates are binned by distance from the
-        nearest known compound. The test counts only the farthest third, because near-copies
-        flatter any average.
+        compounds into training as <em>unlabeled</em>, reflecting what a model built at the cutoff would have seen. Test candidates are binned by distance from the
+        nearest known compound. The test counts only the farthest third, since near-copies inflate any average.
       </P>
       <P>
-        Two baselines. The first scores a candidate only by its closeness to the nearest known
+        There are two baselines. The first scores a candidate only by its closeness to the nearest known
         compound, so it learns nothing but similarity. The second sees only element count and
         formula size. To pass, the model must beat both by at least 0.05 AUC in the far bin,
         with the lower 95% bound above zero. Bounds come from resampling whole chemical
@@ -250,12 +229,9 @@ export default function ValidatorPage() {
         <strong className="font-semibold text-ink">
           In both size-matched settings it passes on every split, 6 runs out of 6,
         </strong>{" "}
-        beating both baselines by 0.15 to 0.31 AUC far from known materials. That is the
-        evidence that it has learned more than similarity to known compounds. It does not pass
+        beating both baselines by 0.15 to 0.31 AUC far from known materials. This indicates that it has learned more than similarity to known compounds. It does not pass
         when the size cue is left in: across all compounds, formula size alone is nearly as
-        predictive as the model, which says as much about the public benchmark as about the
-        model. Among unmatched oxides it stays ahead of similarity on average, but not by a
-        margin we can call significant on two of the three splits.
+        predictive as the model, which reflects the public benchmark as much as the model. Among unmatched oxides it remains ahead of similarity on average, but not by a statistically significant margin on two of the three splits.
       </P>
       <div className="mt-6 rounded-lg border border-rule bg-card p-5">
         <p className="eyebrow mb-2">How the test changed while we built it</p>
@@ -272,15 +248,15 @@ export default function ValidatorPage() {
         </p>
       </div>
 
-      <H2>Not done, and needed</H2>
+      <H2>Outstanding work</H2>
       <ul className="mt-4 space-y-2.5 text-base leading-relaxed text-ink-2">
         {[
-          "Any failed-synthesis data. Everything above is successes against unlabeled compounds.",
-          "Physics features (hull energy, decomposition, formation energy). In progress: the full Alexandria database is being downloaded so the same physics can be computed for both groups. Reaction-driving-force features come after.",
+          "Failed-synthesis data: everything above compares successes with unlabeled compounds.",
+          "Physics features (hull energy, decomposition, formation energy). In progress: the full Alexandria database is being downloaded so the same physics can be computed for both groups. Reaction-driving-force features will follow.",
           "“First reported” means first appearance in the text-mined corpus, not first synthesis. Some compounds counted as new after the cutoff are older, and filtering them needs an experimental structure database.",
-          "The novelty check, the property model and the ranking are designed and not built.",
-          "Any lab validation. No candidate has been made on the strength of this work.",
-          "A literature review deep enough to say which parts of the design, if any, are new. Synthesizability prediction is an active field, and we do not claim priority.",
+          "The novelty check, the property model and the ranking are designed but not yet built.",
+          "Laboratory validation: no candidate has yet been synthesised on the basis of this work.",
+          "A literature review sufficient to establish which parts of the design, if any, are novel. Synthesizability prediction is an active field, and we claim no priority.",
         ].map((t) => (
           <li key={t} className="flex gap-3">
             <span className="text-flag mt-0.5">—</span>
@@ -290,12 +266,9 @@ export default function ValidatorPage() {
       </ul>
 
       <div className="mt-14 rounded-lg border border-rule bg-card p-8">
-        <h2 className="font-display text-2xl text-ink">If you run syntheses</h2>
+        <h2 className="font-display text-2xl text-ink">For synthesis laboratories</h2>
         <p className="mt-3 text-sm leading-relaxed text-muted">
-          The questions we cannot answer from public data. Roughly what fraction of planned
-          syntheses fail? What does a failed attempt cost you? Do you keep records of failed
-          attempts, including what formed instead? Would you ever let them inform a shared
-          model, if nothing left your building? Short answers help.
+          These questions cannot be answered from public data. What fraction of planned syntheses fail? What does a failed attempt cost? Do you keep records of failed attempts, including what formed instead? Would you allow them to inform a shared model if nothing left your premises? Brief answers are welcome.
         </p>
         <Link href="/contact" className="link mt-4 inline-block text-sm">
           Start a conversation
