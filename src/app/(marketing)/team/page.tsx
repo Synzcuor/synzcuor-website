@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "The people building Synzcuor, what each is responsible for, and the roles we are hiring for.",
 };
 
-// Fill `name` and `bio` once confirmed. An empty name renders as the role alone.
+// An empty name renders as the role alone; an empty link hides the LinkedIn link.
 const people = [
   {
     initials: "JC",
@@ -15,13 +15,15 @@ const people = [
     role: "Founder & CEO",
     bio: "Leads product, research direction and fundraising. Co-author of SH-QGAN, a hybrid quantum-classical generative model for crystal structures (preprint, in revision after peer review). Built Synzcuor's pooling benchmark, private training over a network, and the first validation model.",
     owns: ["Vision and product", "Validation research", "Fundraising and partnerships"],
+    link: "",
   },
   {
-    initials: "FE",
-    name: "",
-    role: "Founding Engineer",
-    bio: "Leads the implementation of pooling and security, and the deployment of the client into customer environments.",
+    initials: "HD",
+    name: "Hitarth Dangra",
+    role: "Head of Engineering",
+    bio: "Leads engineering: the implementation of pooling and security, and the deployment of the client into customer environments.",
     owns: ["Private training system", "Security and deployment", "Engineering hiring"],
+    link: "https://www.linkedin.com/in/hitarth-dangra-2779643ab/",
   },
 ];
 
@@ -68,6 +70,11 @@ export default function TeamPage() {
                 </li>
               ))}
             </ul>
+            {p.link && (
+              <a href={p.link} target="_blank" rel="noopener noreferrer" className="link mt-6 inline-block text-sm">
+                LinkedIn
+              </a>
+            )}
           </article>
         ))}
       </div>
