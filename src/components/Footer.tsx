@@ -1,56 +1,47 @@
-import Image from "next/image";
+import React from "react";
+import Link from "next/link";
+import Mark from "./Mark";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-50 pt-24 pb-12 border-t border-gray-200">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-        
-        <div className="lg:col-span-2">
-          <div className="flex items-center gap-3 mb-6">
-            <Image 
-              src="/logo.png" 
-              alt="Synzcuor Logo" 
-              width={40} 
-              height={40} 
-              className="object-contain"
-            />
-            <span className="font-bold text-2xl tracking-tight text-black">
-              Synzcuor
-            </span>
+    <footer className="w-full border-t border-rule bg-paper-2 mt-24">
+      <div className="max-w-6xl mx-auto px-6 py-14 grid grid-cols-2 md:grid-cols-4 gap-10">
+        <div className="col-span-2 md:col-span-2 space-y-3">
+          <div className="flex items-center gap-2.5">
+            <Mark className="w-10 h-10 -ml-1" />
+            <span className="font-display text-xl tracking-tight text-ink lowercase">synzcuor</span>
           </div>
-          <p className="text-gray-600 mb-8 max-w-sm">
-            Physical network kill-switches for factories. When the math detects a threat, the metal cuts the wire.
+          <p className="text-sm leading-relaxed text-muted max-w-sm">
+            Machine learning for materials R&amp;D on data that stays with its owner.
+          </p>
+          <p className="text-xs text-muted/80 max-w-sm">
+            Pre-seed and pre-product. Nothing on this site is a commercial offer.
           </p>
         </div>
 
-        <div>
-          <h4 className="font-bold text-black uppercase tracking-widest mb-6 text-sm">Platform</h4>
-          <ul className="space-y-4">
-            <li><a href="/products" className="text-gray-600 hover:text-black transition-colors text-sm">Products</a></li>
-            <li><a href="https://github.com" className="text-gray-600 hover:text-black transition-colors text-sm">Open Source</a></li>
-            <li><a href="#" className="text-gray-600 hover:text-black transition-colors text-sm">Documentation</a></li>
+        <div className="space-y-3">
+          <h4 className="eyebrow">The work</h4>
+          <ul className="space-y-2 text-sm text-muted">
+            <li><Link href="/approach" className="hover:text-ink transition-colors">Approach</Link></li>
+            <li><Link href="/participate" className="hover:text-ink transition-colors">Participate</Link></li>
+            <li><Link href="/results" className="hover:text-ink transition-colors">Results</Link></li>
+            <li><Link href="/validator" className="hover:text-ink transition-colors">Validation</Link></li>
+            <li><Link href="/research" className="hover:text-ink transition-colors">Research</Link></li>
           </ul>
         </div>
 
-        <div>
-          <h4 className="font-bold text-black uppercase tracking-widest mb-6 text-sm">Company</h4>
-          <ul className="space-y-4">
-            <li><a href="/company" className="text-gray-600 hover:text-black transition-colors text-sm">About Us</a></li>
-            <li><a href="/blog" className="text-gray-600 hover:text-black transition-colors text-sm">Engineering Blog</a></li>
-            <li><a href="/company#careers" className="text-gray-600 hover:text-black transition-colors text-sm">Careers</a></li>
+        <div className="space-y-3">
+          <h4 className="eyebrow">Company</h4>
+          <ul className="space-y-2 text-sm text-muted">
+            <li><Link href="/careers" className="hover:text-ink transition-colors">Careers</Link></li>
+            <li><Link href="/contact" className="hover:text-ink transition-colors">Contact</Link></li>
           </ul>
         </div>
-
       </div>
-      
-      <div className="max-w-7xl mx-auto px-6 border-t border-gray-200 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-        <p className="text-gray-500 text-sm font-mono">
-          &copy; {new Date().getFullYear()} Synzcuor. All rights reserved.
-        </p>
-        <div className="flex gap-6 text-sm">
-          <a href="#" className="text-gray-500 hover:text-black transition-colors font-mono">Privacy</a>
-          <a href="#" className="text-gray-500 hover:text-black transition-colors font-mono">Terms</a>
-        </div>
+
+      <div className="max-w-6xl mx-auto px-6 py-6 border-t border-rule flex flex-col sm:flex-row justify-between gap-3 text-xs text-muted">
+        <span>&copy; {new Date().getFullYear()} synzcuor</span>
+        <span className="font-mono">Pre-seed. Not yet incorporated.</span>
       </div>
     </footer>
   );
