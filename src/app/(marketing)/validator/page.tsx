@@ -1,11 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import type { Metadata } from "next";
+import ValidationPipeline from "../../../components/ValidationPipeline";
 
 export const metadata: Metadata = {
-  title: "Synthesizability — synzcuor",
+  title: "Validation — synzcuor",
   description:
-    "A research track under test: predicting which candidate materials can be made, using lab records that are rarely published. Design, proxy results and limits.",
+    "The third part of Synzcuor: predicting which candidate materials can actually be made, using lab records that are rarely published. Design, results so far, and limits.",
 };
 
 function Table({ head, rows, caption }: { head: string[]; rows: (string | React.ReactNode)[][]; caption?: string }) {
@@ -54,7 +55,7 @@ const H2 = ({ children }: { children: React.ReactNode }) => (
 export default function ValidatorPage() {
   return (
     <div className="max-w-3xl mx-auto px-6 py-20">
-      <p className="eyebrow mb-5">Research track · under test</p>
+      <p className="eyebrow mb-5">Validation · one of three core parts · earliest stage</p>
       <h1 className="font-display text-4xl sm:text-5xl leading-tight tracking-tight text-ink">
         Which candidate materials can actually be made?
       </h1>
@@ -69,12 +70,25 @@ export default function ValidatorPage() {
           Status
         </p>
         <p className="text-sm leading-relaxed text-ink-2">
-          This is a research direction, not the product and not a decision. It becomes a
-          priority only if R&amp;D teams tell us failed syntheses cost them real time and
-          money, and only if labs are willing to contribute their records. Neither has been
-          confirmed. Almost everything below is design. What has been measured uses public
-          proxies and is labelled as such.
+          Validation is one of Synzcuor&rsquo;s three core parts, alongside pooling and
+          security, and it is the least mature. Everything measured so far uses public data,
+          which contains no failed syntheses. Whether R&amp;D teams find failed syntheses costly
+          enough to pay to avoid them, and whether labs will contribute their records, are the
+          two questions our first conversations have to answer.
         </p>
+      </div>
+
+      <div className="mt-10 grid sm:grid-cols-3 gap-4">
+        {[
+          ["6 of 6", "size-matched runs where it beats both simple baselines on newly reported compounds"],
+          ["38–42%", "fewer ranking errors when simulated labs pool their records"],
+          ["0", "failed-synthesis records used so far. That's the next step, and it needs a partner lab"],
+        ].map(([n, l]) => (
+          <div key={n} className="rounded-xl border border-rule bg-card p-5">
+            <p className="font-display text-4xl tracking-tight text-accent">{n}</p>
+            <p className="mt-2 text-xs leading-relaxed text-muted">{l}</p>
+          </div>
+        ))}
       </div>
 
       <H2>Why the usual check is not enough</H2>
@@ -102,8 +116,9 @@ export default function ValidatorPage() {
         form. Public data has a survivorship problem here. Successful syntheses get published
         and failed attempts rarely are, so a model trained on public data sees almost only
         successes. Many labs keep records of failed attempts that they have little reason or
-        freedom to publish. Collecting that kind
-        of data without exposing it is what the private pooling work is for.
+        freedom to publish. That is why validation belongs with the other two parts: the
+        data it needs is private by nature, so it can only be gathered through pooling, and
+        only if the security holds.
       </P>
 
       <H2>The design</H2>
@@ -111,25 +126,7 @@ export default function ValidatorPage() {
         A screening pipeline, where each stage is cheaper than the one after it and a
         candidate&rsquo;s score discounts its value rather than acting as a hard pass or fail:
       </P>
-      <div className="mt-6 rounded-lg border border-rule bg-paper-2 p-6 font-mono text-xs leading-relaxed text-ink-2 overflow-x-auto">
-        <pre className="min-w-max">{`candidates (any generator, substitution, literature)
-   |
-   |- validity checks          charge, distances, symmetry      seconds
-   |- ML relaxation            pretrained interatomic potential  seconds
-   |- novelty check            match against known structures,
-   |                           AFTER relaxation                  seconds
-   |- energy above hull        ML, then DFT on the shortlist     minutes -> hours
-   |- synthesizability         trained on lab outcomes           seconds
-   |- property model           gain over the best known material
-   |
-   ranking: P(made) x value - cost of an attempt, plus an exploration bonus
-   |
-   lab attempt  ->  outcome, success OR failure  ->  back into training`}</pre>
-      </div>
-      <P>
-        Only the synthesizability stage needs data nobody else has. The other stages use
-        existing tools, and we do not claim them as ours.
-      </P>
+      <ValidationPipeline />
 
       <h3 className="font-display text-xl text-ink mt-10">
         &ldquo;Feasible&rdquo; must not mean &ldquo;already known&rdquo;
@@ -232,35 +229,46 @@ export default function ValidatorPage() {
         with the lower 95% bound above zero. Bounds come from resampling whole chemical
         systems.
       </P>
+      <P>
+        The model is gradient boosting on composition features: element-property statistics,
+        charge-balance rules, and a Magpie-style descriptor set. Which features and settings to
+        use is chosen on an earlier cutoff using training data only, and a candidate that sat in
+        training as unlabeled is scored only by a copy of the model that never saw it. We ran
+        the whole test on three different random splits.
+      </P>
       <Table
-        head={["Setting", "Made compounds in far third", "Model", "Similarity", "Size only", "Result"]}
+        head={["Setting", "Passes", "Model", "Similarity only", "Size only"]}
         rows={[
-          ["All compounds", "23", "0.813", "0.552", "0.792", "Fail"],
-          ["Matched on size", "52", "0.909", "0.650", "0.657", "Pass"],
-          ["Oxides only", "306", "0.782", "0.712", "0.476", "Fail"],
-          ["Oxides, matched", "32", "0.766", "0.676", "0.644", "Fail"],
+          ["Matched on formula size", "3 of 3", "0.91–0.93", "0.62–0.65", "0.66–0.67"],
+          ["Oxides, matched on size", "3 of 3", "0.76–0.93", "0.56–0.68", "0.60–0.62"],
+          ["Oxides only", "1 of 3", "0.69–0.83", "0.59–0.71", "0.48–0.69"],
+          ["All compounds", "0 of 3", "0.81–0.86", "0.54–0.58", "0.79–0.81"],
         ]}
-        caption="AUC in the third of test candidates farthest from known compounds, hardest time split. Model: gradient boosting, set up so that a candidate that was in the training data as unlabeled is scored only by a copy of the model that never saw it. Model settings were chosen on an earlier cutoff, using training data only, so the test data was used once."
+        caption="AUC in the third of test candidates farthest from known compounds, hardest time split, range across three random splits. The far third holds roughly 20 to 300 made compounds depending on the setting, which is why the intervals are wide."
       />
       <P>
-        <strong className="font-semibold text-ink">It passes in one of four settings.</strong>{" "}
-        Far from known materials, the model scores above pure similarity in every setting,
-        by 0.07 to 0.26 AUC, though the interval clears zero in only two. In the unmatched setting the size-only control
-        is nearly as good. Among oxides, the margin over similarity is small and its interval
-        crosses zero. With about 30 positives in the far bin, the matched-oxide result is too
-        uncertain to call. On composition features alone, the honest reading is: better than
-        a memoriser, and not yet reliably better than simple cues within one chemistry class.
+        <strong className="font-semibold text-ink">
+          In both size-matched settings it passes on every split, 6 runs out of 6,
+        </strong>{" "}
+        beating both baselines by 0.15 to 0.31 AUC far from known materials. That is the
+        evidence that it has learned more than similarity to known compounds. It does not pass
+        when the size cue is left in: across all compounds, formula size alone is nearly as
+        predictive as the model, which says as much about the public benchmark as about the
+        model. Among unmatched oxides it stays ahead of similarity on average, but not by a
+        margin we can call significant on two of the three splits.
       </P>
       <div className="mt-6 rounded-lg border border-rule bg-card p-5">
         <p className="eyebrow mb-2">How the test changed while we built it</p>
         <p className="text-sm leading-relaxed text-muted">
-          The first version of this test compared the model to the similarity baseline only,
-          and did not put later compounds into training. It passed in all four settings. After
-          seeing that, we added the size-only baseline and the harder split. Both changes make
-          the test stricter. The scoring change and the model-selection step were added after
-          the harder split showed that a model scores its own unlabeled training examples
-          low. We report the final version&rsquo;s results, including settings where an earlier
-          version passed.
+          The first version compared the model to the similarity baseline only and did not put
+          later compounds into training. It passed in all four settings, so we made it
+          stricter: the size-only baseline and the harder split were added. The out-of-sample
+          scoring and the model-selection step followed once the harder split showed that a
+          model scores its own unlabeled training examples low. Richer composition features
+          were then added after seeing weak oxide results on one split. Because that risks
+          tuning the method to that split, we reran everything on two fresh splits. One
+          single-split oxide pass did not hold up there, and the table above reports the
+          replicated result.
         </p>
       </div>
 
@@ -268,7 +276,7 @@ export default function ValidatorPage() {
       <ul className="mt-4 space-y-2.5 text-base leading-relaxed text-ink-2">
         {[
           "Any failed-synthesis data. Everything above is successes against unlabeled compounds.",
-          "Physics features (hull energy, decomposition, reaction driving force). The public data sources we tried were unavailable when we ran this.",
+          "Physics features (hull energy, decomposition, formation energy). In progress: the full Alexandria database is being downloaded so the same physics can be computed for both groups. Reaction-driving-force features come after.",
           "“First reported” means first appearance in the text-mined corpus, not first synthesis. Some compounds counted as new after the cutoff are older, and filtering them needs an experimental structure database.",
           "The novelty check, the property model and the ranking are designed and not built.",
           "Any lab validation. No candidate has been made on the strength of this work.",

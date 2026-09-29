@@ -45,8 +45,8 @@ const openQuestions = [
   },
   {
     q: "Can pooled lab records, including failures, predict what can be made?",
-    s: "Proxy only",
-    d: "Public data has no failed syntheses. On public successes, pooling helps, and far from known materials the model scores above a similarity-only baseline; it passes our stricter test in one of four settings. Needs a partner lab's failure records to test the real claim.",
+    s: "Proxy results",
+    d: "Public data has no failed syntheses. On public successes, pooling helps, and on compounds reported after the training cutoff the model beats both a similarity-only and a size-only baseline in both size-matched settings, on all three random splits tested. Testing the real claim needs a partner lab's failure records.",
   },
   {
     q: "Could training run on a remote quantum computer that sees neither the data nor the model?",
@@ -87,7 +87,7 @@ export default function ResearchPage() {
         ))}
       </ul>
       <p className="mt-6 text-sm text-muted">
-        One paper, still a preprint, by one person. That is the honest size of the track record behind
+        One co-authored paper, still a preprint. That is the honest size of the track record behind
         this, and it is the constraint the company is most aware of.
       </p>
 

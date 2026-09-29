@@ -8,7 +8,7 @@ const nav = [
   { href: "/approach", label: "Approach" },
   { href: "/participate", label: "Participate" },
   { href: "/results", label: "Results" },
-  { href: "/validator", label: "Synthesizability" },
+  { href: "/validator", label: "Validation" },
   { href: "/research", label: "Research" },
   { href: "/careers", label: "Careers" },
 ];

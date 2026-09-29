@@ -106,19 +106,13 @@ body {
    effects, which never need a JS tick.
    --------------------------------------------------------------- */
 
-/* Pre-animation state. Motion.tsx animates these to visible. */
-[data-reveal],
-[data-stagger] > *,
-[data-enter] {
+/* Pre-animation state. Only applied once the inline head script has added
+   .motion to <html>, which it does only when JavaScript runs and the visitor
+   has not asked for reduced motion. Without JS everything is visible at rest. */
+.motion [data-reveal],
+.motion [data-stagger] > *,
+.motion [data-enter] {
   opacity: 0;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  [data-reveal],
-  [data-stagger] > *,
-  [data-enter] {
-    opacity: 1;
-  }
 }
 
 @media (prefers-reduced-motion: no-preference) {

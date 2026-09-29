@@ -97,11 +97,24 @@ export default function ResultsPage() {
         checked independently, and they should be read with that in mind.
       </p>
 
+      <div className="mt-10 grid sm:grid-cols-3 gap-4">
+        {[
+          ["34–40%", "Pooling: less error than the best single lab", "#pooling"],
+          ["3.2×", "Security: time cost of full privacy, no accuracy lost", "#network"],
+          ["6 of 6", "Validation: size-matched runs beating both baselines", "#validator"],
+        ].map(([n, l, href]) => (
+          <a key={n} href={href} className="rounded-xl border border-rule bg-card p-5 hover:border-accent transition-colors">
+            <p className="font-display text-4xl tracking-tight text-accent">{n}</p>
+            <p className="mt-2 text-xs leading-relaxed text-muted">{l}</p>
+          </a>
+        ))}
+      </div>
+
       <div className="mt-10 rounded-lg border border-rule bg-paper-2 p-5 text-sm leading-relaxed text-ink-2">
         <p className="eyebrow mb-3">How to read these numbers</p>
         <ul className="space-y-2">
           <li>
-            <strong className="font-semibold text-ink">Error</strong> is the average distance
+            <strong className="font-semibold text-ink">Error</strong>{" "}is the average distance
             between the model&rsquo;s prediction and the measured value, in the
             property&rsquo;s own units: eV for band gaps, MPa for steel strength. Lower is
             better.
@@ -127,7 +140,7 @@ export default function ResultsPage() {
           <li><a className="link" href="#members">Does joining help each member?</a></li>
           <li><a className="link" href="#finetune">Fine-tuning on one customer&rsquo;s own data</a></li>
           <li><a className="link" href="#security">Security measurements and open gaps</a></li>
-          <li><a className="link" href="#validator">Synthesizability: early proxy results</a></li>
+          <li><a className="link" href="#validator">Validation: which materials can be made</a></li>
         </ol>
       </nav>
 
@@ -313,15 +326,28 @@ export default function ResultsPage() {
         </P>
       </Section>
 
-      <Section id="validator" eyebrow="Research track" title="Synthesizability: early proxy results">
+      <Section id="validator" eyebrow="Validation" title="Validation: which materials can be made">
         <P>
-          A separate research track asks whether pooled lab records, including failed
-          syntheses, can predict which candidate materials can actually be made. It is under
-          test and is not the product. Public data contains no failed syntheses, so every
-          number so far is a proxy.
+          The third part of Synzcuor predicts which candidate materials can actually be made.
+          Public data contains no failed syntheses, so every number so far is a proxy: made
+          compounds against plausible compounds with no record of being made.
         </P>
+        <Table
+          head={["Test", "Result"]}
+          rows={[
+            ["Does pooling successes across simulated labs help?", "Yes: 38–42% fewer ranking errors than the best single lab, in all four settings (threshold 10%)"],
+            ["Is it more than a similarity detector, on compounds reported after the training cutoff?", "Passes in both size-matched settings on all 3 random splits, beating both baselines by 0.15–0.31 AUC. Does not pass in the unmatched settings"],
+          ]}
+        />
+        <Limits
+          items={[
+            "No failure data yet. The real claim, that pooled failure records improve the prediction, needs a partner lab.",
+            "Composition features only so far. Physics features from the full Alexandria database are in progress.",
+            "“First reported” means first appearance in a text-mined corpus, not first synthesis.",
+          ]}
+        />
         <Link href="/validator" className="link mt-4 inline-block text-sm">
-          The synthesizability work, its design and its limits
+          How validation works, the full results and its limits
         </Link>
       </Section>
 

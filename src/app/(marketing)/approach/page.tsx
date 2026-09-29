@@ -120,6 +120,25 @@ export default function ApproachPage() {
         evaluation than in one particular model design.
       </p>
 
+      <h2 className="font-display text-2xl text-ink mt-14">The third part: validation</h2>
+      <p className="mt-4 text-base leading-relaxed text-ink-2">
+        Pooling and security make private data usable. Validation is what that data is most
+        valuable for: predicting which candidate materials can actually be made. The
+        information that answers that question is mostly in failed experiments, and those
+        almost never get published. A lab has little reason to share its failures publicly,
+        but pooled under the same protections, they can train a model no single lab could.
+      </p>
+      <p className="mt-4 text-base leading-relaxed text-ink-2">
+        The design keeps four separate scores: is the material new, is it stable, can it be
+        made, and is it better than what already exists. So a model can&rsquo;t look good by
+        re-proposing known materials. On public data it already beats a pure-similarity
+        baseline on compounds discovered after its training data, in the settings where formula
+        size is controlled for. It has not yet seen a single real failure record.
+      </p>
+      <Link href="/validator" className="link mt-4 inline-block text-sm">
+        How validation works, and what it has shown so far
+      </Link>
+
       <h2 className="font-display text-2xl text-ink mt-14">Quantum computers, and what they change</h2>
       <p className="mt-4 text-base leading-relaxed text-ink-2">
         The key exchange behind secure aggregation is <em>computationally</em> secure: it
@@ -146,6 +165,7 @@ export default function ApproachPage() {
             "The pooling gain has been measured only on public benchmarks with simulated holders. No real lab's data has been through it, and for a strong specialist the pooled model was worse on its own chemistry.",
             "Secure aggregation stops the server from seeing individual updates, which also stops the standard defences against a member submitting a corrupted one. That tension is measured and not solved.",
             "The coordinator does not yet authenticate members, and nothing has run across two physical machines.",
+            "Validation has been tested only on public proxies. No failed-synthesis records have been used yet, and that is its central claim.",
             "There is no demonstrated real-world advantage for quantum machine learning as of 2026. We do not claim a quantum model would be more accurate. The possible benefit is a privacy guarantee that does not depend on computational assumptions.",
             "Quantum generative models do not beat classical diffusion and flow models at crystal generation. Classical leads.",
             "Quantum hardware able to run those protocols is a roadmap projection, not a commitment.",

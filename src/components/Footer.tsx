@@ -25,7 +25,7 @@ export default function Footer() {
             <li><Link href="/approach" className="hover:text-ink transition-colors">Approach</Link></li>
             <li><Link href="/participate" className="hover:text-ink transition-colors">Participate</Link></li>
             <li><Link href="/results" className="hover:text-ink transition-colors">Results</Link></li>
-            <li><Link href="/validator" className="hover:text-ink transition-colors">Synthesizability</Link></li>
+            <li><Link href="/validator" className="hover:text-ink transition-colors">Validation</Link></li>
             <li><Link href="/research" className="hover:text-ink transition-colors">Research</Link></li>
           </ul>
         </div>

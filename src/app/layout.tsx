@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   ),
   title: "synzcuor — private machine learning for materials R&D",
   description:
-    "Models trained on materials measurement data without the data leaving its owner: first inside one company, then shared across companies. Early stage; results on public data only.",
+    "AI for materials R&D in three parts: pooling data across companies, security so it never leaves its owner, and validation that predicts which materials can be made. Early stage; results on public data only.",
 };
 
 export default function RootLayout({
@@ -39,13 +39,20 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${inter.variable} ${newsreader.variable} ${jetbrains.variable} h-full`}
     >
+      <head>
+        {/* Mark the page as animating before first paint, so reveal targets start hidden
+            only when Motion.tsx will actually run. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('motion')",
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col">
-        <noscript>
-          {/* Motion.tsx never runs, so unhide what globals.css hid for it. */}
-          <style>{`[data-reveal],[data-stagger] > *,[data-enter]{opacity:1}`}</style>
-        </noscript>
         {children}
       </body>
     </html>

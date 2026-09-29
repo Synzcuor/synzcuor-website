@@ -1,56 +1,120 @@
 import React from "react";
 import Link from "next/link";
 import FederationDiagram from "../../components/FederationDiagram";
+import HeroNetwork from "../../components/HeroNetwork";
+import PillarIcon from "../../components/PillarIcon";
 
 export default function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative border-b border-rule">
+      <section className="relative border-b border-rule overflow-hidden">
         <div className="absolute inset-0 grid-paper pointer-events-none" aria-hidden="true" />
-        <div className="relative max-w-6xl mx-auto px-6 pt-20 pb-24">
-          <p data-enter className="eyebrow mb-6">Private federated learning for materials R&D</p>
-          <h1 data-enter className="font-display text-4xl sm:text-5xl md:text-6xl leading-[1.08] tracking-tight text-ink max-w-4xl">
-            Public materials data is mostly computed.
-            <span className="block text-muted italic mt-2">
-              The measured data stays inside the companies that paid for it.
-            </span>
-          </h1>
-          <p data-enter className="mt-8 text-lg leading-relaxed text-ink-2 max-w-2xl">
-            Large public databases hold millions of simulated materials. Measured
-            properties, such as how well a battery electrolyte actually conducts, are much
-            scarcer, and the best of them sit inside companies and labs that cannot share
-            them, because that data is a competitive asset. So a company&rsquo;s own
-            models are usually trained on public simulations plus its own small set of
-            measurements.
-          </p>
-          <p data-enter className="mt-5 text-lg leading-relaxed text-ink-2 max-w-2xl">
-            We train models on that data{" "}
-            <strong className="font-semibold text-ink">
-              without the data ever leaving its owner
-            </strong>
-            : first inside one company&rsquo;s own walls, then as a shared model across
-            companies.
-          </p>
+        <div className="relative max-w-6xl mx-auto px-6 pt-16 pb-20 lg:pt-24 lg:pb-28 grid lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-8 items-center">
+          <div>
+            <p data-enter className="eyebrow mb-6">AI for materials R&amp;D · pooling · security · validation</p>
+            <h1 data-enter className="font-display text-4xl sm:text-5xl lg:text-[3.6rem] leading-[1.06] tracking-tight text-ink">
+              Public materials data is mostly computed.
+              <span className="block text-accent italic mt-3">
+                The measured data stays inside the companies that paid for it.
+              </span>
+            </h1>
+            <p data-enter className="mt-8 text-lg leading-relaxed text-ink-2 max-w-xl">
+              We train models on that measured data{" "}
+              <strong className="font-semibold text-ink">without it ever leaving its owner</strong>
+              , first inside one company, then across many. And we use it to predict which new
+              materials can actually be made.
+            </p>
 
-          <div data-enter className="mt-10 flex flex-wrap gap-3">
-            <Link
-              href="/participate"
-              className="px-5 py-2.5 rounded-md bg-ink text-paper text-sm font-medium hover:bg-accent transition-colors"
-            >
-              For research groups
-            </Link>
-            <Link
-              href="/approach"
-              className="px-5 py-2.5 rounded-md border border-rule bg-card text-ink text-sm font-medium hover:border-accent hover:text-accent transition-colors"
-            >
-              How it works
+            <div data-enter className="mt-9 flex flex-wrap gap-3">
+              <Link
+                href="/contact"
+                className="px-5 py-3 rounded-md bg-ink text-paper text-sm font-medium hover:bg-accent transition-colors"
+              >
+                Start a conversation
+              </Link>
+              <Link
+                href="/results"
+                className="px-5 py-3 rounded-md border border-rule bg-card text-ink text-sm font-medium hover:border-accent hover:text-accent transition-colors"
+              >
+                See what&rsquo;s measured
+              </Link>
+            </div>
+
+            <p data-enter className="mt-9 font-mono text-xs text-muted">
+              Pre-seed · pre-product · team forming · public-data results only
+            </p>
+          </div>
+          <div data-enter>
+            <HeroNetwork />
+          </div>
+        </div>
+      </section>
+
+      {/* Proof band */}
+      <section className="bg-ink text-paper">
+        <div className="max-w-6xl mx-auto px-6 py-16">
+          <div data-stagger className="grid md:grid-cols-3 gap-10 md:gap-8">
+            {[
+              ["34–40%", "less prediction error when simulated labs pool their data, compared with the best single lab"],
+              ["3.2×", "the time cost of full privacy over a real network, with no measurable loss in accuracy"],
+              ["6 of 6", "size-matched validation runs where the model beats both simple baselines on newly reported compounds"],
+            ].map(([n, l]) => (
+              <div key={n} className="space-y-3">
+                <p className="font-display text-5xl lg:text-6xl tracking-tight text-[#8fd0c7]">{n}</p>
+                <p className="text-sm leading-relaxed text-[#c9cdd2] max-w-xs">{l}</p>
+              </div>
+            ))}
+          </div>
+          <div data-reveal className="mt-12 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+            <p className="text-xs text-[#9aa0a6] max-w-2xl">
+              All measured on public benchmark data with simulated labs. No company&rsquo;s data has
+              been through it yet, and every number comes with its setup and limits.
+            </p>
+            <Link href="/results" className="text-sm font-medium text-[#8fd0c7] hover:text-white transition-colors">
+              All results and their limits &rarr;
             </Link>
           </div>
+        </div>
+      </section>
 
-          <p data-enter className="mt-10 font-mono text-xs text-muted">
-            Pre-seed · pre-product · one person · nothing shipped yet
-          </p>
+      {/* Three parts */}
+      <section className="max-w-6xl mx-auto px-6 py-20 border-b border-rule">
+        <p data-reveal className="eyebrow mb-4">What we build</p>
+        <h2 data-reveal className="font-display text-3xl sm:text-4xl tracking-tight text-ink max-w-3xl">
+          Three parts, each needed for the others to be worth anything
+        </h2>
+        <div data-stagger className="mt-10 grid md:grid-cols-3 gap-5">
+          {[
+            {
+              h: "Pooling",
+              p: "One shared model that learns from many companies' measurements, so each gets a model better than it could build alone.",
+              st: "34–40% less error than the best single lab, on public benchmarks",
+              href: "/results#pooling",
+            },
+            {
+              h: "Security",
+              p: "The data never leaves its owner. Updates are masked, so nobody, including us, sees any one company's contribution.",
+              st: "Working over a real network; its limits stated openly",
+              href: "/approach",
+            },
+            {
+              h: "Validation",
+              p: "Predicting which new materials can actually be made, learning from lab records that are rarely published, especially failures.",
+              st: "Earliest part: public proxies only, no failure data yet",
+              href: "/validator",
+            },
+          ].map((c) => (
+            <Link key={c.h} href={c.href} className="group rounded-xl border border-rule bg-card p-7 hover:border-accent hover:shadow-[0_8px_30px_-12px_rgba(15,92,87,0.25)] transition-all">
+              <PillarIcon kind={c.h} />
+              <h3 className="mt-5 font-display text-2xl text-ink group-hover:text-accent transition-colors">{c.h}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-ink-2">{c.p}</p>
+              <p className="mt-5 pt-4 border-t border-rule text-xs leading-relaxed text-muted">
+                <span className="font-mono uppercase tracking-wider text-[10px] text-accent mr-2">Status</span>
+                {c.st}
+              </p>
+            </Link>
+          ))}
         </div>
       </section>
 
@@ -175,9 +239,9 @@ export default function HomePage() {
               p: "The same client software, joined to others under secure aggregation. This is where a shared model can learn from data no single company has.",
             },
             {
-              n: "Research",
-              h: "Which candidates can be made",
-              p: "A track under test, not a commitment: using lab records that are rarely published, especially failed syntheses, to predict which candidate materials can actually be made.",
+              n: "Alongside both",
+              h: "Validation",
+              p: "Scoring which candidate materials can actually be made, trained on lab records, failed syntheses included. It starts on public data and improves as partners contribute records.",
             },
           ].map((c) => (
             <div key={c.n} className="space-y-3">
@@ -188,7 +252,7 @@ export default function HomePage() {
           ))}
         </div>
         <Link href="/validator" className="link mt-8 inline-block text-sm">
-          The synthesizability research track
+          How validation works, and what it has shown so far
         </Link>
       </section>
 
