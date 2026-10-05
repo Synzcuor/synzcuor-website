@@ -13,17 +13,9 @@ const people = [
     initials: "JC",
     name: "Jeremy Chang",
     role: "Founder & CEO",
-    bio: "Leads product, research direction and fundraising. Co-author of SH-QGAN, a hybrid quantum-classical generative model for crystal structures (preprint, in revision after peer review). Built Synzcuor's pooling benchmark, private training over a network, and the first validation model.",
-    owns: ["Vision and product", "Validation research", "Fundraising and partnerships"],
+    bio: "Leads product, research direction and fundraising. Co-author of SH-QGAN, a hybrid quantum-classical generative model for crystal structures (preprint, in revision after peer review). Built all of Synzcuor so far: the validator and the harness that tests it, the pooling benchmark, and private training over a network.",
+    owns: ["The validator", "Private pooling and security", "Partnerships and fundraising"],
     link: "",
-  },
-  {
-    initials: "HD",
-    name: "Hitarth Dangra",
-    role: "Head of Engineering",
-    bio: "Leads engineering: the implementation of pooling and security, and the deployment of the client into customer environments.",
-    owns: ["Private training system", "Security and deployment", "Engineering hiring"],
-    link: "https://www.linkedin.com/in/hitarth-dangra-2779643ab/",
   },
 ];
 
@@ -42,8 +34,8 @@ export default function TeamPage() {
         The people building Synzcuor
       </h1>
       <p className="mt-6 text-lg leading-relaxed text-ink-2 max-w-2xl">
-        A small team covering the three components: pooling, security and validation. We are
-        hiring for go-to-market and for each engineering discipline the product depends on.
+        A solo founder for now, building the validator and the private pooling that feeds it.
+        We are hiring for go-to-market and for each engineering discipline the product depends on.
       </p>
 
       <div className="mt-14 grid md:grid-cols-2 gap-6">
