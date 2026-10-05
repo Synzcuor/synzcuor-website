@@ -5,10 +5,10 @@ import Link from "next/link";
 import Mark from "./Mark";
 
 const nav = [
+  { href: "/validator", label: "Validator" },
+  { href: "/results", label: "Results" },
   { href: "/approach", label: "Approach" },
   { href: "/participate", label: "Participate" },
-  { href: "/results", label: "Results" },
-  { href: "/validator", label: "Validation" },
   { href: "/research", label: "Research" },
   { href: "/team", label: "Team" },
   { href: "/careers", label: "Careers" },

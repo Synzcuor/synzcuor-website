@@ -117,7 +117,7 @@ export default function ApproachPage() {
         not in any single design.
       </p>
 
-      <h2 className="font-display text-2xl text-ink mt-14">The third part: validation</h2>
+      <h2 className="font-display text-2xl text-ink mt-14">The core: validation</h2>
       <p className="mt-4 text-base leading-relaxed text-ink-2">
         Pooling and security make private data usable. Validation is its most valuable
         application: predicting which candidate materials can be synthesised. The information

@@ -254,7 +254,7 @@ export default function ResultsPage() {
         </P>
       </Section>
 
-      <Section id="finetune" eyebrow="Phase 1" title="Fine-tuning on a single customer’s data">
+      <Section id="finetune" eyebrow="Single laboratory" title="Fine-tuning on a single customer’s data">
         <P>
           Before any pool exists, the question is simpler: does further training of a publicly
           trained model on one customer&rsquo;s small dataset (&ldquo;fine-tuning&rdquo;)
@@ -286,7 +286,7 @@ export default function ResultsPage() {
         </P>
         <Limits
           items={[
-            "Band gap and steel strength stand in for ionic conductivity, the property Phase 1 is aimed at. No conductivity data has been used yet.",
+            "Band gap and steel strength stand in for ionic conductivity, the property the first battery pilots are aimed at. No conductivity data has been used yet.",
             "The starting model is trained on public MatBench data, not a real pretrained materials model.",
             "No pass threshold has been set for this measurement; the acceptance criterion for a customer is not yet defined.",
           ]}
@@ -323,7 +323,7 @@ export default function ResultsPage() {
 
       <Section id="validator" eyebrow="Validation" title="Which materials can be synthesised?">
         <P>
-          The third part of Synzcuor predicts which candidate materials can be synthesised.
+          The core of Synzcuor predicts which candidate materials can be synthesised.
           Public data contains no failed syntheses, so all results are proxies: synthesised
           compounds compared with plausible compounds that have no record of synthesis.
         </P>

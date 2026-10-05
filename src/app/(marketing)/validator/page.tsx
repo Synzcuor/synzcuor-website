@@ -6,7 +6,7 @@ import ValidationPipeline from "../../../components/ValidationPipeline";
 export const metadata: Metadata = {
   title: "Validation — synzcuor",
   description:
-    "The third part of Synzcuor: predicting which candidate materials can be synthesised, using laboratory records that are rarely published. Design, results and limitations.",
+    "The core of Synzcuor: predicting which candidate materials can be synthesised, using laboratory records that are rarely published. Design, results and limitations.",
 };
 
 function Table({ head, rows, caption }: { head: string[]; rows: (string | React.ReactNode)[][]; caption?: string }) {

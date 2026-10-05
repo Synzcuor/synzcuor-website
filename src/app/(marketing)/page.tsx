@@ -12,18 +12,17 @@ export default function HomePage() {
         <div className="absolute inset-0 grid-paper pointer-events-none" aria-hidden="true" />
         <div className="relative max-w-6xl mx-auto px-6 pt-16 pb-20 lg:pt-24 lg:pb-28 grid lg:grid-cols-[1.15fr_1fr] gap-12 lg:gap-8 items-center">
           <div>
-            <p data-enter className="eyebrow mb-6">AI for materials R&amp;D · pooling · security · validation</p>
+            <p data-enter className="eyebrow mb-6">AI for materials R&amp;D · validation · pooling · security</p>
             <h1 data-enter className="font-display text-4xl sm:text-5xl lg:text-[3.6rem] leading-[1.06] tracking-tight text-ink">
-              Public materials data is mostly computed.
+              AI designs materials faster than labs can make them.
               <span className="block text-accent italic mt-3">
-                The measured data stays inside the companies that paid for it.
+                Synzcuor predicts which ones can actually be made.
               </span>
             </h1>
             <p data-enter className="mt-8 text-lg leading-relaxed text-ink-2 max-w-xl">
-              Synzcuor trains machine-learning models on this data{" "}
-              <strong className="font-semibold text-ink">without it leaving its owner</strong>
-              , first within one company and then across many, and uses it to predict which new
-              materials can be synthesised.
+              The answer is in failed syntheses, and laboratories never publish them. Synzcuor&rsquo;s
+              validator learns from them where they live, pooled across laboratories{" "}
+              <strong className="font-semibold text-ink">without any data leaving its owner</strong>.
             </p>
 
             <div data-enter className="mt-9 flex flex-wrap gap-3">
@@ -56,9 +55,9 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-6 py-16">
           <div data-stagger className="grid md:grid-cols-3 gap-10 md:gap-8">
             {[
+              ["6 of 6", "size-matched validation runs in which the model outperforms both baselines on newly reported compounds"],
               ["34–40%", "reduction in prediction error from pooling, relative to the best single laboratory"],
               ["3.2×", "training-time overhead of secure aggregation over a network, with no measurable loss of accuracy"],
-              ["6 of 6", "size-matched validation runs in which the model outperforms both baselines on newly reported compounds"],
             ].map(([n, l]) => (
               <div key={n} className="space-y-3">
                 <p className="font-display text-5xl lg:text-6xl tracking-tight text-[#8fd0c7]">{n}</p>
@@ -78,31 +77,56 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* The gap */}
+      <section className="max-w-6xl mx-auto px-6 py-20 border-b border-rule">
+        <p data-reveal className="eyebrow mb-4">The gap</p>
+        <h2 data-reveal className="font-display text-3xl sm:text-4xl tracking-tight text-ink max-w-3xl">
+          The field is optimising the wrong step
+        </h2>
+        <p data-reveal className="mt-5 text-base leading-relaxed text-ink-2 max-w-2xl">
+          Generative models keep improving on simulation benchmarks. Simulations can say a crystal
+          should exist; only a laboratory can say it can be made, and synthesis is where the weeks
+          are lost.
+        </p>
+        <div data-stagger className="mt-10 grid md:grid-cols-3 gap-10 md:gap-8">
+          {[
+            ["380,000", "stable crystals predicted by Google DeepMind's GNoME (2023)"],
+            ["736", "of them made independently by laboratories at the time of publication"],
+            ["~4 in 10", "designs from the best-known generative models that pass simulation checks for stability and novelty, which never test whether a laboratory can make them"],
+          ].map(([n, l]) => (
+            <div key={n} className="space-y-3">
+              <p className="font-display text-5xl tracking-tight text-accent">{n}</p>
+              <p className="text-sm leading-relaxed text-muted max-w-xs">{l}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Three parts */}
       <section className="max-w-6xl mx-auto px-6 py-20 border-b border-rule">
         <p data-reveal className="eyebrow mb-4">What we build</p>
         <h2 data-reveal className="font-display text-3xl sm:text-4xl tracking-tight text-ink max-w-3xl">
-          Three components, each dependent on the others
+          A validator, fed by private pooling
         </h2>
         <div data-stagger className="mt-10 grid md:grid-cols-3 gap-5">
           {[
             {
+              h: "Validation",
+              p: "Predicts which candidate materials can be synthesised, learning from the laboratory records nobody publishes: failed experiments.",
+              st: "Beats both baselines in 6 of 6 size-matched runs on public data; no failure data yet",
+              href: "/validator",
+            },
+            {
               h: "Pooling",
-              p: "A shared model trained on many companies' measurements, more accurate than any single company could build alone.",
+              p: "How the validator gets its data. Every laboratory's attempts, failures included, train one shared model that no single laboratory could build alone.",
               st: "34–40% lower error than the best single laboratory, on public benchmarks",
               href: "/results#pooling",
             },
             {
               h: "Security",
-              p: "Data never leaves its owner. Model updates are masked, so no party, Synzcuor included, can see an individual contribution.",
+              p: "Why laboratories can contribute. Data never leaves its owner; updates are masked, so no party, Synzcuor included, sees an individual contribution.",
               st: "Demonstrated over a network; limitations documented",
               href: "/approach",
-            },
-            {
-              h: "Validation",
-              p: "Predicts which candidate materials can be synthesised, learning from laboratory records that are rarely published, particularly failed experiments.",
-              st: "Earliest stage: tested on public proxies only; no failure data yet",
-              href: "/validator",
             },
           ].map((c) => (
             <Link key={c.h} href={c.href} className="group rounded-xl border border-rule bg-card p-7 hover:border-accent hover:shadow-[0_8px_30px_-12px_rgba(15,92,87,0.25)] transition-all">
@@ -222,24 +246,24 @@ export default function HomePage() {
       <section className="max-w-6xl mx-auto px-6 py-20 border-b border-rule">
         <p data-reveal className="eyebrow mb-4">Where it starts</p>
         <h2 data-reveal className="font-display text-3xl sm:text-4xl tracking-tight text-ink max-w-3xl">
-          A single company first, then a shared model
+          Batteries first. Then anything made by solid-state synthesis.
         </h2>
         <div data-stagger className="mt-10 grid md:grid-cols-3 gap-10">
           {[
             {
-              n: "Phase 1",
-              h: "Private fine-tuning, on-prem",
-              p: "A model fine-tuned on one company's measurements, on its own machines. Initial market: solid-state battery electrolytes, where measured ionic-conductivity data is scarce and proprietary. Tested so far only on public stand-in datasets; with too little data, fine-tuning can reduce accuracy.",
+              n: "Now",
+              h: "The validator on public data",
+              p: "Trained on published syntheses and tested on compounds first reported after its training cutoff. It runs today as research code.",
             },
             {
-              n: "Phase 2",
-              h: "Pooling across companies",
-              p: "The same client software, connected to other participants through secure aggregation, so that a shared model can learn from data no single company holds.",
+              n: "Next",
+              h: "A first laboratory's own records",
+              p: "Installed on the laboratory's machines and trained on its own attempts, failures included. Initial market: solid-state battery electrolytes.",
             },
             {
-              n: "Alongside both",
-              h: "Validation",
-              p: "Scores which candidate materials can be synthesised, trained on laboratory records including failed syntheses. It begins on public data and improves as partners contribute records.",
+              n: "Then",
+              h: "Pooled across laboratories",
+              p: "Every laboratory's failures improve everyone's validator, through secure aggregation. The same problem extends to semiconductor materials, catalysts, alloys, magnets and ceramics.",
             },
           ].map((c) => (
             <div key={c.n} className="space-y-3">
@@ -268,7 +292,7 @@ export default function HomePage() {
             },
             {
               h: "Neutrality",
-              p: "Competitors that pool data still require a neutral operator. Establishing one among themselves is a governance burden few are willing to take on.",
+              p: "Laboratories will not hand their failures to a company racing them to the same discoveries. Synzcuor does not run its own discovery programme; it serves the laboratories that do.",
             },
             {
               h: "The mechanism is open",
@@ -298,7 +322,7 @@ export default function HomePage() {
                 ["Company", "Not incorporated"],
                 ["Funding", "None"],
                 ["Customers", "None; no agreements signed"],
-                ["Team", "Founder and Head of Engineering; hiring"],
+                ["Team", "Solo founder; hiring"],
               ].map(([k, v]) => (
                 <div key={k} className="space-y-1.5">
                   <span className="eyebrow block">{k}</span>
@@ -307,12 +331,12 @@ export default function HomePage() {
               ))}
             </div>
             <p className="mt-8 text-sm leading-relaxed text-ink-2 max-w-2xl">
-              What exists: the research, a co-authored preprint (in revision after peer review),
-              and benchmark code that is not yet public. On public data, pooling cleared its
-              predefined threshold, and private training ran across separate processes with secure
-              aggregation. No proprietary data has been used. The next milestone is a first design
-              partner among battery R&amp;D teams. If real data shows that pooling or fine-tuning
-              does not help materially, we will publish that result and stop.
+              What exists: a co-authored preprint (in revision after peer review), a validator
+              that beats both baselines on newly reported compounds in every size-matched run, and
+              private pooling that runs over a network. All on public data; no proprietary data
+              has been used, and the validator has no failure data yet. The next milestone is a
+              first laboratory contributing its attempt records. If real records do not improve
+              the validator, we will publish that result and stop.
             </p>
             <div className="mt-5 flex flex-wrap gap-5 text-sm">
               <Link href="/results" className="link">
@@ -331,12 +355,12 @@ export default function HomePage() {
         <div data-reveal className="rounded-lg border border-rule bg-card p-8 md:p-12 flex flex-col md:flex-row md:items-center justify-between gap-8">
           <div className="max-w-xl">
             <h2 className="font-display text-2xl sm:text-3xl tracking-tight text-ink">
-              Working with battery R&amp;D teams and research laboratories
+              Working with synthesis laboratories and battery R&amp;D teams
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-muted">
-              We are seeking a first design partner for a free pilot on its own data, and
-              laboratories with measured or synthesis data. Well-argued criticism of the approach
-              is equally welcome.
+              We are seeking a first laboratory to run the validator on its own attempt records,
+              failures included, in a free pilot on its own machines. Well-argued criticism of the
+              approach is equally welcome.
             </p>
           </div>
           <Link
