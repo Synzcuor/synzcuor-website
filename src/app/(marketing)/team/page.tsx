@@ -3,8 +3,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Team — synzcuor",
-  description: "The people building synzcuor, what each is responsible for, and the roles we are hiring for.",
+  title: "Team — Synzcuor",
+  description: "The people building Synzcuor, what each is responsible for, and the roles we are hiring for.",
 };
 
 // An empty name renders as the role alone; an empty link hides the LinkedIn link.
@@ -13,7 +13,7 @@ const people = [
     initials: "JC",
     name: "Jeremy Chang",
     role: "Founder & CEO",
-    bio: "Leads product, research direction and fundraising. Co-author of SH-QGAN, a hybrid quantum-classical generative model for crystal structures (preprint, in revision after peer review). Built all of synzcuor so far: the validator and the harness that tests it, the pooling benchmark, and private training over a network.",
+    bio: "Leads product, research direction and fundraising. Co-author of SH-QGAN, a hybrid quantum-classical generative model for crystal structures (preprint, in revision after peer review). Built all of Synzcuor so far: the validator and the harness that tests it, the pooling benchmark, and private training over a network.",
     owns: ["The validator", "Private pooling and security", "Partnerships and fundraising"],
     link: "",
   },
@@ -31,7 +31,7 @@ export default function TeamPage() {
     <div className="max-w-5xl mx-auto px-6 py-20">
       <p className="eyebrow mb-5">Team</p>
       <h1 className="font-display text-4xl sm:text-5xl leading-tight tracking-tight text-ink max-w-3xl">
-        The people building synzcuor
+        The people building Synzcuor
       </h1>
       <p className="mt-6 text-lg leading-relaxed text-ink-2 max-w-2xl">
         A solo founder for now, building the validator and the private pooling that feeds it.

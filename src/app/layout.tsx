@@ -26,7 +26,7 @@ export const metadata: Metadata = {
         ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
         : "http://localhost:3000"),
   ),
-  title: "synzcuor — predicting which new materials can be made",
+  title: "Synzcuor — predicting which new materials can be made",
   description:
     "A validator that predicts which AI-designed materials can actually be made, trained on failed syntheses pooled across laboratories without any data leaving its owner. Early stage; results on public data only.",
 };

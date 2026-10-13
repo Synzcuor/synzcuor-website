@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Careers — synzcuor",
+  title: "Careers — Synzcuor",
   description:
     "Open conversations rather than posted roles: what each role involves, what is on offer, and the risks.",
 };

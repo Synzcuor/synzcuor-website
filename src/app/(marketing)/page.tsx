@@ -16,11 +16,11 @@ export default function HomePage() {
             <h1 data-enter className="font-display text-4xl sm:text-5xl lg:text-[3.6rem] leading-[1.06] tracking-tight text-ink">
               AI designs materials faster than labs can make them.
               <span className="block text-accent italic mt-3">
-                synzcuor predicts which ones can actually be made.
+                Synzcuor predicts which ones can actually be made.
               </span>
             </h1>
             <p data-enter className="mt-8 text-lg leading-relaxed text-ink-2 max-w-xl">
-              The answer is in failed syntheses, and laboratories never publish them. synzcuor&rsquo;s
+              The answer is in failed syntheses, and laboratories never publish them. Synzcuor&rsquo;s
               validator learns from them where they live, pooled across laboratories{" "}
               <strong className="font-semibold text-ink">without any data leaving its owner</strong>.
             </p>
@@ -124,7 +124,7 @@ export default function HomePage() {
             },
             {
               h: "Security",
-              p: "Why laboratories can contribute. Data never leaves its owner; updates are masked, so no party, synzcuor included, sees an individual contribution.",
+              p: "Why laboratories can contribute. Data never leaves its owner; updates are masked, so no party, Synzcuor included, sees an individual contribution.",
               st: "Demonstrated over a network; limitations documented",
               href: "/approach",
             },
@@ -209,7 +209,7 @@ export default function HomePage() {
                   "Your fine-tuned model and all of its outputs",
                   "All discoveries made with it; we claim no downstream rights",
                   "A permanent copy for offline use",
-                  "An escrow claim on the shared component if synzcuor fails or is acquired by a competitor",
+                  "An escrow claim on the shared component if Synzcuor fails or is acquired by a competitor",
                 ].map((t) => (
                   <li key={t} className="flex gap-2.5">
                     <span className="text-accent mt-0.5">—</span>
@@ -292,7 +292,7 @@ export default function HomePage() {
             },
             {
               h: "Neutrality",
-              p: "Laboratories will not hand their failures to a company racing them to the same discoveries. synzcuor does not run its own discovery programme; it serves the laboratories that do.",
+              p: "Laboratories will not hand their failures to a company racing them to the same discoveries. Synzcuor does not run its own discovery programme; it serves the laboratories that do.",
             },
             {
               h: "The mechanism is open",

@@ -41,7 +41,7 @@ export default function Footer() {
       </div>
 
       <div className="max-w-6xl mx-auto px-6 py-6 border-t border-rule flex flex-col sm:flex-row justify-between gap-3 text-xs text-muted">
-        <span>&copy; {new Date().getFullYear()} synzcuor</span>
+        <span>&copy; {new Date().getFullYear()} Synzcuor</span>
         <span className="font-mono">Pre-seed. Not yet incorporated.</span>
       </div>
     </footer>

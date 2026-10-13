@@ -3,13 +3,13 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Participate — synzcuor",
+  title: "Participate — Synzcuor",
   description:
-    "What participation involves, what you own, what synzcuor holds, and what happens if you leave.",
+    "What participation involves, what you own, what Synzcuor holds, and what happens if you leave.",
 };
 
 const give = [
-  ["Data", "Made available to a training process that runs inside your own environment. It is never transferred, copied or stored by synzcuor."],
+  ["Data", "Made available to a training process that runs inside your own environment. It is never transferred, copied or stored by Synzcuor."],
   ["Compute", "Sufficient to run local training. The models tested so far train on a standard workstation."],
   ["A technical contact", "One person able to install the client and answer questions about the data."],
 ];
@@ -17,7 +17,7 @@ const give = [
 const get = [
   ["Your own model", "The shared encoder with a final layer fitted privately on your data, retrained regularly."],
   ["An independent measurement", "Your pooled model compared with a model trained on your data alone, scored on your own data. In simulation, the strongest specialist performed worse with pooling, so the result may be negative. It is reported to you regardless."],
-  ["All downstream results", "Every prediction, candidate and discovery made with your model. synzcuor claims no interest in them."],
+  ["All downstream results", "Every prediction, candidate and discovery made with your model. Synzcuor claims no interest in them."],
   ["Publication rights", "Nothing restricts you from publishing your own research. Academic groups are offered co-authorship on the methods work."],
   ["Input on the roadmap", "Which properties, architectures and datasets to prioritise, and how often models are released."],
 ];
@@ -75,11 +75,11 @@ export default function ParticipatePage() {
           },
           {
             q: "Who owns the model?",
-            a: "You own your fine-tuned model and everything you produce with it. The shared encoder, trained across all participants, is held by synzcuor as neutral custodian, because no single participant can hold it without the others' trust.",
+            a: "You own your fine-tuned model and everything you produce with it. The shared encoder, trained across all participants, is held by Synzcuor as neutral custodian, because no single participant can hold it without the others' trust.",
           },
           {
             q: "What if you go out of business, or get acquired by our competitor?",
-            a: "We propose that the shared encoder is held in escrow and released to you if synzcuor becomes insolvent, is acquired by one of your competitors, or fails to deliver a retrained model. This would be included in the first draft of the agreement.",
+            a: "We propose that the shared encoder is held in escrow and released to you if Synzcuor becomes insolvent, is acquired by one of your competitors, or fails to deliver a retrained model. This would be included in the first draft of the agreement.",
           },
           {
             q: "What happens to our contribution if we leave?",

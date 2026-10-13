@@ -4,9 +4,9 @@ import type { Metadata } from "next";
 import ValidationPipeline from "../../../components/ValidationPipeline";
 
 export const metadata: Metadata = {
-  title: "Validation — synzcuor",
+  title: "Validation — Synzcuor",
   description:
-    "The core of synzcuor: predicting which candidate materials can be synthesised, using laboratory records that are rarely published. Design, results and limitations.",
+    "The core of Synzcuor: predicting which candidate materials can be synthesised, using laboratory records that are rarely published. Design, results and limitations.",
 };
 
 function Table({ head, rows, caption }: { head: string[]; rows: (string | React.ReactNode)[][]; caption?: string }) {
@@ -68,7 +68,7 @@ export default function ValidatorPage() {
           Status
         </p>
         <p className="text-sm leading-relaxed text-ink-2">
-          Validation is the core of synzcuor; pooling supplies the failure data and
+          Validation is the core of Synzcuor; pooling supplies the failure data and
           security is why laboratories contribute it. It is also early. Everything measured so far uses public data,
           which contains no failed syntheses. Whether R&amp;D teams find failed syntheses costly
           enough to pay to avoid them, and whether laboratories will contribute their records, must be established in our first conversations.

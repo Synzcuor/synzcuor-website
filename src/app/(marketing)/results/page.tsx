@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Results — synzcuor",
+  title: "Results — Synzcuor",
   description:
     "All results measured so far, on public data, with their methods and limitations.",
 };
@@ -323,7 +323,7 @@ export default function ResultsPage() {
 
       <Section id="validator" eyebrow="Validation" title="Which materials can be synthesised?">
         <P>
-          The core of synzcuor predicts which candidate materials can be synthesised.
+          The core of Synzcuor predicts which candidate materials can be synthesised.
           Public data contains no failed syntheses, so all results are proxies: synthesised
           compounds compared with plausible compounds that have no record of synthesis.
         </P>

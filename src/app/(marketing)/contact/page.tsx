@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import InterestForm from "../../../components/InterestForm";
 
 export const metadata: Metadata = {
-  title: "Contact — synzcuor",
-  description: "Contact synzcuor: design partners, research laboratories, investors and prospective team members.",
+  title: "Contact — Synzcuor",
+  description: "Contact Synzcuor: design partners, research laboratories, investors and prospective team members.",
 };
 
 // TODO: set this to the real address before launch.
