@@ -6,7 +6,7 @@ import FederationDiagram from "../../../components/FederationDiagram";
 export const metadata: Metadata = {
   title: "Approach — synzcuor",
   description:
-    "How Synzcuor pools data, keeps it private and predicts what can be made, and what remains unproven.",
+    "How synzcuor pools data, keeps it private and predicts what can be made, and what remains unproven.",
 };
 
 export default function ApproachPage() {
