@@ -6,7 +6,6 @@ type Role =
   | "academic_group"
   | "industrial_rnd"
   | "engineer"
-  | "cofounder"
   | "investor"
   | "other";
 
@@ -14,7 +13,6 @@ const roles: { value: Role; label: string }[] = [
   { value: "academic_group", label: "Academic research group with data" },
   { value: "industrial_rnd", label: "Industrial R&D (materials, chemicals, batteries, semiconductors)" },
   { value: "engineer", label: "Engineer or scientist interested in joining" },
-  { value: "cofounder", label: "Potential co-founder" },
   { value: "investor", label: "Investor" },
   { value: "other", label: "Other" },
 ];
@@ -178,7 +176,7 @@ export default function InterestForm() {
         {pending ? "Sending…" : "Send"}
       </button>
       <p className="text-xs text-muted">
-        Your message goes directly to the founder. No newsletter or automated follow-up.
+        Your message goes directly to the founders. No newsletter or automated follow-up.
       </p>
     </form>
   );

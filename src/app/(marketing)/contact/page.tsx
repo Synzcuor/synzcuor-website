@@ -18,7 +18,7 @@ export default function ContactPage() {
         Contact
       </h1>
       <p className="mt-6 text-lg leading-relaxed text-ink-2">
-        Every message is read and answered by the founder.
+        Every message is read and answered by a founder.
       </p>
 
       <div className="mt-12 grid md:grid-cols-[1fr_240px] gap-12 items-start">

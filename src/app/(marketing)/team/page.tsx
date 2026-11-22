@@ -13,7 +13,7 @@ const people = [
     initials: "JC",
     name: "Jeremy Chang",
     role: "Founder & CEO",
-    bio: "Leads product, research direction and fundraising. Co-author of SH-QGAN, a hybrid quantum-classical generative model for crystal structures (preprint, in revision after peer review). Built all of Synzcuor so far: the validator and the harness that tests it, the pooling benchmark, and private training over a network.",
+    bio: "Leads product, research direction and fundraising. Co-author of SH-QGAN, a hybrid quantum-classical generative model for crystal structures (preprint, in revision after peer review). Built the first version of Synzcuor: the validator and the harness that tests it, the pooling benchmark, and private training over a network.",
     owns: ["The validator", "Private pooling and security", "Partnerships and fundraising"],
     link: "",
   },

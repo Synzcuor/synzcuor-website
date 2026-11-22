@@ -46,18 +46,6 @@ const roles = [
     not: "A research degree is welcome but not required; published or open-source work counts.",
   },
   {
-    title: "Co-founder: Go-to-Market, Operations & Marketing",
-    status: "Open conversation",
-    lede: "Responsible for everything between the product and the customer.",
-    body: "Run outreach to battery-materials companies and research laboratories, conduct customer conversations, and convert interest into pilots and pilots into customers. Handle incorporation and contracts with counsel, the hiring process, budgets and grants. Own the website, the company's public presence and conference work, keeping every claim within the evidence.",
-    want: [
-      "A technical background in chemistry, chemical engineering or materials science, or the ability to discuss R&D credibly",
-      "Consistent follow-through on outreach and operations",
-      "Experience or contacts in battery, materials or chemicals R&D is a strong advantage",
-    ],
-    not: "Overstating a guarantee to secure a deal would misrepresent the product in a signed contract, and is not acceptable here.",
-  },
-  {
     title: "Scientific advisors",
     status: "Open conversation",
     lede: "Guidance on materials synthesis and solid-state electrolytes.",
