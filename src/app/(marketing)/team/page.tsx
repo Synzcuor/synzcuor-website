@@ -17,10 +17,25 @@ const people = [
     owns: ["The validator", "Private pooling and security", "Partnerships and fundraising"],
     link: "",
   },
+  {
+    initials: "SN",
+    name: "Shin Nguyen",
+    role: "Co-founder & CTO",
+    bio: "Leads engineering: the systems the validator and private pooling run on, and how they are deployed and secured on a customer's own machines.",
+    owns: ["Engineering", "Deployment and infrastructure", "Security review"],
+    link: "https://www.linkedin.com/in/shin-nguyen-4a40603a9",
+  },
+  {
+    initials: "AK",
+    name: "Andy Kim",
+    role: "Co-founder & COO",
+    bio: "Leads operations and go-to-market: outreach to battery-materials companies and laboratories, turning interest into pilots, and the company's contracts, hiring and public presence.",
+    owns: ["Operations", "Customers and pilots", "Marketing"],
+    link: "https://www.linkedin.com/in/andy-kim-72519a3a6",
+  },
 ];
 
 const open = [
-  ["Co-founder: Go-to-Market, Operations & Marketing", "Customers, pilots, operations and the company's public presence"],
   ["Machine Learning Engineer, Private Training", "Federated training, secure aggregation and privacy"],
   ["Software Engineer, Deployment & Infrastructure", "On-premises packaging, security review and reproducibility"],
   ["Computational Materials Engineer, Validation", "Novelty checks, stability and the synthesizability model"],
@@ -34,8 +49,8 @@ export default function TeamPage() {
         The people building Synzcuor
       </h1>
       <p className="mt-6 text-lg leading-relaxed text-ink-2 max-w-2xl">
-        A solo founder for now, building the validator and the private pooling that feeds it.
-        We are hiring for go-to-market and for each engineering discipline the product depends on.
+        Three co-founders building the validator and the private pooling that feeds it.
+        We are hiring for each engineering discipline the product depends on.
       </p>
 
       <div className="mt-14 grid md:grid-cols-2 gap-6">
